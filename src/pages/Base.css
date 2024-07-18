@@ -1,0 +1,21 @@
+
+body {
+    background-color: #F9F9F9;
+    
+}
+.category-list, .subcategory-list {
+    max-height: 300px;
+    overflow-y: scroll;
+    margin-bottom: 1em;
+}
+
+.selected-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5em;
+}
+
+.badge-close {
+    margin-left: 0.5em;
+    cursor: pointer;
+}

@@ -36,3 +36,10 @@
     transform: rotate(360deg);
   }
 }
+
+@font-face {
+  font-family: 'BM HANNA_TTF';
+  src: url('./fonts/BMHANNAPro.ttf') format('truetype');
+}
+
+
