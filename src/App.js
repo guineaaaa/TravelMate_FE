@@ -11,6 +11,7 @@ import ProfileStep3 from './pages/ProfileStep3';
 import ProfileStep4 from './pages/ProfileStep4';
 import ProfileStep5 from './pages/ProfileStep5';
 
+
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
@@ -30,6 +31,8 @@ function App() {
         <Route path="/profilestep3" element={<ProfileStep3 />} />
         <Route path="/profilestep4" element={<ProfileStep4 />} />
         <Route path="/profilestep5" element={<ProfileStep5/>}/>
+
+        
       </Routes>
     </div>
   );

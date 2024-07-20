@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
-import { Container, Row, Col, ListGroup, Badge, Button, CloseButton } from 'react-bootstrap';
-import styled from 'styled-components';
+import { Container, Row, Col, ListGroup, Badge, Button, CloseButton, Form, InputGroup } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Base.css';
+import { SearchIcon } from '../constants/icons';
 
 const ProfileStep2 = () => {
     const [preferSpot, setPreferSpot] = useState([]);
@@ -12,7 +12,7 @@ const ProfileStep2 = () => {
 
     const categories = {
         "액티비티": ["하이킹", "스쿠버다이빙", "자전거"],
-        "푸드": ["레스토랑 탐방", "스트리트 푸드"],
+        "푸드": ["한식", "일식"],
         "운동": ["조깅", "피트니스"],
         "투어": ["도시 투어", "자연 투어"],
         "역사": ["박물관", "역사 유적지"],
@@ -44,140 +44,90 @@ const ProfileStep2 = () => {
         setPreferSpot(preferSpot.filter(item => item !== tag));
     };
 
+    const handleClearAllTags = () => {
+        setPreferSpot([]);
+    };
+
     return (
-        <ProfileContainer>
-            <ProfileRequest>선호하는 여행을 선택해주세요.</ProfileRequest>
-            <Annotation>
+        <Container fluid className="d-flex flex-column align-items-center justify-content-center" style={{ padding:'2rem',background: '#FFF', borderRadius: '0.625em', margin: '5em auto', maxWidth: '31.25rem', maxHeight: '37.9375rem'}}>
+            <h1 className="text-left" style={{ color: '#486284', fontFamily: 'DM Sans', fontSize: '1.5rem', fontWeight: '700', lineHeight: '2.5rem', letterSpacing: '0.03125rem', marginBottom: '0.5em', marginRight:'1.5rem'}}>
+                선호하는 여행을 선택해주세요.
+            </h1>
+            <h2 className="text-left mb-4" style={{ color: '#486284', fontFamily: 'DM Sans', fontSize: '0.9375rem', fontWeight: '400', lineHeight: '1.5rem', letterSpacing: '0.03125rem', textAlign: 'left' }}>
                 좋아하거나, 관심있는 여행을 1개 이상 선택해주세요.
                 <br />관심사에 맞는 동행자를 추천해 드려요
-            </Annotation>
-            <Container>
-                <Row>
-                    <Col md={4} className="category-list">
-                        <ListGroup>
-                            {Object.keys(categories).map((cat, index) => (
-                                <StyledListGroupItem
-                                    key={index}
-                                    active={selectedCategory === cat}
-                                    onClick={() => setSelectedCategory(cat)}
-                                    selected={selectedCategory === cat}
-                                >
-                                    {cat}
-                                </StyledListGroupItem>
-                            ))}
-                        </ListGroup>
-                    </Col>
-                    <Col md={4} className="subcategory-list">
-                        <ListGroup>
-                            {selectedCategory && categories[selectedCategory].map((subCat, index) => (
-                                <StyledListGroupItem
-                                    key={index}
-                                    active={preferSpot.includes(`${selectedCategory} | ${subCat}`)}
-                                    onClick={() => handleSubCategorySelect(selectedCategory, subCat)}
-                                    selected={preferSpot.includes(`${selectedCategory} | ${subCat}`)}
-                                >
-                                    {subCat}
-                                </StyledListGroupItem>
-                            ))}
-                        </ListGroup>
-                    </Col>
-                    <Col md={4} className="selected-tags d-flex flex-wrap">
-                        {preferSpot.map((spot, index) => (
-                            <StyledBadge key={index}>
-                                {spot.split(' | ')[1]}
-                                <CloseButton
-                                    variant="white"
-                                    aria-label="Remove"
-                                    onClick={() => handleRemoveTag(spot)}
-                                    className="badge-close"
-                                />
-                            </StyledBadge>
+            </h2>
+            
+            <InputGroup className="mb-3">
+                <InputGroup.Text id="basic-addon1"><SearchIcon /></InputGroup.Text>
+                <Form.Control
+                    placeholder="나라, 지역 혹은 도시를 입력하세요"
+                />
+            </InputGroup>
+
+            <Row className="w-100">
+                <Col md={4} className="category-list">
+                    <ListGroup>
+                        {Object.keys(categories).map((cat, index) => (
+                            <ListGroup.Item
+                                key={index}
+                                active={selectedCategory === cat}
+                                onClick={() => setSelectedCategory(cat)}
+                                style={{ color: 'black', fontSize: '0.8rem', padding: '0.5rem 1rem', cursor: 'pointer', backgroundColor: selectedCategory === cat ? 'rgba(171, 209, 255, 0.30)' : 'transparent', borderColor: selectedCategory === cat ? 'rgba(171, 209, 255, 0.30)' : 'transparent' }}
+                            >
+                                {cat}
+                            </ListGroup.Item>
                         ))}
-                    </Col>
-                </Row>
-                <div className="text-center mt-4">
-                    <NextButton onClick={handleNext} variant="primary" size="lg">
-                        다음
-                    </NextButton>
-                </div>
-            </Container>
-        </ProfileContainer>
+                    </ListGroup>
+                </Col>
+                <Col md={4} className="subcategory-list">
+                    <ListGroup>
+                        {selectedCategory && categories[selectedCategory].map((subCat, index) => (
+                            <ListGroup.Item
+                                key={index}
+                                active={preferSpot.includes(`${selectedCategory} | ${subCat}`)}
+                                onClick={() => handleSubCategorySelect(selectedCategory, subCat)}
+                                style={{ color: 'black', fontSize: '0.8rem', padding: '0.5rem 1rem', cursor: 'pointer', backgroundColor: preferSpot.includes(`${selectedCategory} | ${subCat}`) ? 'rgba(171, 209, 255, 0.30)' : 'transparent', borderColor: preferSpot.includes(`${selectedCategory} | ${subCat}`) ? 'rgba(171, 209, 255, 0.30)' : 'transparent' }}
+                            >
+                                {subCat}
+                            </ListGroup.Item>
+                        ))}
+                    </ListGroup>
+                </Col>
+                <Col md={4} className="selected-tags d-flex flex-column">
+                    <div className="d-flex justify-content-between align-items-center mb-2">
+                        <span style={{ color: '#486284', fontSize: '0.75rem', fontWeight: '500' }}>
+                            {preferSpot.length} / {Object.values(categories).flat().length}
+                        </span>
+                        <Button 
+                            variant="link" 
+                            onClick={handleClearAllTags} 
+                            style={{ fontSize: '0.75rem', color: '#0064DC' }}>
+                            전체 삭제
+                        </Button>
+                    </div>
+                    {preferSpot.map((spot, index) => (
+                        <Badge className="custom-badge" key={index} pill >
+                            {spot.split(' | ')[1]}
+                            <CloseButton 
+                                variant="black"
+                                aria-label="Remove"
+                                onClick={() => handleRemoveTag(spot)}
+                                className="badge-close"
+                            />
+                        </Badge>
+                    ))}
+                </Col>
+            </Row>
+
+            <div className="text-center mt-5">
+                <Button onClick={handleNext} className="btn btn-dark" style={{ 
+                     padding: '0.75em 1.5em', borderRadius: '1.875rem', width: '19.5rem', height: '3.2rem' }}>
+                    다음
+                </Button>
+            </div>
+        </Container>
     );
 };
-
-const ProfileContainer = styled.div`
-  width: 40.9375em;
-  height: auto;
-  flex-shrink: 0;
-  border-radius: 0.625em;
-  background: #FFF;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  margin: 5em auto;
-  padding: 2em;
-`;
-
-const ProfileRequest = styled.h1`
-  color: var(--Neutral-10, #486284);
-  font-family: "DM Sans";
-  font-size: 1.5rem;
-  font-style: normal;
-  font-weight: 700;
-  line-height: 2.5rem; /* 166.667% */
-  letter-spacing: 0.03125rem;
-  margin-bottom: 0.5em;
-  text-align: center;
-`;
-
-const Annotation = styled.h2`
-  color: var(--Neutral-10, #486284);
-  font-family: "DM Sans";
-  font-size: 0.9375rem;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 1.5rem; /* 160% */
-  letter-spacing: 0.03125rem;
-  margin-bottom: 1em;
-  text-align: center;
-`;
-
-const NextButton = styled.button`
-  padding: 0.75em 1.5em;
-  border-radius: 1.875rem;
-  background: var(--Black, #000);
-  color: white;
-  border: none;
-  border-radius: 10em;
-  font-family: "DM Sans";
-  cursor: pointer;
-  width: 19.5rem;
-  height: 3.2rem;
-  flex-shrink: 0;
-  &:hover {
-    font-weight:800;
-  }
-`;
-
-const StyledListGroupItem = styled(ListGroup.Item)`
-  font-size: 0.875rem;
-  padding: 0.5rem 1rem;
-  ${({ selected }) =>
-    selected &&
-    `
-    background: rgba(171, 209, 255, 0.30);
-    border-color: rgba(171, 209, 255, 0.30);
-  `}
-`;
-
-const StyledBadge = styled(Badge)`
-  font-size: 0.875rem;
-  padding: 0.375rem 0.75rem;
-  margin-right: 0.5px;
-  margin-bottom: 0.5px;
-  background-color: rgba(171, 209, 255, 0.30);
-  color: white;
-`;
 
 export default ProfileStep2;

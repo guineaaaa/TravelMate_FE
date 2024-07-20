@@ -5,7 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 const MainPageNav = () => {
     return (
-        <Navbar className="color-nav" variant="dark" expand="lg" style={{ top: '4.5em', position: 'fixed', width: '100%', height: '3em' }}>
+        <Navbar className="color-nav" variant="dark" expand="lg" style={{ top: '4.5em', position: 'fixed', width: '100%', height: '3.0625rem', zIndex:'999' }}>
             <Container>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
