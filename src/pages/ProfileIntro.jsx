@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./ProfileIntro.css";
-import { Container, Row, Col, Button, Modal } from 'react-bootstrap';
+import { Container, Row, Col, Button, Modal, ProgressBar, ListGroup } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import styled from "styled-components";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -12,6 +12,9 @@ import { faFacebook, faXTwitter } from '@fortawesome/free-brands-svg-icons';
 const ProfileIntro = () => {
     const navigate = useNavigate();
     const [show, setShow] = useState(false);
+    const [show2, setShow2] = useState(false);
+    const handleClose2 = () => setShow2(false);
+    const handleShow2 = () => setShow2(true);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
@@ -38,7 +41,8 @@ const ProfileIntro = () => {
                     <span style={{cursor: 'pointer', paddingBottom: '5px', position: 'relative'}}>리뷰</span>
                 </div>
                 <div>
-                    <button style={{borderRadius: '50px', width: '150px', height: '40px', fontSize: '13px', background: 'blue', color:'white', margin: '0 10px'}}>글쓰기</button>
+                    <button style={{borderRadius: '50px', width: '150px', height: '40px', fontSize: '13px', background: 'blue', color:'white', margin: '0 10px'}}
+                    onClick={handleShow2}>글쓰기</button>
                     <button style={{borderRadius: '50px', width: '150px', height: '40px', fontSize: '13px', background: 'blue', color:'white', margin: '0 10px'}}>프로필 수정</button>
                     <button style={{borderRadius: '50px', width: '150px', height: '40px', fontSize: '13px', background: 'blue', color:'white', margin: '0 10px'}}
                     onClick={handleShow}>프로필 공유</button>
@@ -115,6 +119,63 @@ const ProfileIntro = () => {
                         </div>
                     </Col>
                 </Row>
+                <Modal show={show2} onHide={handleClose2} size="lg">
+                    <Modal.Header closeButton>
+                        <Modal.Title>말랑콩떡</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                        <h5>매너 점수</h5>
+                        <ProgressBar now={40} label="37.7°C" />
+                        <h5 className="mt-4">만족도 평가</h5>
+                        <ListGroup variant="flush">
+                            <ListGroup.Item className="d-flex justify-content-between align-items-center">
+                                20명의 동행자들이 이런 점을 긍정적으로 평가했어요!
+                            </ListGroup.Item>
+                            <ListGroup.Item className="d-flex justify-content-between align-items-center bg-light">
+                                <span>덕분에 다양하고 즐거운 경험을 할 수 있어서 좋았어요!</span>
+                                <span className="badge bg-danger text-white">15</span>
+                            </ListGroup.Item>
+                            <ListGroup.Item className="d-flex justify-content-between align-items-center">
+                                <span>취향이 통하는 멤버를 만나 좋았어요. 다음에 또 만나고 싶어요.</span>
+                                <span className="badge bg-warning text-white">3</span>
+                            </ListGroup.Item>
+                            <ListGroup.Item className="d-flex justify-content-between align-items-center bg-light">
+                                <span>덕분에 너무 즐거웠어요!</span>
+                                <span className="badge bg-secondary text-white">2</span>
+                            </ListGroup.Item>
+                            <ListGroup.Item className="d-flex justify-content-between align-items-center">
+                                8명의 동행자들이 이런 점을 부정적으로 평가했어요!
+                            </ListGroup.Item>
+                            <ListGroup.Item className="d-flex justify-content-between align-items-center bg-light">
+                                <span>일정이 너무 빡빡했어요</span>
+                                <span className="badge bg-secondary text-white">4</span>
+                            </ListGroup.Item>
+                            <ListGroup.Item className="d-flex justify-content-between align-items-center">
+                                <span>약속 시간에 늦어서 기다렸어요.</span>
+                                <span className="badge bg-secondary text-white">3</span>
+                            </ListGroup.Item>
+                            <ListGroup.Item className="d-flex justify-content-between align-items-center bg-light">
+                                <span>계획대로 안 되는게 많았어요.</span>
+                                <span className="badge bg-secondary text-white">1</span>
+                            </ListGroup.Item>
+                        </ListGroup>
+                        <h5 className="mt-4">동행자 피드백</h5>
+                        <ListGroup variant="flush">
+                            <ListGroup.Item>
+                                <strong>우O님</strong> <small>2일 전</small>
+                                <p>체계적인 계획이 너무 좋았어요! 다음에 또 같이 동행해요~</p>
+                            </ListGroup.Item>
+                            <ListGroup.Item>
+                                <strong>우O님</strong> <small>2일 전</small>
+                                <p>체계적인 계획이 너무 좋았어요! 다음에 또 같이 동행해요~</p>
+                            </ListGroup.Item>
+                            <ListGroup.Item>
+                                <strong>우O님</strong> <small>2일 전</small>
+                                <p>체계적인 계획이 너무 좋았어요! 다음에 또 같이 동행해요~</p>
+                            </ListGroup.Item>
+                        </ListGroup>
+                    </Modal.Body>
+                </Modal>
             </Container>
         </div>
         </>
