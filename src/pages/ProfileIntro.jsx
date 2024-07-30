@@ -2,21 +2,34 @@ import React from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./ProfileIntro.css";
-import { Container, Row, Col, Button, Modal, ProgressBar, ListGroup } from 'react-bootstrap';
+import { Container, Row, Col, Button, Modal, ProgressBar, ListGroup, Toast } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import styled from "styled-components";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLink } from '@fortawesome/free-solid-svg-icons';
 import { faFacebook, faXTwitter } from '@fortawesome/free-brands-svg-icons';
+import profileImage from '../assets/e79d606d090bbdd8c20ec94f8bd317f1.png';
+import temp from '../assets/temperature.png';
+import shareImage from '../assets/free-icon-share-3989188.png';
+import copyToClipboard from 'copy-to-clipboard';
 
 const ProfileIntro = () => {
     const navigate = useNavigate();
     const [show, setShow] = useState(false);
     const [show2, setShow2] = useState(false);
+    const [activeTab, setActiveTab] = useState('소개');
+    const [toastVisible, setToastVisible] = useState(false);
+    
     const handleClose2 = () => setShow2(false);
     const handleShow2 = () => setShow2(true);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+
+    const handleCopyLink = () => {
+        copyToClipboard(window.location.href);
+        setToastVisible(true);
+        setTimeout(() => setToastVisible(false), 3000); // 3초 후에 토스트 메시지 숨기기
+    };
 
     return  (
         <>
@@ -24,29 +37,43 @@ const ProfileIntro = () => {
             <Container fluid className="d-flex align-items-center justify-content-center" style={{ height: '100px', backgroundColor: '#cccccc' }}>
                 커버
             </Container>
-            <Container fluid className="d-flex align-items-start position-relative bg-light-custom" style={{ height: '200px' }}>
+            <Container fluid className="d-flex align-items-start position-relative bg-light-custom" style={{ height: '220px', borderBottom: '1px solid #ccc'}}>
                 <div className="profile-circle d-flex align-items-center justify-content-center">
                     프로필
                 </div>
                 <div style={{marginTop: '10px'}}>
-                    <h3>닉네임 (27/여)</h3>
+                    <div className="d-flex">
+                        <h4 style={{marginRight:'10px'}}>닉네임 (27/여)</h4> 
+                        <img src={profileImage} alt="프로필" className="profile-img" height="35px" width="35px" />
+                        <img src={temp} alt="온도" className="profile-img" height="35px" width="130px"
+                        onClick={handleShow2} />
+                    </div>
                     <p>국가 | 최근 활동 내역</p>
                 </div>
             </Container>
-            <Container fluid className="d-flex justify-content-between align-items-center p-3">
-                <div style={{display: 'flex', gap: '40px', paddingLeft: '60px', fontSize: '15px'}}>
-                    <span style={{cursor: 'pointer', paddingBottom: '5px', position: 'relative'}}>소개</span>
-                    <span style={{cursor: 'pointer', paddingBottom: '5px', position: 'relative'}}>사진</span>
-                    <span style={{cursor: 'pointer', paddingBottom: '5px', position: 'relative'}}>여행 일정</span>
-                    <span style={{cursor: 'pointer', paddingBottom: '5px', position: 'relative'}}>리뷰</span>
+            <Container fluid className="d-flex justify-content-between align-items-center p-2" style={{height: '60px'}}>
+                <div className="d-flex align-items-center" style={{ gap: '40px', paddingLeft: '60px', fontSize: '15px', height: '100%' }}>
+                    {['소개', '사진', '여행 일정', '리뷰'].map((tab) => (
+                        <span 
+                            key={tab}
+                            style={{ 
+                                cursor: 'pointer', 
+                                paddingBottom: '5px', 
+                                position: 'relative', 
+                                fontWeight: 'bold',
+                                borderBottom: activeTab === tab ? '2px solid black' : 'none'
+                            }}
+                            onClick={() => setActiveTab(tab)}
+                        >
+                            {tab}
+                        </span>
+                    ))}
                 </div>
-                <div>
-                    <button style={{borderRadius: '50px', width: '150px', height: '40px', fontSize: '13px', background: 'blue', color:'white', margin: '0 10px'}}
-                    onClick={handleShow2}>글쓰기</button>
-                    <button style={{borderRadius: '50px', width: '150px', height: '40px', fontSize: '13px', background: 'blue', color:'white', margin: '0 10px'}}>프로필 수정</button>
-                    <button style={{borderRadius: '50px', width: '150px', height: '40px', fontSize: '13px', background: 'blue', color:'white', margin: '0 10px'}}
-                    onClick={handleShow}>프로필 공유</button>
-                    <button style={{borderRadius: '50px', width: '150px', height: '40px', fontSize: '13px', background: 'blue', color:'white', margin: '0 10px'}}>채팅</button>
+                <div className="ml-auto d-flex align-items-center">
+                    <img src={shareImage} alt="공유" className="profile-img" height="35px" width="35px" onClick={handleShow} />
+                    <Button variant="primary" className="rounded-pill mx-1" style={{ width: '135px', height: '30px', fontSize: '13px' }}>친구추가</Button>
+                    <Button variant="primary" className="rounded-pill mx-1" style={{ width: '135px', height: '30px', fontSize: '13px' }}>채팅</Button>
+                    <Button variant="primary" className="rounded-pill mx-1" style={{ width: '135px', height: '30px', fontSize: '13px' }}>동행 제안</Button>
                 </div>
             </Container>
             <Modal show={show} onHide={handleClose}>
@@ -56,7 +83,7 @@ const ProfileIntro = () => {
                 <Modal.Body>
                     <div className="d-flex justify-content-around">
                         <div className="text-center">
-                            <FontAwesomeIcon icon={faLink} size="3x" />
+                            <FontAwesomeIcon icon={faLink} size="3x" onClick={handleCopyLink}/>
                             <p>링크 복사</p>
                         </div>
                         {/* <div className="text-center">
@@ -74,7 +101,8 @@ const ProfileIntro = () => {
                     </div>
                 </Modal.Body>
             </Modal>
-            <Container fluid className="mt-4">
+            {activeTab == '소개' && (
+            <Container fluid className="mt-0">
                 <Row>
                     <Col md={8} className="left-section">
                         <div className="profile-info-box">
@@ -177,7 +205,22 @@ const ProfileIntro = () => {
                     </Modal.Body>
                 </Modal>
             </Container>
+            )}
         </div>
+        <Toast
+                onClose={() => setToastVisible(false)}
+                show={toastVisible}
+                delay={3000}
+                autohide
+                style={{
+                    position: 'fixed',
+                    bottom: '20px',
+                    right: '20px',
+                    zIndex: 1051,
+                }}
+            >
+                <Toast.Body>링크가 복사되었습니다!</Toast.Body>
+            </Toast>
         </>
     )
 };
