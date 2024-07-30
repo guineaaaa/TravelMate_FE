@@ -12,8 +12,8 @@ const ChatWindow = () => {
           </div>
         </div>
         <div>
-          <button className="btn btn-sm btn-outline-secondary">부담 등록</button>
-          <button className="btn btn-sm btn-outline-secondary">신고</button>
+          <button className="btn btn-sm btn-outline-secondary mx-2">부담 등록</button>
+          <button className="btn btn-sm btn-danger">신고</button>
         </div>
       </div>
       <div className="flex-grow-1 p-3" style={{ overflowY: 'scroll' }}>
@@ -59,7 +59,7 @@ const ChatWindow = () => {
       <div className="p-3 border-top">
         <div className="d-flex">
           <input type="text" className="form-control me-2" placeholder="메시지를 입력하세요" />
-          <button className="btn btn-primary">보내기</button>
+          <button className="btn btn-primary text-nowrap">보내기</button>
         </div>
       </div>
     </div>
