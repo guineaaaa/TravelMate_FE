@@ -1,12 +1,15 @@
 import React from 'react';
 import ChatList from '../pages/chatList'
 import ChatWindow from '../pages/chatWindow';
+import Footer from '../pages/footer';
+import Navibar from '../pages/navbar';
 import './App.css';
 
 const App = () => {
   return (
     <div className="container-fluid p-0">
-      <div className="row no-gutters">
+      <Navibar />
+      <div className="row no-gutters w-100">
         <div className="col-3 border-end">
           <ChatList />
         </div>
@@ -14,6 +17,7 @@ const App = () => {
           <ChatWindow />
         </div>
       </div>
+      <Footer />
     </div>
   );
 };
