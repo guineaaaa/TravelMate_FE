@@ -67,7 +67,7 @@ const Login = () => {
                 </InputGroup>
                 {passwordMessage && <p className="text-danger text-end w-50">{passwordMessage}</p>}
             </Form>
-            <p className="text-muted mt-n4 mb-4" style={{ marginLeft: '15em', fontSize: '0.75rem', fontFamily: 'Baloo Thambi' }}>로그인 정보를 잊으셨나요?</p>
+            <Link to="/findid" p className="text-muted mt-n4 mb-4" style={{ marginLeft: '15em', fontSize: '0.75rem', fontFamily: 'Baloo Thambi' }}>로그인 정보를 잊으셨나요?</Link>
 
             <Button onClick={loginHandler} variant="light" className="p-0 mb-2" style={{ width: '19.5rem', height: '3rem', borderRadius: 'none', padding: 0 }}>
                 <Image src={KakaoLogInButton} alt="카카오 로그인" fluid style={{ width: '100%', height: '100%', objectFit: 'cover' }} />

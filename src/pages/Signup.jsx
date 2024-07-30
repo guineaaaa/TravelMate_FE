@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Container, Modal, Image, Form, Button, InputGroup } from 'react-bootstrap';
-import { FaEye, FaEyeSlash } from 'react-icons/fa';
+
 import KakaoLogInButton from '../images/kakao_login_large_wide 1.png';
 import GoogleLogInImage from '../images/image 5.png';
 import AppleLogInImage from '../images/image 6.png';
@@ -15,11 +15,15 @@ const Signup = () => {
     const [passwordMessage, setPasswordMessage] = useState("");
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-    const [showModal, setShowModal] = useState(false);
+
+    const [showVerificationCodeModal, setVerificationCodeModal] = useState(false);
+    const [showSignupModal, setSignupShowModal] = useState(false);
+    const [email, setEmail] = useState(""); // 이메일 상태 변수 추가
 
     const handleIDChange = (e) => {
         const currentID = e.target.value;
         setId(currentID);
+        setEmail(currentID); // 이메일 상태 업데이트
         if (!currentID.trim()) {
             setIDMessage("아이디를 입력하세요");
         } else {
@@ -30,8 +34,13 @@ const Signup = () => {
     const toggleShowPassword = () => setShowPassword(!showPassword);
     const toggleShowConfirmPassword = () => setShowConfirmPassword(!showConfirmPassword);
 
-    const handleModalClose = () => setShowModal(false);
-    const handleModalShow = () => setShowModal(true);
+    // SignUp 모달
+    const handleSignupModalClose = () => setSignupShowModal(false);
+    const handleSignupModalShow = () => setSignupShowModal(true);
+
+    // 인증번호 모달
+    const handleVerificationModalClose = () => setVerificationCodeModal(false);
+    const handleVerificationModalShow = () => setVerificationCodeModal(true);
 
     const h4Style = {
         marginRight: '13rem',
@@ -52,24 +61,30 @@ const Signup = () => {
         <Container className="d-flex flex-column align-items-center justify-content-center"
             style={{ width: '40.9375rem', height: '59.625rem', borderRadius: '0.625rem', backgroundColor: '#FFF', padding: '2rem', margin: '1.87rem auto' }}>
             <h1 className="text-primary" style={{
-                marginTop: '6.5rem', fontFamily: 'BM HANNA_TTF', fontSize: '1.5rem', lineHeight: '3.125rem',
-                width: '8.6875rem', height: '1.8rem', textAlign: 'center', fontWeight: '400', flexShrink: '0'
+                paddingTop: '9.5rem', fontFamily: 'BM HANNA_TTF', fontSize: '1.5rem', lineHeight: '3.125rem',
+                width: '8.6875rem', height: '.8rem', textAlign: 'center', fontWeight: '400', flexShrink: '0'
             }}>TravelMate</h1>
 
-            <hr style={{ marginTop: '0.56rem', backgroundColor: '#DDD', width: '40.9375rem', height: '0.0625rem' }} />
+            <hr style={{ marginTop: '2.56rem', backgroundColor: '#DDD', width: '40.9375rem', height: '0.0625rem' }} />
 
-            <h2 className="text-dark" style={{ fontSize: '1.5rem', fontWeight: 800, textTransform: 'uppercase', textAlign: 'left', marginRight: '14.25rem',marginTop: '1.44rem', marginBottom: '-0.081rem' }}>
-                회원가입</h2>
+            <h2 className="text-dark" style={{ fontSize: '1.5rem', fontWeight: 800, textTransform: 'uppercase', textAlign: 'left', marginRight: '14.25rem', marginTop: '1.44rem', marginBottom: '-0.081rem' }}>
+                회원가입
+            </h2>
 
             <Form className="w-100 d-flex flex-column align-items-center"
-            style={{marginTop:'0.75rem'}}>
+                style={{ marginTop: '0.75rem' }}>
 
-                <h4 className="text-dark" style={{ ...h4Style}}>
-                    이메일</h4>
+                <h4 className="text-dark" style={{ ...h4Style }}>
+                    이메일
+                </h4>
 
-                <Container className="d-flex" style={{ marginLeft: '8rem' }}>
-                    <InputGroup className="mb-3" style={{ width: '15.45rem', height: '2.25rem', flexShrink: '0', borderRadius: '0.3125rem', border: '1px solid #A6A6A6' }}>
-                        <Form.Control type="text" value={id} onChange={handleIDChange} placeholder="이메일 입력" />
+                <Container className="d-flex" style={{
+                    marginLeft: '8rem'
+                }}>
+                    <InputGroup className="mb-3" style={{ width: '15.45rem', height: '2.25rem', flexShrink: '0' }}>
+                        <Form.Control type="text" value={id} onChange={handleIDChange} placeholder="이메일 입력"
+                            style={{ border: '1px solid #A6A6A6', borderRadius: '0.3125rem' }}
+                        />
                     </InputGroup>
                     {idMessage && <p className="text-danger text-end w-50">{idMessage}</p>}
 
@@ -85,17 +100,20 @@ const Signup = () => {
                         borderRadius: '0.5rem',
                         fontSize: '0.7rem',
                         fontWeight: '400',
-                        marginLeft:'0.3rem'
+                        marginLeft: '0.3rem'
                     }}
-                    >인증하기
+                        onClick={handleVerificationModalShow}
+                    >
+                        인증하기
                     </Button>
                 </Container>
 
                 <h4 className="text-dark" style={h4Style}>인증번호 입력</h4>
                 <Container className="d-flex" style={{ marginLeft: '8rem' }}>
-                    <InputGroup className="mb-3" style={{ width: '15.45rem', height: '2.25rem', flexShrink: '0', borderRadius: '0.3125rem', border: '1px solid #A6A6A6' }}>
+                    <InputGroup className="mb-3" style={{ width: '15.45rem', height: '2.25rem', flexShrink: '0' }}>
                         <Form.Control type="text" value={id}
-                            style={{ background: '#F1F1F1' }} placeholder="인증번호 입력" />
+                            style={{ background: '#F1F1F1', border: '1px solid #A6A6A6', borderRadius: '0.3125rem' }} placeholder="인증번호 입력"
+                        />
                     </InputGroup>
 
                     {passwordMessage && <p className="text-danger text-end w-50">{passwordMessage}</p>}
@@ -111,16 +129,17 @@ const Signup = () => {
                         borderRadius: '0.5rem',
                         fontSize: '0.7rem',
                         fontWeight: '400',
-                        marginLeft:'0.3rem'
+                        marginLeft: '0.3rem'
                     }}
-                    >확인
+                    >
+                        확인
                     </Button>
                 </Container>
 
                 <h4 className="text-dark" style={h4Style}>이름</h4>
                 <InputGroup className="mb-3" style={{ width: '53%' }}>
                     <Form.Control type="text" placeholder="이름 입력"
-                    style={{width: '15.75rem', height: '2.25rem', flexShrink: '0', borderRadius: '0.3125rem', border: '1px solid #A6A6A6'}} />
+                        style={{ width: '15.75rem', height: '2.25rem', flexShrink: '0', borderRadius: '0.3125rem', border: '1px solid #A6A6A6' }} />
                 </InputGroup>
 
                 <h4 className="text-dark" style={h4Style}>비밀번호</h4>
@@ -129,13 +148,12 @@ const Signup = () => {
                         style={{ background: '#F1F1F1' }} />
                 </InputGroup>
 
-                
                 <InputGroup className="mb-3" style={{ width: '53%' }}>
-                    <Form.Control type={showConfirmPassword ? "text" : "password"} value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} placeholder="비밀번호 입력"
+                    <Form.Control type={showConfirmPassword ? "text" : "password"} value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} placeholder="비밀번호 확인"
                         style={{ background: '#F1F1F1' }} />
                 </InputGroup>
 
-                <Button type="button" className="btn-primary" onClick={handleModalShow}
+                <Button type="button" className="btn-primary" onClick={handleSignupModalShow}
                     size="lg" style={{
                         display: 'flex',
                         backgroundColor: '#0074FF',
@@ -149,14 +167,15 @@ const Signup = () => {
                         fontSize: '1rem',
                         fontWeight: '600'
                     }}
-                >약관 동의 후 가입 완료하기
+                >
+                    약관 동의 후 가입 완료하기
                 </Button>
             </Form>
 
-            <hr style={{ marginTop: '2.56rem', marginBottom:'1rem', backgroundColor: '#DDD', width: '40.9375rem', height: '0.0625rem' }} />
+            <hr style={{ marginTop: '1.56rem', marginBottom: '1rem', backgroundColor: '#DDD', width: '40.9375rem', height: '0.0625rem' }} />
 
             <Form className="w-100 d-flex flex-column align-items-center mt-2"
-                style={{paddingBottom:'6rem'}}>
+                style={{ marginBottom: '10rem' }}>
                 <h2 className="text-dark" style={{ fontSize: '1.5rem', fontWeight: 800, textTransform: 'uppercase', textAlign: 'left', marginRight: '9.2em', marginTop: '1em' }}>간편가입</h2>
 
                 <Button variant="light" className="p-0 mb-3" style={{ width: '19.5rem', height: '3rem', borderRadius: 'none', padding: 0 }}>
@@ -172,18 +191,54 @@ const Signup = () => {
                     구글로 로그인
                 </Button>
 
-                <Button variant="light" className="p-0 mb-3" style={{ 
-                    border: '1px solid black', width: '19.5rem', height: '3rem', borderRadius: '1.875rem', padding: 0, color: 'black', fontSize: '0.9375rem' }}>
-                    <Image src={AppleLogInImage} alt="애플 로그인" style={{ width: '1.5rem', height: '1.5rem', marginRight: '0.5rem' 
-                        
-                    }} />
+                <Button variant="light" className="p-0 mb-3" style={{
+                    border: '1px solid black', width: '19.5rem', height: '3rem', borderRadius: '1.875rem', padding: 0, color: 'black', fontSize: '0.9375rem'
+                }}>
+                    <Image src={AppleLogInImage} alt="애플 로그인" style={{ width: '1.5rem', height: '1.5rem', marginRight: '0.5rem' }} />
                     애플로 로그인
                 </Button>
             </Form>
 
             <Modal
-                show={showModal}
-                onHide={handleModalClose}
+                show={showVerificationCodeModal}
+                onHide={handleVerificationModalClose}
+                centered
+            >
+                <Modal.Body>
+                    <p style={{ width: '18.75rem', fontFamily: "Plus Jakarta Sans", fontSize: '1.5rem', fontWeight: '800', fontStyle: 'normal', lineHeight: '121.2%' }}>
+                        인증번호 전송 안내
+                    </p>
+                    <p style={{ width: '28.5625rem', fontSize: '0.875rem', fontStyle: 'normal', fontWeight: '500', lineHeight: '121.2%' }}>
+                        {email}의 메일로 인증번호를 전송했습니다.
+                        메일에 있는 인증번호를 입력해 주세요.
+                    </p>
+                </Modal.Body>
+                <Modal.Footer style={{borderTop:'none'}}>
+                    <Button
+                        style={{
+                            width: '29.1875rem',
+                            height: '2.75rem',
+                            flexShrink: '0',
+                            borderRadius: '0.3125rem',
+                            background: '#0064DC',
+                            textAlign: 'center',
+                            fontFamily: 'Plus Jakarta Sans',
+                            fontSize: '1rem',
+                            fontWeight: '800',
+                            fontStyle: 'normal',
+                        }}
+                        variant="primary"
+                        onClick={handleVerificationModalClose}
+                    >
+                        확인
+                    </Button>
+                </Modal.Footer>
+
+            </Modal>
+
+            <Modal
+                show={showSignupModal}
+                onHide={handleSignupModalClose}
                 centered
                 dialogClassName="custom-modal"
             >
@@ -197,7 +252,7 @@ const Signup = () => {
                         개별 동의 선택이 가능하며, 필수 항목에 동의하여야 서비스 이용이 가능합니다.
                     </p>
                 </Modal.Body>
-                <Modal.Footer>
+                <Modal.Footer >
                     <Button
                         style={{
                             width: '31.81rem',
@@ -212,9 +267,9 @@ const Signup = () => {
                             fontStyle: 'normal',
                         }}
                         variant="primary"
-                        onClick={handleModalClose}
+                        onClick={handleSignupModalClose}
                     >
-                        회원가입 완료
+                        확인
                     </Button>
                 </Modal.Footer>
             </Modal>

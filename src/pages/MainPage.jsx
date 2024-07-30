@@ -3,20 +3,12 @@ import Navbar from '../components/Navbar';
 import MainPageNav from '../components/MainPageNav';
 import backgroundImage from '../images/travelmate.png';
 import AdboxImage from '../images/Adbox.png';
-import { AirplaneIcon, SearchIcon, XButton } from '../constants/icons';
-
+import { AirplaneIcon, SearchIcon, XButton, WarnIcon } from '../constants/icons';
 import Select from 'react-select';
 import { components } from 'react-select';
-
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Card from 'react-bootstrap/Card';
-import Form from 'react-bootstrap/Form';
-import InputGroup from 'react-bootstrap/InputGroup';
-import Button from 'react-bootstrap/Button';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import Badge from 'react-bootstrap/Badge';
+import { Container, Card, Modal, Form, Button, InputGroup, Row, Col, Badge } from 'react-bootstrap';
+import styled from 'styled-components';
 
 const options = [
     { value: 'Eng', label: '영어' },
@@ -26,15 +18,19 @@ const options = [
 
 const MainPage = () => {
     const [selectedOptions, setSelectedOptions] = useState([]);
+    const [showModal, setShowModal] = useState(false);
 
     const handleLanguageChange = (selectedOptions) => {
         setSelectedOptions(selectedOptions || []);
     };
 
+    const handleModalClose = () => setShowModal(false);
+    const handleModalShow = () => setShowModal(true);
+
     return (
         <>
-            <Navbar />
-            <MainPageNav />
+            <Navbar onLinkClick={handleModalShow} />
+            <MainPageNav onLinkClick={handleModalShow} />
 
             <div className="d-flex flex-column align-items-center justify-content-center min-vh-100" style={{ backgroundImage: `url(${backgroundImage})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
                 <h1 className="text-white text-center" style={{ fontFamily: 'Plus Jakarta Sans', fontSize: '1.5rem', fontWeight: 600, marginTop: '5.4em', marginBottom: '0.7em' }}>
@@ -42,7 +38,7 @@ const MainPage = () => {
                     동행자를 TravelMate에서 찾아보세요!
                 </h1>
 
-                <Button style={{ borderRadius: '2em', backgroundColor: '#95C2EC', color: 'black', width: '9em', height: '3rem', fontSize: '1.125rem', fontWeight: 400, margin: '10px', marginTop: '-0.2em', border: 'none' }}>
+                <Button style={{ borderRadius: '2em', backgroundColor: '#95C2EC', color: 'black', width: '9em', height: '3rem', fontSize: '1.125rem', fontWeight: 400, margin: '10px', marginTop: '-0.2em', border: 'none' }} onClick={handleModalShow}>
                     가입하기
                 </Button>
 
@@ -137,7 +133,7 @@ const MainPage = () => {
                         </Col>
 
                         <Col sm={6}>
-                            <Card style={{marginTop:'-3rem'}}>
+                            <Card style={{ marginTop: '-3rem' }}>
                                 <Card.Header style={{ fontSize: '1rem', backgroundColor: '#0064DC', color: 'white', fontWeight: 'bold' }}>나이/성별</Card.Header>
                                 <Card.Body style={{ paddingBottom: '0' }}>
                                     <InputGroup className="mb-3">
@@ -149,33 +145,33 @@ const MainPage = () => {
                                         <Form.Check
                                             style={{ fontSize }}
                                             type="radio"
-                                            id="radio-all"
                                             label="전체"
-                                            name="gender"
-                                            className="me-3"
+                                            name="genderRadio"
+                                            id="genderRadio1"
                                         />
                                         <Form.Check
                                             style={{ fontSize }}
                                             type="radio"
-                                            id="radio-male"
-                                            label="남성만"
-                                            name="gender"
-                                            className="me-3"
+                                            label="남자"
+                                            name="genderRadio"
+                                            id="genderRadio2"
+                                            className="ms-3"
                                         />
                                         <Form.Check
                                             style={{ fontSize }}
                                             type="radio"
-                                            id="radio-female"
-                                            label="여성만"
-                                            name="gender"
+                                            label="여자"
+                                            name="genderRadio"
+                                            id="genderRadio3"
+                                            className="ms-3"
                                         />
                                     </div>
                                 </Card.Body>
                             </Card>
                         </Col>
 
-                        <Col sm={3}>
-                            <Button variant="primary" style={{ borderRadius: '2em', backgroundColor: '#0064DC', color: 'white', width: '22.5rem', height: '3.625rem', fontSize: '1.125rem', fontWeight: 400 }}>
+                        <Col sm={6}>
+                            <Button className="w-100" style={{ borderRadius: '2em', backgroundColor: '#0064DC', color: 'white', width: '22.5rem', height: '3.625rem', fontSize: '1.125rem', fontWeight: 400 }}>
                                 검색하기
                             </Button>
                         </Col>
@@ -198,9 +194,63 @@ const MainPage = () => {
                     </div>
                 </Container>
             </div>
+
+            <StyledModal
+                show={showModal}
+                onHide={handleModalClose}
+                centered
+            >
+                <Modal.Header style={{ 
+                    borderBottom: 'none' }} closeButton />
+                
+                <Modal.Body>
+                    <div style={{ 
+                        marginBottom: '0.94rem',
+                        marginLeft:'1.81rem'
+                    }}>
+                        <WarnIcon />
+                    </div>
+                    <p style={{
+                        color: '#486284',
+                        fontFamily: 'DM Sans', fontSize: '1.5rem', fontWeight: '700', lineHeight: '2.5rem', letterSpacing: '0.03125rem',
+                        marginLeft:'1.81rem',marginRight:'1.19rem',
+
+                    }}>
+                        프로필 정보가 등록된,<br />멤버만 이용할 수 있어요
+                    </p>
+
+                    <p style={{
+                        color: '#486284',
+                        fontFamily: 'DM Sans', fontSize: '0.9375rem', fontWeight: '400', lineHeight: '1.5rem', letterSpacing: '0.03125rem',
+                        marginLeft:'1.81rem',
+                        marginRight:'1.19rem',
+                        
+                    }}>
+                        신뢰할 수 있는 커뮤니티를 만들기 위해<br/>
+                        프로필 정보가 등록된 멤버만 이용할 수 있어요
+                    </p>      
+                </Modal.Body>
+
+                <Modal.Footer style={{ marginTop:'1.36rem',borderTop: 'none', justifyContent: 'center' }}>
+                    <Button
+                        style={{
+                            width: '19.5rem', height: '3.2rem',
+                            borderRadius: '1.875rem', 
+                            background: '#000',
+                            border:'none',flexShirnk:'0',
+                            paddingTop:'0.1rem', //글자 위치 조정
+                            textAlign: 'center', fontFamily: 'Baloo Thambi', fontStyle:'',
+                            fontSize: '0.9375rem', fontWeight: '400', lineHeight: '3.125rem'
+                        }}
+                        href="/signup"
+                    >
+                        5초 만에 프로필 완성하고 바로 시작하기
+                    </Button>
+                </Modal.Footer>
+            </StyledModal>
         </>
     );
-}
+};
 
 const fontSize = '0.8rem';
 
@@ -218,8 +268,25 @@ const customMultiValue = (props) => (
             }}
             style={{ border: 'none', background: 'transparent', cursor: 'pointer', marginLeft: '0.5rem' }}
         >
+            <XButton />
         </button>
     </div>
 );
+
+const StyledModal = styled(Modal)`
+  .modal-dialog {
+    width: 26.375rem;
+    height: 24.25rem; 
+    display: flex;
+  }
+
+  .modal-content {
+    border-radius: 0; 
+  }
+
+  .modal-body {
+    overflow: hidden;
+  }
+`;
 
 export default MainPage;

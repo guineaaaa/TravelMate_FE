@@ -47,3 +47,8 @@
   src: url('./fonts/DMSans-VariableFont_opsz\,wght.ttf') format('truetype');
 }
 
+.modal-dialog-centered-custom {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
