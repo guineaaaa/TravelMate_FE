@@ -57,16 +57,20 @@ const ProfileStep2 = () => {
                 좋아하거나, 관심있는 여행을 1개 이상 선택해주세요.
                 <br />관심사에 맞는 동행자를 추천해 드려요
             </h2>
-            
-            <InputGroup className="mb-3">
-                <InputGroup.Text id="basic-addon1"><SearchIcon /></InputGroup.Text>
-                <Form.Control
-                    placeholder="나라, 지역 혹은 도시를 입력하세요"
-                />
-            </InputGroup>
 
-            <Row className="w-100">
-                <Col md={4} className="category-list">
+            {/* 검색창 */}
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent:'center', marginBottom: '1rem', border: '1.5px solid #D9D9D9', width:'31.25rem', height:'2.375rem', padding:'0.75rem 1rem', gap:'0.5rem' }}>
+                        <SearchIcon style={{ marginRight: '0.5rem' }} />
+                        <Form.Control
+                            style={{ fontSize: '1rem', border: 'none', boxShadow: 'none' }}
+                            placeholder="나라, 지역 혹은 도시를 입력하세요"
+                        />
+            </div>
+            
+
+            <Row style={{width:'100%'}}>
+                <Col md={4} className="category-list"
+                style={{marginLeft:'-2.5rem'}}>
                     <ListGroup>
                         {Object.keys(categories).map((cat, index) => (
                             <ListGroup.Item
@@ -80,7 +84,8 @@ const ProfileStep2 = () => {
                         ))}
                     </ListGroup>
                 </Col>
-                <Col md={4} className="subcategory-list">
+
+                <Col md={5} className="subcategory-list">
                     <ListGroup>
                         {selectedCategory && categories[selectedCategory].map((subCat, index) => (
                             <ListGroup.Item
@@ -94,8 +99,9 @@ const ProfileStep2 = () => {
                         ))}
                     </ListGroup>
                 </Col>
+
                 <Col md={4} className="selected-tags d-flex flex-column">
-                    <div className="d-flex justify-content-between align-items-center mb-2">
+                    <div className="d-flex justify-content-between align-items-center">
                         <span style={{ color: '#486284', fontSize: '0.75rem', fontWeight: '500' }}>
                             {preferSpot.length} / {Object.values(categories).flat().length}
                         </span>

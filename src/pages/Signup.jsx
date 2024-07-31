@@ -251,6 +251,8 @@ const Signup = () => {
                     <p style={{ width: '31.12888rem', fontSize: '0.875rem', fontWeight: '400', lineHeight: '121.2%' }}>
                         개별 동의 선택이 가능하며, 필수 항목에 동의하여야 서비스 이용이 가능합니다.
                     </p>
+
+                    
                 </Modal.Body>
                 <Modal.Footer >
                     <Button
