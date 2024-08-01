@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from 'react-router-dom';
 import { Container, Modal, Image, Form, Button, InputGroup } from 'react-bootstrap';
 
 import KakaoLogInButton from '../images/kakao_login_large_wide 1.png';
@@ -6,6 +7,8 @@ import GoogleLogInImage from '../images/image 5.png';
 import AppleLogInImage from '../images/image 6.png';
 import './Base.css';
 import '../App.css';
+
+import SignupModal from '../components/SignupModal';
 
 const Signup = () => {
     const [id, setId] = useState("");
@@ -59,7 +62,7 @@ const Signup = () => {
 
     return (
         <Container className="d-flex flex-column align-items-center justify-content-center"
-            style={{ width: '40.9375rem', height: '59.625rem', borderRadius: '0.625rem', backgroundColor: '#FFF', padding: '2rem', margin: '1.87rem auto' }}>
+            style={{ width: '40.9375rem', height: '67.625rem', borderRadius: '0.625rem', backgroundColor: '#FFF', padding: '2rem', margin: '1.87rem auto' }}>
             <h1 className="text-primary" style={{
                 paddingTop: '9.5rem', fontFamily: 'BM HANNA_TTF', fontSize: '1.5rem', lineHeight: '3.125rem',
                 width: '8.6875rem', height: '.8rem', textAlign: 'center', fontWeight: '400', flexShrink: '0'
@@ -174,9 +177,10 @@ const Signup = () => {
 
             <hr style={{ marginTop: '1.56rem', marginBottom: '1rem', backgroundColor: '#DDD', width: '40.9375rem', height: '0.0625rem' }} />
 
+            {/* 간편 가입 버튼 폼 */}
             <Form className="w-100 d-flex flex-column align-items-center mt-2"
                 style={{ marginBottom: '10rem' }}>
-                <h2 className="text-dark" style={{ fontSize: '1.5rem', fontWeight: 800, textTransform: 'uppercase', textAlign: 'left', marginRight: '9.2em', marginTop: '1em' }}>간편가입</h2>
+                <h2 className="text-dark" style={{ fontSize: '1.5rem', fontWeight: 800, textTransform: 'uppercase', textAlign: 'left', marginRight: '9.2em', marginTop: '0.5rem',marginBottom:'1rem'}}>간편가입</h2>
 
                 <Button variant="light" className="p-0 mb-3" style={{ width: '19.5rem', height: '3rem', borderRadius: 'none', padding: 0 }}>
                     <Image src={KakaoLogInButton} alt="카카오 로그인" fluid style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
@@ -197,8 +201,22 @@ const Signup = () => {
                     <Image src={AppleLogInImage} alt="애플 로그인" style={{ width: '1.5rem', height: '1.5rem', marginRight: '0.5rem' }} />
                     애플로 로그인
                 </Button>
+
+                <div className="d-flex align-items-center mt-4 my-5" >
+                    <p className="text-center" style={{ fontSize: '0.75rem', fontWeight: 800, marginRight: '-0.5rem', lineHeight: '1.125rem' }}>
+                        이미 TravelMate 계정이 있으신가요?</p>
+                <Link to="/login" style={{ textDecoration: 'none' }}>
+                    <Button variant="link" className="text-center" style={{ color: '#58C1C2', fontSize: '0.75rem', paddingBottom: '1.3rem', fontWeight: 800}}>
+                        로그인
+                    </Button>
+                </Link>
+                </div>
             </Form>
 
+            {/*약관 확인 모달 */}
+            <SignupModal show={showSignupModal} handleClose={handleSignupModalClose}/>
+
+            {/*인증번호 전송 모달*/}
             <Modal
                 show={showVerificationCodeModal}
                 onHide={handleVerificationModalClose}
@@ -233,60 +251,24 @@ const Signup = () => {
                         확인
                     </Button>
                 </Modal.Footer>
-
             </Modal>
 
-            <Modal
-                show={showSignupModal}
-                onHide={handleSignupModalClose}
-                centered
-                dialogClassName="custom-modal"
-            >
-                <Modal.Header closeButton>
-                    <Modal.Title style={{ fontSize: '1.5rem', fontStyle: 'normal', fontWeight: '600', lineHeight: '121.2%' }}>
-                        약관확인
-                    </Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                    <p style={{ width: '31.12888rem', fontSize: '0.875rem', fontWeight: '400', lineHeight: '121.2%' }}>
-                        개별 동의 선택이 가능하며, 필수 항목에 동의하여야 서비스 이용이 가능합니다.
-                    </p>
-
-                    
-                </Modal.Body>
-                <Modal.Footer >
-                    <Button
-                        style={{
-                            width: '31.81rem',
-                            height: '2.75rem',
-                            flexShrink: '0',
-                            borderRadius: '0.3125rem',
-                            background: '#0064DC',
-                            textAlign: 'center',
-                            fontFamily: 'Plus Jakarta Sans',
-                            fontSize: '1rem',
-                            fontWeight: '800',
-                            fontStyle: 'normal',
-                        }}
-                        variant="primary"
-                        onClick={handleSignupModalClose}
-                    >
-                        확인
-                    </Button>
-                </Modal.Footer>
-            </Modal>
 
             <style type="text/css">
-                {`
-                .custom-modal .modal-content {
-                    border: none;
-                    width: 34.0625rem;
-                    height: 35.5625rem;
-                    border-radius: 0.625rem;
-                    background: #FFF;
-                }
-                `}
+            {`
+            .custom-modal .modal-content {
+                border: none;
+                width: 34.0625rem;
+                height: 35.5625rem;
+                border-radius: 0.625rem;
+                background: #FFF;
+            }
+            .form-check-label.indent {
+                padding-left: 1.5rem;
+            }
+            `}
             </style>
+
         </Container>
     );
 };

@@ -30,7 +30,7 @@ const NavbarContainer = styled.nav`
   align-items: center;
   z-index: 999;
   width: 90rem;
-  height: 5rem;
+  height: 4rem;
   width: 100%;
 `;
 

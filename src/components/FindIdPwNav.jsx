@@ -6,7 +6,11 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 const FindIdPwNav = () => {
     const location = useLocation();
     const isFindIdActive = location.pathname === '/findid';
+    const isFindIdExistActive=location.pathname==='/findidexist';
+    const isFindIdNotActive=location.pathname==='/findidnot';
+
     const isFindPwActive = location.pathname === '/findpw';
+    const isFindPwReActive=location.pathname==='/findpwre';
 
     return (
         <NavbarContainer className="container-fluid">
@@ -20,13 +24,12 @@ const FindIdPwNav = () => {
 
             <Banner>아이디·비밀번호 찾기</Banner>
 
-
             <FindButtonContainer>
                 <StyledLink to="/findid">
-                    <Button active={isFindIdActive}>아이디 찾기</Button>
+                    <Button active={isFindIdActive || isFindIdExistActive||isFindIdNotActive}>아이디 찾기</Button>
                 </StyledLink>
                 <StyledLink to="/findpw">
-                    <Button active={isFindPwActive}>비밀번호 찾기</Button>
+                    <Button active={isFindPwActive || isFindPwReActive}>비밀번호 찾기</Button>
                 </StyledLink>
             </FindButtonContainer>
         </NavbarContainer>
