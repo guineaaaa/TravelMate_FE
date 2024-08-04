@@ -21,7 +21,7 @@ const FindIdNot = () => {
         <Container fluid className="d-flex flex-column align-items-center justify-content-center"
             style={{ paddingTop: '20rem' }}>
             <Banner>는 TravelMate에 등록되어 있지 않은 계정입니다.</Banner>
-            <div style={{ marginLeft: '3.82rem' }}>
+            <div style={{marginTop:'-1rem',  marginLeft: '3.82rem' }}>
                 <Button variant="primary" size="lg"
                     style={{
                         width: '29.1865rem',
@@ -95,7 +95,7 @@ const StyledModal = styled(Modal)`
 `;
 
 const Banner = styled.h5`
-    margin-top:1.62rem;
+    margin-top:-0.8rem;
     margin-bottom:4.06rem;
     margin-right:15rem;
     display: flex;

@@ -22,7 +22,7 @@ const FindIdExist = () => {
             <Banner>회원으로 등록 이메일 아이디 입니다.
                 해당 이메일 로그인하시고 와디즈를 이용하세요!
             </Banner>
-            <div style={{ marginLeft: '3.82rem' }}>
+            <div style={{ marginTop:'-1rem',marginLeft: '3.82rem' }}>
                 <Button variant="primary" size="lg"
                     style={{
                         width: '29.1865rem',
@@ -70,7 +70,7 @@ const FindIdExist = () => {
 }
 
 const Banner = styled.h5`
-    margin-top:1.62rem;
+    margin-top:-0.8rem;
     margin-bottom:4.06rem;
     margin-right:8rem;
     display: flex;

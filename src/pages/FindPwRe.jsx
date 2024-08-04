@@ -28,7 +28,7 @@ const FindPwRe = () => {
                 비밀번호를 새로 입력할 수 있는 링크를 이메일로 <br />
                 발송해드립니다.
             </Banner>
-            <div style={{ marginLeft: '3.82rem' }}>
+            <div style={{ marginTop:'-1rem', marginLeft: '3.82rem' }}>
                 <Form className="w-100 d-flex flex-column align-items-center mt-2">
                     <InputGroup className="mb-3" style={{
                         width: '29.1875rem', height: '2.75rem',
@@ -68,7 +68,7 @@ const FindPwRe = () => {
 
 
 const Banner = styled.h5`
-    margin-top: 1.62rem;
+    margin-top:-0.8rem;
     margin-bottom: 2.81rem;
     margin-right: 6rem;
     display: flex;

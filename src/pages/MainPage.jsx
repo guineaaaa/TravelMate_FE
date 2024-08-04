@@ -59,10 +59,36 @@ const MainPage = () => {
                             <Card >
                                 <Card.Header style={{ fontSize: '1rem', backgroundColor: '#0074FF', color: 'white', fontWeight: 'bold' }}>날짜</Card.Header>
                                 <Card.Body >
+                                    {/* 날짜 input 관련 custom */}
+                                <style>{`
+                                    input[type='date']::before {
+                                    content: attr(data-placeholder);
+                                    position: absolute;
+                                    width: 100%;
+                                    color: #999A9A;
+                                    font-size: 0.875rem;
+                                    font-style: normal;
+                                    font-weight: 600; 
+                                    }
+                                    input[type="date"]:not(:focus):invalid {
+                                        &::-webkit-datetime-edit-text,
+                                        &::-webkit-datetime-edit-month-field,
+                                        &::-webkit-datetime-edit-day-field,
+                                        &::-webkit-datetime-edit-year-field {
+                                        -webkit-appearance: none;
+                                        display: none;
+                                        }
+                                    }
+                                    input[type='date']:focus::before,
+                                    input[type='date']:valid::before {
+                                        display: none;
+                                    }`}</style>
                                     <div className="d-flex align-items-center mb-2">
-                                        <Form.Control style={{ width:'9.25rem',height:'2.0625rem',fontSize: '1rem' }} type="date" placeholder="시작일" />
+                                        <Form.Control style={{ width:'9.25rem',height:'2.0625rem',fontSize: '1rem' }} type="date" 
+                                        required ariaRequired="true" data-placeholder="시작일" />
                                         <span style={{ color:'#999A9A',fontSize: '1.5625rem', fontWeight: 'bold', margin: '0 0.5rem' }}>~</span>
-                                        <Form.Control style={{ width:'9.25rem',height:'2.0625rem',fontSize: '1rem' }} type="date" placeholder="종료일" />
+                                        <Form.Control style={{ width:'9.25rem',height:'2.0625rem',fontSize: '1rem' }} type="date" 
+                                        required ariaRequired="true" data-placeholder="종료일" />
                                     </div>
                                 </Card.Body>
                             </Card>
@@ -83,7 +109,7 @@ const MainPage = () => {
                                             control: (provided) => ({
                                                 ...provided,
                                                 fontSize: '1rem',
-                                                marginBottom: '1rem'
+                                                marginBottom: '0.5rem',
                                             }),
                                             multiValue: (provided) => ({
                                                 ...provided,
@@ -103,18 +129,14 @@ const MainPage = () => {
                                             }),
                                             option: (provided) => ({
                                                 ...provided,
-                                                fontSize: '1rem'
-                                            }),
-                                            dropdownIndicator: (provided) => ({
-                                                ...provided,
-                                                display: 'none'
+                                                fontSize: '1rem',
                                             }),
                                             clearIndicator: (provided) => ({
                                                 ...provided,
                                                 display: 'none'
                                             }),placeholder: (provided) => ({
                                                 ...provided,
-                                                fontSize: '0.75rem'
+                                                fontSize: '0.75rem',
                                             }),
                                         }}
                                     />
@@ -123,17 +145,22 @@ const MainPage = () => {
                                         width: '100%',
                                         maxWidth: '20.75rem',
                                         height: '2.39919rem',
-                                        padding: '0.75rem 1rem',
+                                        padding: '0.75rem 0.5rem',
                                         alignItems: 'center',
-                                        gap: '0.5rem',
+                                        gap: '-1rem',
                                         flexShrink: 0,
                                         borderRadius: '0.3125rem',
                                         border: '1px solid #999A9A',
                                         background: '#FFF',
-                                        overflowX: 'auto', 
-                                        overflowY:'hidden'
-                                    }}>
-                                        <span style={{color: '#707070',fontSize:'0.75rem',width: '6rem',height:'1.2rem', flexShrink: 0 }}>선택된 언어: </span>
+                                        overflowX: 'auto',
+                                        overflowY: 'hidden',
+                                        msOverflowStyle: 'none',
+                                        scrollbarWidth: 'none'
+                                    }}>{/* 가로스크롤은 가능하되 스크롤바가 표시되지 않도록 수정*/}
+                                        <style>
+                                            {`div::-webkit-scrollbar {display: none;}`}
+                                        </style>
+                                        <span style={{color: '#707070',fontSize:'0.75rem',width: '5rem',height:'1.2rem', flexShrink: 0 }}>선택된 언어: </span>
                                         <div style={{ display: 'flex', gap: '0.5rem' }}>
                                             {selectedOptions.map(option => (
                                                 <Badge key={option.value} className="me-2" style={{ backgroundColor: '#ABD1FF', fontSize: '0.8rem', display: 'flex', alignItems: 'center' }}>
@@ -151,6 +178,7 @@ const MainPage = () => {
                                 </Card.Body>
                             </Card>
                         </Col>
+
                         
                         {/* 나이/성별 선택 카드 */}
                         <Col sm={12} md={6}>
@@ -158,11 +186,11 @@ const MainPage = () => {
                                 <Card.Header style={{ fontSize: '1rem', backgroundColor: '#0074FF', color: 'white', fontWeight: 'bold' }}>나이/성별</Card.Header>
                                 <Card.Body style={{paddingBottom: '0.5rem'}}>
                                     <InputGroup className="mb-2">
-                                        <Form.Control style={{width:'0.5rem',height:'2rem', borderRadius:'0.3125rem',fontSize: '1rem' }} placeholder="나이 이상" />
+                                        <Form.Control style={{width:'0.5rem',height:'2rem', borderRadius:'0.3125rem',color:'#999A9A',fontSize:'0.875rem',fontWeight:'600' }} placeholder="이상" />
                                         <span style={{ color:'#999A9A',fontSize: '1.5625rem', fontWeight: 'bold', margin: '-0.3rem 0.5rem' }}>~</span>
-                                        <Form.Control style={{width:'0.5rem',height:'2rem', borderRadius:'0.3125rem',fontSize: '1rem' }} placeholder="나이 미만" />
+                                        <Form.Control style={{width:'0.5rem',height:'2rem', borderRadius:'0.3125rem',color:'#999A9A',fontSize:'0.875rem',fontWeight:'600' }} placeholder="미만" />
                                     </InputGroup>
-                                    <div className="d-flex">
+                                    <div className="d-flex" style={{fontSize:'0.875rem',fontWeight:'400'}}>
                                         <Form.Check
                                             type="radio"
                                             label="전체"
@@ -198,12 +226,18 @@ const MainPage = () => {
                 
                 {/* 광고 컨테이너 */}
                 <Container className="bg-white rounded p-4 mt-3 mb-5" style={{ width: '100%', maxWidth: '800px' }}>
-                    <h1 className="h5" style={{ fontWeight: 600 }}>색다른 여행 상품</h1>
-                    <div className="d-flex flex-wrap align-items-center" style={{ gap: '1rem' }}>
+                    <div className="d-flex align-items-center justify-content-between mb-2">
+                        <div className="d-flex align-items-center">
                         <AirplaneIcon />
-                        <a href="#" className="text-primary text-decoration-underline" style={{ fontWeight: 600, lineHeight: '140%' }}>
-                            무료로 시작하기
-                        </a>
+                        <h1 className="h5" style={{ marginLeft: '1rem', fontWeight: 600 }}>색다른 여행 상품</h1>
+                        </div>
+                        
+                    </div>
+                    <div className="d-flex align-items-center justify-content-between mb-2">
+                        <h5 style={{ marginLeft: '3.5rem',marginTop:'-0.5rem',fontSize: '0.75rem', fontWeight: 600, color: 'rgba(0, 0, 0, 0.56)' }}>
+                            다가오는 여행 일정에 맞춰, 어떻게
+                        </h5>
+                        <a href="#" style={{marginTop:'-1.5rem',}} >무료로 시작하기</a>
                     </div>
                 </Container>
                 
@@ -260,21 +294,6 @@ const MainPage = () => {
         </>
     );
 };
-
-const customMultiValue = ({ children, removeProps }) => (
-    <div style={{ display: 'flex', alignItems: 'center' }}>
-        {children}
-        <button
-            onClick={(e) => {
-                e.stopPropagation();
-                removeProps.onClick();
-            }}
-            style={{ border: 'none', background: 'transparent', cursor: 'pointer', marginLeft: '0.5rem' }}
-        >
-            <XButton />
-        </button>
-    </div>
-);
 
 const StyledModal = styled(Modal)`
     .modal-dialog {

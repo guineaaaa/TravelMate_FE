@@ -15,7 +15,7 @@ const FindId = () => {
             style={{ paddingTop: '20rem' }}>
             <Banner>이메일을 입력해주세요!<br />
                 가입 여부를 확인해드릴게요.</Banner>
-            <div style={{ marginLeft: '3.82rem' }}>
+            <div style={{ marginTop:'-1rem', marginLeft: '3.82rem' }}>
                 <Form className="w-100 d-flex flex-column align-items-center mt-2">
                     <InputGroup className="mb-3" style={{
                         width: '29.1875rem', height: '2.75rem',
@@ -37,7 +37,8 @@ const FindId = () => {
                         color: '#D9D9D9',
                         textAlign: 'center',
                         fontSize: '1rem',
-                        fontWeight: '800'
+                        fontWeight: '800',
+                       
                     }}
                     onClick={handleSocialLogedInModalShow}  // 수정된 부분
                 >
@@ -113,7 +114,7 @@ const StyledModal = styled(Modal)`
 `;
 
 const Banner = styled.h5`
-    margin-top:1.62rem;
+    margin-top:-0.8rem;
     margin-bottom:4.06rem;
     margin-right:15rem;
     display: flex;

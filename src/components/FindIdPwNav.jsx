@@ -38,7 +38,7 @@ const FindIdPwNav = () => {
 
 const NavbarContainer = styled.div`
   width: 100%;
-  height: 19.94rem;
+  height: 17.94rem;
   position: fixed;
   background-color: white;
   display: flex;
@@ -61,7 +61,7 @@ const ButtonContainer = styled.div`
   display: flex;
   gap: 1rem;
   align-items: center;
-  margin-bottom: -0.098rem; /* Space before Banner */
+  margin-bottom: -2.098rem; /* Space before Banner */
 `;
 
 const NavLinkButton = styled(NavLink)`

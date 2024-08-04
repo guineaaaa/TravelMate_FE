@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from 'react-router-dom';
+import { Link,useNavigate } from 'react-router-dom';
 import { Container, Modal, Image, Form, Button, InputGroup } from 'react-bootstrap';
 
 import KakaoLogInButton from '../images/kakao_login_large_wide 1.png';
@@ -23,6 +23,8 @@ const Signup = () => {
     const [showSignupModal, setSignupShowModal] = useState(false);
     const [email, setEmail] = useState(""); // 이메일 상태 변수 추가
 
+    const navigate=useNavigate();
+
     const handleIDChange = (e) => {
         const currentID = e.target.value;
         setId(currentID);
@@ -38,7 +40,7 @@ const Signup = () => {
     const toggleShowConfirmPassword = () => setShowConfirmPassword(!showConfirmPassword);
 
     // SignUp 모달
-    const handleSignupModalClose = () => setSignupShowModal(false);
+    const handleSignupModalClose = () =>{setSignupShowModal(false); navigate('/profilestep1')}
     const handleSignupModalShow = () => setSignupShowModal(true);
 
     // 인증번호 모달
