@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./ProfileIntro.css";
-import { Container, Row, Col, Button, Modal, ProgressBar, ListGroup, Toast } from 'react-bootstrap';
+import { Container, Row, Col, Button, Modal, ProgressBar, ListGroup, Toast, Form, Table, InputGroup } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import styled from "styled-components";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -13,12 +13,63 @@ import temp from '../assets/temperature.png';
 import shareImage from '../assets/free-icon-share-3989188.png';
 import copyToClipboard from 'copy-to-clipboard';
 
+
+const categories = [
+    { category: '액티비티', subcategories: ['하이킹', '스쿠버다이빙', '자전거', '캠핑', '클라이밍', '서핑'] },
+    { category: '푸드', subcategories: ['푸드1', '푸드2', '푸드3'] },
+    { category: '운동', subcategories: ['운동1', '운동2', '운동3'] },
+    { category: '투어', subcategories: ['투어1', '투어2', '투어3'] },
+    { category: '역사', subcategories: ['역사1', '역사2', '역사3'] },
+    { category: '자연', subcategories: ['자연1', '자연2', '자연3'] },
+];
+
+const languages = [
+    '한국어', '영어', '일본어', '중국어', '불어', '독일어'
+];
+
+
 const ProfileIntro = () => {
     const navigate = useNavigate();
     const [show, setShow] = useState(false);
     const [show2, setShow2] = useState(false);
     const [activeTab, setActiveTab] = useState('소개');
     const [toastVisible, setToastVisible] = useState(false);
+    const [text, setText] = useState('');
+    
+    const [selectedLanguage, setSelectedLanguage] = useState(null);
+    const [selectedLangPreferences, setSelectedLangPreferences] = useState([]);
+
+    const handleLanguageClick = (language) => {
+        if (selectedLangPreferences.includes(language)) {
+        setSelectedLangPreferences(selectedLangPreferences.filter(item => item !== language));
+        } else {
+        setSelectedLangPreferences([...selectedLangPreferences, language]);
+        }
+    };
+    const handleLangClearAll = () => {
+        setSelectedLangPreferences([]);
+    };
+
+
+    const [selectedCategory, setSelectedCategory] = useState(null);
+    const [selectedSubcategories, setSelectedSubcategories] = useState([]);
+    const [selectedPreferences, setSelectedPreferences] = useState([]);
+
+    const handleCategoryClick = (category) => {
+        setSelectedCategory(category);
+    };
+
+    const handleSubcategoryClick = (subcategory) => {
+        if (selectedPreferences.includes(subcategory)) {
+        setSelectedPreferences(selectedPreferences.filter(item => item !== subcategory));
+        } else {
+        setSelectedPreferences([...selectedPreferences, subcategory]);
+        }
+    };
+
+    const handleClearAll = () => {
+        setSelectedPreferences([]);
+    };
     
     const handleClose2 = () => setShow2(false);
     const handleShow2 = () => setShow2(true);
@@ -70,8 +121,9 @@ const ProfileIntro = () => {
                     ))}
                 </div>
                 <div className="ml-auto d-flex align-items-center">
-                    <img src={shareImage} alt="공유" className="profile-img" height="35px" width="35px" onClick={handleShow} />
-                    <Button variant="primary" className="rounded-pill mx-1" style={{ width: '135px', height: '30px', fontSize: '13px' }}>친구추가</Button>
+                    <img src={shareImage} alt="공유" className="profile-img" height="35px" width="35px" onClick={handleShow} cursor="pointer" />
+                    <Button variant="primary" className="rounded-pill mx-1" style={{ width: '135px', height: '30px', fontSize: '13px' }}
+                    onClick={()=>setActiveTab('프로필 수정')}>친구추가</Button>
                     <Button variant="primary" className="rounded-pill mx-1" style={{ width: '135px', height: '30px', fontSize: '13px' }}>채팅</Button>
                     <Button variant="primary" className="rounded-pill mx-1" style={{ width: '135px', height: '30px', fontSize: '13px' }}>동행 제안</Button>
                 </div>
@@ -101,10 +153,9 @@ const ProfileIntro = () => {
                     </div>
                 </Modal.Body>
             </Modal>
-            {activeTab == '소개' && (
             <Container fluid className="mt-0">
                 <Row>
-                    <Col md={8} className="left-section">
+                    {activeTab == '소개' && (<Col md={8} className="left-section">
                         <div className="profile-info-box">
                             <div>
                                 <h2 className="font-weight-bold">프로필 정보</h2>
@@ -134,7 +185,255 @@ const ProfileIntro = () => {
                                 <p className="my-3">언어</p>
                             </div>
                         </div>
-                    </Col>
+                    </Col>)}
+                    {activeTab == '사진' && (<Col md={8} className="left-section">
+                        <div className="profile-info-box">
+                            <div>
+                                <h2 className="font-weight-bold">사진</h2>
+                            </div> 
+                        </div>
+                    </Col>)}
+                    {activeTab == '여행 일정' && (<Col md={8} className="left-section">
+                        <div className="profile-info-box">
+                            <div>
+                                <h2 className="font-weight-bold">여행 일정</h2>
+                            </div> 
+                        </div>
+                    </Col>)}
+                    {activeTab == '리뷰' && (<Col md={8} className="left-section">
+                        <div className="profile-info-box">
+                            <div>
+                                <h2 className="font-weight-bold">리뷰</h2>
+                            </div> 
+                        </div>
+                    </Col>)}
+                    {activeTab == '프로필 수정' && (<Col md={8} className="left-section">
+                        <div className="profile-info-box">
+                            <div>
+                                <h2 className="font-weight-bold">프로필 정보</h2>
+                            </div>
+                            <Form>
+                                <Form.Group controlId="currentStatus" className="mb-3">
+                                <Form.Label>현재 상태</Form.Label>
+                                <Form.Control type="text" placeholder="현재 상태를 입력해주세요" />
+                                </Form.Group>
+                                
+                                <Form.Group controlId="interests" className="mb-3">
+                                <Form.Label>관심 활동</Form.Label>
+                                <Form.Control type="text" placeholder="관심활동을 입력해주세요" />
+                                </Form.Group>
+
+                                <Form.Group controlId="nextDestination" className="mb-3">
+                                <Form.Label>다음 여행지</Form.Label>
+                                <Form.Control type="text" placeholder="다음 여행지를 입력해주세요" />
+                                </Form.Group>
+                            </Form>
+                            <hr />
+                            <h4>소개</h4>
+                            <p>나를 소개할 수 있도록, 긴 문장을 입력해주세요 <span>({text.length}/1500)</span></p>
+                            <Form.Group controlId="longText">
+                                <Form.Control
+                                as="textarea"
+                                rows={10}
+                                placeholder="자신을 소개하는 긴 문장을 입력해 주세요"
+                                value={text}
+                                onChange={(e) => setText(e.target.value)}
+                                style={{ borderRadius: '10px', border: '1px solid #ccc', padding: '10px' }}
+                                />
+                            </Form.Group>
+                        </div>
+                        <hr />
+                        <Container className="mt-5">
+                            <Row>
+                                <Col md={12}>
+                                <h4>선호하는 여행</h4>
+                                </Col>
+                            </Row>
+                            <Row>
+                                <Col md={12}>
+                                <Form.Control type="text" placeholder="카테고리 검색" className="mb-3" />
+                                </Col>
+                            </Row>
+                            <Row>
+                                <Col md={12}>
+                                <Table bordered>
+                                    <thead>
+                                    <tr>
+                                        <th>카테고리</th>
+                                        <th>서브카테고리</th>
+                                        <th>선호 항목</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td style={{ width: '33%', verticalAlign: 'top' }}>
+                                        <div style={{ maxHeight: '200px', overflowY: 'scroll' }}>
+                                            <Table bordered>
+                                            <tbody>
+                                                {categories.map(cat => (
+                                                <tr key={cat.category} onClick={() => handleCategoryClick(cat)}>
+                                                    <td>{cat.category}</td>
+                                                </tr>
+                                                ))}
+                                            </tbody>
+                                            </Table>
+                                        </div>
+                                        </td>
+                                        <td style={{ width: '33%', verticalAlign: 'top' }}>
+                                        {selectedCategory && (
+                                            <div style={{ maxHeight: '200px', overflowY: 'scroll' }}>
+                                            <Table bordered>
+                                                <tbody>
+                                                {selectedCategory.subcategories.map(subcat => (
+                                                    <tr key={subcat} onClick={() => handleSubcategoryClick(subcat)}>
+                                                    <td>
+                                                        {subcat}
+                                                        {selectedPreferences.includes(subcat) && ' ✔'}
+                                                    </td>
+                                                    </tr>
+                                                ))}
+                                                </tbody>
+                                            </Table>
+                                            </div>
+                                        )}
+                                        </td>
+                                        <td style={{ width: '33%', verticalAlign: 'top' }}>
+                                        <div>
+                                            <p>{selectedPreferences.length}/20</p>
+                                            <Button variant="link" onClick={handleClearAll}>전체 삭제</Button>
+                                            {selectedPreferences.map(pref => (
+                                            <div key={pref}>{pref}</div>
+                                            ))}
+                                        </div>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </Table>
+                                </Col>
+                            </Row>
+                        </Container>
+                        <hr />
+                        <Container className="mt-5">
+                            <Row>
+                                <Col md={12}>
+                                <h4>언어</h4>
+                                </Col>
+                            </Row>
+                            <Row>
+                                <Col md={12}>
+                                <Form.Control type="text" placeholder="카테고리 검색" className="mb-3" />
+                                </Col>
+                            </Row>
+                            <Row>
+                                <Col md={12}>
+                                <Table bordered>
+                                    <thead>
+                                    <tr>
+                                        <th>언어</th>
+                                        <th>선호 항목</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td style={{ width: '50%', verticalAlign: 'top' }}>
+                                        <div style={{ maxHeight: '200px', overflowY: 'scroll' }}>
+                                            <Table bordered>
+                                            <tbody>
+                                                {languages.map(lang => (
+                                                <tr key={lang} onClick={() => handleLanguageClick(lang)}>
+                                                    <td>{lang}</td>
+                                                </tr>
+                                                ))}
+                                            </tbody>
+                                            </Table>
+                                        </div>
+                                        </td>
+                                        <td style={{ width: '50%', verticalAlign: 'top' }}>
+                                        <div>
+                                            <p>{selectedLangPreferences.length}/20</p>
+                                            <Button variant="link" onClick={handleLangClearAll}>전체 삭제</Button>
+                                            {selectedLangPreferences.map(pref => (
+                                            <div key={pref}>{pref}</div>
+                                            ))}
+                                        </div>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </Table>
+                                </Col>
+                            </Row>
+                        </Container>
+                        <hr />
+                        <Container className="mt-5">
+                            <Row>
+                                <Col md={12}>
+                                <h4>사진</h4>
+                                </Col>
+                            </Row>
+                        </Container>
+                        <hr />
+                        <Container className="mt-5">
+                            <Row>
+                                <Col md={12}>
+                                <h4>여행 일정</h4>
+                                </Col>
+                            </Row>
+                            <Row className="mt-3">
+                                <Col md={12}>
+                                <div style={{ borderLeft: '2px solid #ccc', paddingLeft: '20px' }}>
+                                    <h5 style={{ color: '#007bff' }}>다가오는 여행</h5>
+                                    <Form>
+                                    <Form.Group controlId="formDestination">
+                                        <Form.Label>여행지를 선택해주세요.</Form.Label>
+                                        <InputGroup>
+                                        <Form.Control type="text" placeholder="나라, 지역 혹은 도시를 입력하세요" />
+                                        </InputGroup>
+                                    </Form.Group>
+                                    <Form.Group controlId="formDates" className="mt-4">
+                                        <Form.Label>날짜를 선택해주세요.</Form.Label>
+                                        <Row>
+                                        <Col md={3}>
+                                            <InputGroup>
+                                            <Form.Control type="text" placeholder="시작일" />
+                                            {/* <InputGroup.Append>
+                                                <InputGroup.Text><FaCalendarAlt /></InputGroup.Text>
+                                            </InputGroup.Append> */}
+                                            </InputGroup>
+                                        </Col>
+                                        <Col md={3}>
+                                            <Form.Control type="text" placeholder="시작 시간" />
+                                        </Col>
+                                        <Col md={3}>
+                                            <InputGroup>
+                                            <Form.Control type="text" placeholder="종료일" />
+                                            {/* <InputGroup.Append>
+                                                <InputGroup.Text><FaCalendarAlt /></InputGroup.Text>
+                                            </InputGroup.Append> */}
+                                            </InputGroup>
+                                        </Col>
+                                        <Col md={3}>
+                                            <Form.Control type="text" placeholder="종료 시간" />
+                                        </Col>
+                                        </Row>
+                                    </Form.Group>
+                                    <Form.Group controlId="formParticipants" className="mt-4">
+                                        <Form.Label>참여인원을 설정하세요.(본인 포함)</Form.Label>
+                                        <Row>
+                                        <Col md={3}>
+                                            <Form.Control type="text" placeholder="최소 인원" />
+                                        </Col>
+                                        <Col md={3}>
+                                            <Form.Control type="text" placeholder="최대 인원" />
+                                        </Col>
+                                        </Row>
+                                    </Form.Group>
+                                    <Button variant="primary" className="mt-4">+ 새로 만들기</Button>
+                                    </Form>
+                                </div>
+                                </Col>
+                            </Row>
+                        </Container>
+                    </Col>)}
                     <Col md={3} className="right-section">
                         <div className="badge-page mb-3">
                             {/* 오른쪽 상단 박스 */}
@@ -205,7 +504,6 @@ const ProfileIntro = () => {
                     </Modal.Body>
                 </Modal>
             </Container>
-            )}
         </div>
         <Toast
                 onClose={() => setToastVisible(false)}
