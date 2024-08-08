@@ -244,124 +244,101 @@ const ProfileIntro = () => {
                         </div>
                         <hr />
                         <Container className="mt-5">
-                            <Row>
-                                <Col md={12}>
-                                <h4>선호하는 여행</h4>
-                                </Col>
-                            </Row>
-                            <Row>
-                                <Col md={12}>
-                                <Form.Control type="text" placeholder="카테고리 검색" className="mb-3" />
-                                </Col>
-                            </Row>
-                            <Row>
-                                <Col md={12}>
-                                <Table bordered>
-                                    <thead>
+                            <h3>선호하는 여행</h3>
+                            <Table bordered>
+                                <thead>
                                     <tr>
-                                        <th>카테고리</th>
-                                        <th>서브카테고리</th>
-                                        <th>선호 항목</th>
+                                        <td colSpan="3">
+                                            <Form.Control type="text" placeholder="카테고리 검색" style={{border: 'none', boxShadow: 'none'}} />
+                                        </td>
                                     </tr>
-                                    </thead>
-                                    <tbody>
-                                    <tr>
-                                        <td style={{ width: '33%', verticalAlign: 'top' }}>
-                                        <div style={{ maxHeight: '200px', overflowY: 'scroll' }}>
-                                            <Table bordered>
-                                            <tbody>
-                                                {categories.map(cat => (
-                                                <tr key={cat.category} onClick={() => handleCategoryClick(cat)}>
-                                                    <td>{cat.category}</td>
-                                                </tr>
-                                                ))}
-                                            </tbody>
-                                            </Table>
-                                        </div>
-                                        </td>
-                                        <td style={{ width: '33%', verticalAlign: 'top' }}>
-                                        {selectedCategory && (
-                                            <div style={{ maxHeight: '200px', overflowY: 'scroll' }}>
-                                            <Table bordered>
-                                                <tbody>
-                                                {selectedCategory.subcategories.map(subcat => (
-                                                    <tr key={subcat} onClick={() => handleSubcategoryClick(subcat)}>
-                                                    <td>
-                                                        {subcat}
-                                                        {selectedPreferences.includes(subcat) && ' ✔'}
-                                                    </td>
-                                                    </tr>
-                                                ))}
-                                                </tbody>
-                                            </Table>
-                                            </div>
-                                        )}
-                                        </td>
-                                        <td style={{ width: '33%', verticalAlign: 'top' }}>
-                                        <div>
-                                            <p>{selectedPreferences.length}/20</p>
-                                            <Button variant="link" onClick={handleClearAll}>전체 삭제</Button>
-                                            {selectedPreferences.map(pref => (
-                                            <div key={pref}>{pref}</div>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td style={{ width: '33%', verticalAlign: 'top', padding: 0, textAlign: 'center' }}>
+                                    <div style={{ maxHeight: '200px', overflowY: 'scroll', margin: 0 }}>
+                                        <Table bordered style={{ margin: 0 }}>
+                                        <tbody>
+                                            {categories.map((cat) => (
+                                            <tr key={cat.category} onClick={() => handleCategoryClick(cat)}>
+                                                <td>{cat.category}</td>
+                                            </tr>
                                             ))}
+                                        </tbody>
+                                        </Table>
+                                    </div>
+                                    </td>
+                                    <td style={{ width: '33%', verticalAlign: 'top', padding: 0, textAlign: 'center' }}>
+                                    {selectedCategory && (
+                                        <div style={{ maxHeight: '200px', overflowY: 'scroll', margin: 0 }}>
+                                        <Table bordered style={{ margin: 0 }}>
+                                            <tbody>
+                                            {selectedCategory.subcategories.map((subcat) => (
+                                                <tr key={subcat} onClick={() => handleSubcategoryClick(subcat)}>
+                                                <td>
+                                                    {subcat}
+                                                    {selectedPreferences.includes(subcat) && ' ✔'}
+                                                </td>
+                                                </tr>
+                                            ))}
+                                            </tbody>
+                                        </Table>
                                         </div>
-                                        </td>
-                                    </tr>
-                                    </tbody>
-                                </Table>
-                                </Col>
-                            </Row>
+                                    )}
+                                    </td>
+                                    <td style={{ width: '33%', verticalAlign: 'top', padding: '10px' }}>
+                                    <div>
+                                        <p>{selectedPreferences.length}/20</p>
+                                        <Button variant="link" onClick={handleClearAll} style={{ padding: 0 }}>
+                                        전체 삭제
+                                        </Button>
+                                        {selectedPreferences.map((pref) => (
+                                        <div key={pref}>{pref}</div>
+                                        ))}
+                                    </div>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </Table>
                         </Container>
                         <hr />
                         <Container className="mt-5">
-                            <Row>
-                                <Col md={12}>
-                                <h4>언어</h4>
-                                </Col>
-                            </Row>
-                            <Row>
-                                <Col md={12}>
-                                <Form.Control type="text" placeholder="카테고리 검색" className="mb-3" />
-                                </Col>
-                            </Row>
-                            <Row>
-                                <Col md={12}>
-                                <Table bordered>
-                                    <thead>
+                            <h4>언어</h4>
+                            <Table bordered>
+                                <thead>
                                     <tr>
-                                        <th>언어</th>
-                                        <th>선호 항목</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <tr>
-                                        <td style={{ width: '50%', verticalAlign: 'top' }}>
-                                        <div style={{ maxHeight: '200px', overflowY: 'scroll' }}>
-                                            <Table bordered>
-                                            <tbody>
-                                                {languages.map(lang => (
-                                                <tr key={lang} onClick={() => handleLanguageClick(lang)}>
-                                                    <td>{lang}</td>
-                                                </tr>
-                                                ))}
-                                            </tbody>
-                                            </Table>
-                                        </div>
+                                        <td colSpan='3'>
+                                            <Form.Control type="text" placeholder="카테고리 검색" style={{border: 'none', boxShadow: 'none'}} />
                                         </td>
-                                        <td style={{ width: '50%', verticalAlign: 'top' }}>
-                                        <div>
-                                            <p>{selectedLangPreferences.length}/20</p>
-                                            <Button variant="link" onClick={handleLangClearAll}>전체 삭제</Button>
-                                            {selectedLangPreferences.map(pref => (
-                                            <div key={pref}>{pref}</div>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td style={{ width: '40%', verticalAlign: 'top', padding: 0, textAlign: 'center' }}>
+                                    <div style={{ maxHeight: '200px', overflowY: 'scroll' }}>
+                                        <Table bordered>
+                                        <tbody>
+                                            {languages.map(lang => (
+                                            <tr key={lang} onClick={() => handleLanguageClick(lang)}>
+                                                <td>{lang}</td>
+                                            </tr>
                                             ))}
-                                        </div>
-                                        </td>
-                                    </tr>
-                                    </tbody>
-                                </Table>
-                                </Col>
-                            </Row>
+                                        </tbody>
+                                        </Table>
+                                    </div>
+                                    </td>
+                                    <td style={{ width: '60%', verticalAlign: 'top', padding: '10px' }}>
+                                    <div>
+                                        <p>{selectedLangPreferences.length}/20</p>
+                                        <Button variant="link" onClick={handleLangClearAll}>전체 삭제</Button>
+                                        {selectedLangPreferences.map(pref => (
+                                        <div key={pref}>{pref}</div>
+                                        ))}
+                                    </div>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </Table>
                         </Container>
                         <hr />
                         <Container className="mt-5">
