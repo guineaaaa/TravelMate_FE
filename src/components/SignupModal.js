@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Modal, Button } from 'react-bootstrap';
 
+// 약관 확인 모달
 const SignupModal = ({ show, handleClose }) => {
     // 체크박스 상태를 관리하기 위한 useState 훅
     const [isAllChecked, setIsAllChecked] = useState(false);
@@ -46,14 +47,14 @@ const SignupModal = ({ show, handleClose }) => {
             centered
             dialogClassName="custom-modal"
         >
-            <Modal.Header closeButton style={{ borderBottom: 'none' }}>
-                <Modal.Title style={{ marginTop: '1.56rem', marginLeft: '0.5rem', marginBottom: '-1.5rem', width: '6.53256rem', fontSize: '1.5rem', fontStyle: 'normal', fontWeight: '600', lineHeight: '121.2%' }}>
+            <Modal.Header closeButton style={{fontFamily: 'Pretendard', borderBottom: 'none' }}>
+                <Modal.Title style={{ fontFamily: 'Pretendard',marginTop: '1.56rem', marginLeft: '0.5rem', marginBottom: '-1.5rem', width: '6.53256rem', fontSize: '1.5rem', fontStyle: 'normal', fontWeight: '600', lineHeight: '121.2%' }}>
                     약관확인
                 </Modal.Title>
             </Modal.Header>
 
             <Modal.Body>
-                <div style={{ marginLeft: '0.5rem', fontSize: '0.875rem', fontWeight: '400', lineHeight: '121.2%', marginBottom: '6.13rem' }}>
+                <div style={{ fontFamily: 'Pretendard',marginLeft: '0.5rem', fontSize: '0.875rem', fontWeight: '400', lineHeight: '121.2%', marginBottom: '6.13rem' }}>
                     개별 동의 선택이 가능하며, 필수 항목에 동의하여야 서비스 이용이 가능합니다.
                 </div>
 
@@ -178,9 +179,9 @@ const SignupModal = ({ show, handleClose }) => {
                         borderRadius: '0.3125rem',
                         background: '#0064DC',
                         textAlign: 'center',
-                        fontFamily: 'Plus Jakarta Sans',
+                        fontFamily: 'Pretendard',
                         fontSize: '1rem',
-                        fontWeight: '800',
+                        fontWeight: '500',
                         fontStyle: 'normal',
                     }}
                     variant="primary"

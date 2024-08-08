@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { NavLink, useLocation, Link } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+// 아이디 비밀번호 찾기 페이지의 Navbar
 const FindIdPwNav = () => {
     const location = useLocation();
     const isFindIdActive = location.pathname === '/findid';
@@ -66,7 +67,7 @@ const ButtonContainer = styled.div`
 
 const NavLinkButton = styled(NavLink)`
     color: var(--Black, #1A202C);
-    font-family: "Plus Jakarta Sans";
+    font-family: "Pretendard";
     font-size: 1.5rem;
     font-weight: 800;
     text-transform: uppercase;
@@ -76,7 +77,7 @@ const NavLinkButton = styled(NavLink)`
 const Banner = styled.div`
   width: 23rem;
   color: var(--Black, #1A202C);
-  font-family: "Plus Jakarta Sans";
+  font-family: "Pretendard";
   font-size: 2rem;
   font-style: normal;
   font-weight: 800;
@@ -93,12 +94,14 @@ const FindButtonContainer = styled.div`
   align-items: center;
   gap: 1rem;
   margin-left: -10.98rem;
+  
+
 `;
 
 const Button = styled.button`
   width: 7.5rem;
   color: #0064DC;
-  font-family: "Plus Jakarta Sans";
+  font-family: "Pretendard";
   font-size: 1rem;
   font-weight: 800;
   line-height: 1.212rem;
@@ -114,7 +117,7 @@ const StyledLink = styled(Link)`
   text-decoration: none; /* Remove underline from links */
   width: 7.5rem;
   color: #0064DC;
-  font-family: "Plus Jakarta Sans";
+  font-family: "Pretendard";
   font-size: 1rem;
   font-style: normal;
   font-weight: 800;

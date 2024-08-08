@@ -3,12 +3,16 @@ import styled from 'styled-components';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import MainPageNav from '../components/MainPageNav';
+
 import backgroundImage from '../images/travelmate.png';
 import DetailImage from '../images/MainpageDetail.png';
-import { AirplaneIcon, SearchIcon, XButton, WarnIcon } from '../constants/icons';
-import Select, { components } from 'react-select';
+
+import { AirplaneIcon, SearchIcon, XButton } from '../constants/icons';
+import Select from 'react-select';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Container, Card, Form, Button, InputGroup, Row, Col, Badge, Modal } from 'react-bootstrap';
+import { Container, Card, Form, Button, InputGroup, Row, Col, Badge} from 'react-bootstrap';
+
+import MainPageModal from '../components/MainpageModal';
 
 const options = [
     { value: 'Eng', label: '영어' },
@@ -32,8 +36,8 @@ const MainPage = () => {
             <Navbar onLinkClick={handleModalShow} />
             <MainPageNav onLinkClick={handleModalShow} />
 
-            <div className="d-flex flex-column align-items-center justify-content-center min-vh-100" style={{ backgroundImage: `url(${backgroundImage})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
-                <h1 className="text-white text-center" style={{ fontFamily: 'Plus Jakarta Sans', fontSize: '1.5rem', fontWeight: 600, marginTop: '8rem', marginBottom: '0.7em' }}>
+            <div className="d-flex flex-column align-items-center justify-content-center min-vh-100" style={{fontFamily: 'Pretendard', backgroundImage: `url(${backgroundImage})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
+                <h1 className="text-white text-center" style={{ fontFamily: 'Pretendard', fontSize: '1.5rem', fontWeight: 500, marginTop: '8rem', marginBottom: '0.7em' }}>
                     여행을 함께 할 안전한 사람을 구하고 있나요?<br />
                     동행자를 TravelMate에서 찾아보세요!
                 </h1>
@@ -60,7 +64,7 @@ const MainPage = () => {
                                 <Card.Header style={{ fontSize: '1rem', backgroundColor: '#0074FF', color: 'white', fontWeight: 'bold' }}>날짜</Card.Header>
                                 <Card.Body >
                                     {/* 날짜 input 관련 custom */}
-                                <style>{`
+                                    <style>{`
                                     input[type='date']::before {
                                     content: attr(data-placeholder);
                                     position: absolute;
@@ -110,6 +114,8 @@ const MainPage = () => {
                                                 ...provided,
                                                 fontSize: '1rem',
                                                 marginBottom: '0.5rem',
+                                                border:'1px solid #999A9A',
+                                                width:'99%'
                                             }),
                                             multiValue: (provided) => ({
                                                 ...provided,
@@ -163,7 +169,7 @@ const MainPage = () => {
                                         <span style={{color: '#707070',fontSize:'0.75rem',width: '5rem',height:'1.2rem', flexShrink: 0 }}>선택된 언어: </span>
                                         <div style={{ display: 'flex', gap: '0.5rem' }}>
                                             {selectedOptions.map(option => (
-                                                <Badge key={option.value} className="me-2" style={{ backgroundColor: '#ABD1FF', fontSize: '0.8rem', display: 'flex', alignItems: 'center' }}>
+                                                <Badge key={option.value} className="me-1" style={{borderRadius:'0.7125rem', backgroundColor: '#ABD1FF', fontSize: '0.8rem',fontWeight:'500', display: 'flex', alignItems: 'center' }}>
                                                     {option.label}
                                                     <button
                                                         onClick={() => setSelectedOptions(selectedOptions.filter(o => o.value !== option.value))}
@@ -237,7 +243,7 @@ const MainPage = () => {
                         <h5 style={{ marginLeft: '3.5rem',marginTop:'-0.5rem',fontSize: '0.75rem', fontWeight: 600, color: 'rgba(0, 0, 0, 0.56)' }}>
                             다가오는 여행 일정에 맞춰, 어떻게
                         </h5>
-                        <a href="#" style={{marginTop:'-1.5rem',}} >무료로 시작하기</a>
+                        <a href="#" style={{marginTop:'-1.5rem',color: '#0064DC',fontWeight:'600'}} >무료로 시작하기</a>
                     </div>
                 </Container>
                 
@@ -248,68 +254,12 @@ const MainPage = () => {
                 style={{ backgroundImage: `url(${DetailImage})`, backgroundSize: 'contain', backgroundPosition: 'center', width: '100%', height: '159.44rem' }}>
             </div>
 
-            <Footer/>
+            <Footer />
 
             {/* 경고 모달 */}
-            <StyledModal show={showModal} onHide={handleModalClose} centered>
-                <Modal.Header style={{ borderBottom: 'none' }} closeButton />
-                <Modal.Body>
-                    <div style={{ marginBottom: '0.94rem', marginLeft:'1.81rem' }}>
-                        <WarnIcon />
-                    </div>
-                    <p style={{
-                        color: '#486284',
-                        fontFamily: 'DM Sans', fontSize: '1.5rem', fontWeight: '700', lineHeight: '2.5rem', letterSpacing: '0.03125rem',
-                        marginLeft:'1.81rem',marginRight:'1.19rem',
-                    }}>
-                        프로필 정보가 등록된,<br />멤버만 이용할 수 있어요
-                    </p>
-
-                    <p style={{
-                        color: '#486284',
-                        fontFamily: 'DM Sans', fontSize: '0.9375rem', fontWeight: '400', lineHeight: '1.5rem', letterSpacing: '0.03125rem',
-                        marginLeft:'1.81rem', marginRight:'1.19rem',
-                    }}>
-                        신뢰할 수 있는 커뮤니티를 만들기 위해<br/>
-                        프로필 정보가 등록된 멤버만 이용할 수 있어요
-                    </p>      
-                </Modal.Body>
-                <Modal.Footer style={{ marginTop:'1.36rem',borderTop: 'none', justifyContent: 'center' }}>
-                    <Button
-                        style={{
-                            width: '19.5rem', height: '3.2rem',
-                            borderRadius: '1.875rem', 
-                            background: '#000',
-                            border:'none', flexShrink:'0',
-                            paddingTop:'0.1rem', //글자 위치 조정
-                            textAlign: 'center', fontFamily: 'Baloo Thambi',
-                            fontSize: '0.9375rem', fontWeight: '400', lineHeight: '3.125rem'
-                        }}
-                        href="/signup"
-                    >
-                        5초 만에 프로필 완성하고 바로 시작하기
-                    </Button>
-                </Modal.Footer>
-            </StyledModal>
+            <MainPageModal show={showModal} onHide={handleModalClose} centered />
         </>
     );
 };
-
-const StyledModal = styled(Modal)`
-    .modal-dialog {
-        width: 90%;
-        max-width: 26.375rem;
-        height: 24.25rem; 
-        display: flex;
-    }
-
-    .modal-content {
-        border-radius: 0; 
-    }
-
-    .modal-body {
-        overflow: hidden;
-    }
-`;
 
 export default MainPage;

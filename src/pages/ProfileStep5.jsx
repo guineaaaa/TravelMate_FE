@@ -23,7 +23,7 @@ const ProfileStep5 = () => {
     return (
         <Container 
             className="d-flex justify-content-center align-items-center" 
-            style={{ minHeight: '100vh' }}
+            style={{ fontFamily: 'Pretendard',minHeight: '100vh' }}
         >
             <Row className="justify-content-center w-100">
                 <Col xs={12} md={8} lg={6} className="p-3 d-flex justify-content-center">
@@ -32,17 +32,15 @@ const ProfileStep5 = () => {
                         style={{
                             width: '40.9375em',
                             height: '23.4375rem',
-                            fontFamily: 'Plus Jakarta Sans',
                             borderRadius: '0.625em',
                             background: '#FFF',
-                        
                         }}
                     >
                         <h1 
                             className="text-left mt-1 mb-1"
                             style={{
                                 color: 'var(--Black, #1A202C)',
-                                fontFamily: '"DM Sans", sans-serif',
+                                
                                 fontSize: '2.5rem',
                                 fontStyle: 'normal',
                                 fontWeight: 900,
@@ -57,7 +55,7 @@ const ProfileStep5 = () => {
                             className="text-left mb-5 mt-1"
                             style={{
                                 color: 'var(--Black, #1A202C)',
-                                fontFamily: 'Plus Jakarta Sans',
+                                
                                 fontSize: '0.875rem',
                                 fontStyle: 'normal',
                                 fontWeight: 500,
@@ -80,7 +78,7 @@ const ProfileStep5 = () => {
                                 border: 'none',
                                 width: '29.1875rem',
                                 height: '4.8125rem',
-                                fontFamily: '"DM Sans", sans-serif',
+                                
                                 fontWeight: 'normal'
                             }}
                             onClick={handleNext}

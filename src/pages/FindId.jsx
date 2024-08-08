@@ -12,7 +12,7 @@ const FindId = () => {
 
     return (
         <Container fluid className="d-flex flex-column align-items-center justify-content-center"
-            style={{ paddingTop: '20rem' }}>
+            style={{ fontFamily: 'Pretendard',paddingTop: '20rem' }}>
             <Banner>이메일을 입력해주세요!<br />
                 가입 여부를 확인해드릴게요.</Banner>
             <div style={{ marginTop:'-1rem', marginLeft: '3.82rem' }}>
@@ -70,7 +70,6 @@ const FindId = () => {
                             borderRadius: '0.3125rem',
                             background: '#0064DC',
                             textAlign: 'center',
-                            fontFamily: 'Plus Jakarta Sans',
                             fontSize: '1rem',
                             fontWeight: '800',
                             fontStyle: 'normal',
@@ -124,7 +123,7 @@ const Banner = styled.h5`
     justify-content: center;
     flex-shrink: 0;
     color: #878787;
-    font-family: "Baloo Thambi";
+    font-family: "Pretendard";
     font-size: 0.75rem;
     font-style: normal;
     font-weight: 400;

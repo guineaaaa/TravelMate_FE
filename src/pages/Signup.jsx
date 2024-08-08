@@ -72,7 +72,7 @@ const Signup = () => {
 
             <hr style={{ marginTop: '2.56rem', backgroundColor: '#DDD', width: '40.9375rem', height: '0.0625rem' }} />
 
-            <h2 className="text-dark" style={{ fontSize: '1.5rem', fontWeight: 800, textTransform: 'uppercase', textAlign: 'left', marginRight: '14.25rem', marginTop: '1.44rem', marginBottom: '-0.081rem' }}>
+            <h2 className="text-dark" style={{ fontFamily: 'Pretendard',fontSize: '1.5rem', fontWeight: 800, textTransform: 'uppercase', textAlign: 'left', marginRight: '15.25rem', marginTop: '1.44rem', marginBottom: '-0.081rem' }}>
                 회원가입
             </h2>
 
@@ -170,7 +170,10 @@ const Signup = () => {
                         alignItems: 'center',
                         borderRadius: '0.5rem',
                         fontSize: '1rem',
-                        fontWeight: '600'
+                        fontWeight: '500',
+                        fontFamily: 'Pretendard',
+                        
+                        marginBottom:'1rem'
                     }}
                 >
                     약관 동의 후 가입 완료하기
@@ -180,35 +183,35 @@ const Signup = () => {
             <hr style={{ marginTop: '1.56rem', marginBottom: '1rem', backgroundColor: '#DDD', width: '40.9375rem', height: '0.0625rem' }} />
 
             {/* 간편 가입 버튼 폼 */}
-            <Form className="w-100 d-flex flex-column align-items-center mt-2"
+            <Form className="w-100 d-flex flex-column align-items-center mt-4"
                 style={{ marginBottom: '10rem' }}>
-                <h2 className="text-dark" style={{ fontSize: '1.5rem', fontWeight: 800, textTransform: 'uppercase', textAlign: 'left', marginRight: '9.2em', marginTop: '0.5rem',marginBottom:'1rem'}}>간편가입</h2>
+                <h2 className="text-dark" style={{fontFamily: 'Pretendard', fontSize: '1.5rem', fontWeight: 800, textTransform: 'uppercase', textAlign: 'left', marginRight: '9.2em', marginTop: '0.5rem',marginBottom:'1rem'}}>간편가입</h2>
 
                 <Button variant="light" className="p-0 mb-3" style={{ width: '19.5rem', height: '3rem', borderRadius: 'none', padding: 0 }}>
                     <Image src={KakaoLogInButton} alt="카카오 로그인" fluid style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                 </Button>
 
-                <Button variant="success" className="p-0 mb-3" style={{ width: '19.5rem', height: '3rem', borderRadius: '1.875rem', padding: 0, color: 'white', fontSize: '0.9375rem' }}>
+                <Button variant="success" className="p-0 mb-3" style={{ fontFamily: 'Pretendard',width: '19.5rem', height: '3rem', borderRadius: '1.875rem', padding: 0, color: 'white', fontSize: '0.9375rem' }}>
                     네이버로 로그인
                 </Button>
 
-                <Button variant="light" className="p-0 mb-3" style={{ border: '1px solid black', width: '19.5rem', height: '3rem', borderRadius: '1.875rem', padding: 0, color: 'black', fontSize: '0.9375rem' }}>
-                    <Image src={GoogleLogInImage} alt="구글 로그인" style={{ width: '1.5rem', height: '1.5rem', marginRight: '0.5rem' }} />
+                <Button variant="light" className="p-0 mb-3" style={{fontFamily: 'Pretendard', border: '1px solid black', width: '19.5rem', height: '3rem', borderRadius: '1.875rem', padding: 0, color: 'black', fontSize: '0.9375rem' }}>
+                    <Image src={GoogleLogInImage} alt="구글 로그인" style={{width: '1.5rem', height: '1.5rem', marginRight: '0.5rem' }} />
                     구글로 로그인
                 </Button>
 
                 <Button variant="light" className="p-0 mb-3" style={{
-                    border: '1px solid black', width: '19.5rem', height: '3rem', borderRadius: '1.875rem', padding: 0, color: 'black', fontSize: '0.9375rem'
+                    fontFamily: 'Pretendard',border: '1px solid black', width: '19.5rem', height: '3rem', borderRadius: '1.875rem', padding: 0, color: 'black', fontSize: '0.9375rem'
                 }}>
                     <Image src={AppleLogInImage} alt="애플 로그인" style={{ width: '1.5rem', height: '1.5rem', marginRight: '0.5rem' }} />
                     애플로 로그인
                 </Button>
 
-                <div className="d-flex align-items-center mt-4 my-5" >
-                    <p className="text-center" style={{ fontSize: '0.75rem', fontWeight: 800, marginRight: '-0.5rem', lineHeight: '1.125rem' }}>
+                <div className="d-flex align-items-center mt-4 my-4" >
+                    <p className="text-center" style={{ fontFamily: 'Pretendard',fontSize: '0.75rem', fontWeight: 800, marginRight: '-0.5rem', lineHeight: '1.125rem' }}>
                         이미 TravelMate 계정이 있으신가요?</p>
                 <Link to="/login" style={{ textDecoration: 'none' }}>
-                    <Button variant="link" className="text-center" style={{ color: '#58C1C2', fontSize: '0.75rem', paddingBottom: '1.3rem', fontWeight: 800}}>
+                    <Button variant="link" className="text-center" style={{fontFamily: 'Pretendard', color: '#58C1C2', fontSize: '0.75rem', paddingBottom: '1.3rem', fontWeight: 800}}>
                         로그인
                     </Button>
                 </Link>
@@ -223,9 +226,10 @@ const Signup = () => {
                 show={showVerificationCodeModal}
                 onHide={handleVerificationModalClose}
                 centered
+                
             >
                 <Modal.Body>
-                    <p style={{ width: '18.75rem', fontFamily: "Plus Jakarta Sans", fontSize: '1.5rem', fontWeight: '800', fontStyle: 'normal', lineHeight: '121.2%' }}>
+                    <p style={{ width: '18.75rem',fontFamily: 'Pretendard', fontSize: '1.5rem', fontWeight: '800', fontStyle: 'normal', lineHeight: '121.2%' }}>
                         인증번호 전송 안내
                     </p>
                     <p style={{ width: '28.5625rem', fontSize: '0.875rem', fontStyle: 'normal', fontWeight: '500', lineHeight: '121.2%' }}>

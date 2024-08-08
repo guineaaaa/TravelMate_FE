@@ -51,11 +51,11 @@ const Login = () => {
     };
 
     return (
-        <Container className="d-flex flex-column align-items-center justify-content-center" style={{ width: '40.9375rem', height: '39.4375rem', borderRadius: '0.625rem', backgroundColor: '#FFF', padding: '2rem', margin: '3rem auto' }}>
+        <Container className="d-flex flex-column align-items-center justify-content-center" style={{ fontFamily: 'Pretendard',width: '40.9375rem', height: '39.4375rem', borderRadius: '0.625rem', backgroundColor: '#FFF', padding: '2rem', margin: '3rem auto' }}>
             <h1 className="text-primary" style={{ marginTop: '-1rem', fontFamily: 'BM HANNA_TTF', fontSize: '1.5rem', lineHeight: '3.125rem' }}>TravelMate</h1>
             <hr style={{ marginTop: '-0.19rem', backgroundColor: '#F0F0F0', width: '40.9375rem', height: '0.0625rem' }} />
             
-            <h2 className="text-dark" style={{ fontSize: '1.5rem', fontWeight: 800, textTransform: 'uppercase', textAlign: 'left', marginRight: '9.6em', marginTop: '1em' }}>로그인</h2>
+            <h2 className="text-dark" style={{ fontSize: '1.5rem', fontWeight: 800, textTransform: 'uppercase', textAlign: 'left', marginRight: '15rem', marginTop: '1em' }}>로그인</h2>
             
             <Form className="w-100 d-flex flex-column align-items-center mt-2">
                 <div className="mb-3" style={{ width: '50%', position: 'relative' }}>
@@ -92,7 +92,7 @@ const Login = () => {
                 {passwordMessage && <p className="text-danger text-end w-50">{passwordMessage}</p>}
             </Form>
 
-            <Link to="/findid" className="text-muted mt-n4 mb-4" style={{ textDecoration:'none',marginLeft: '15em', fontSize: '0.75rem', fontFamily: 'Baloo Thambi' }}>
+            <Link to="/findid" className="text-muted mt-n4 mb-4" style={{ textDecoration:'none',marginLeft: '15em', fontSize: '0.75rem',fontFamily: 'Pretendard', }}>
             로그인 정보를 잊으셨나요?</Link>
 
             {/* 소셜 로그인 버튼 목록 */}

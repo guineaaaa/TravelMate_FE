@@ -23,11 +23,11 @@ const ProfileStep3 = () => {
     };
 
     return (
-        <Container fluid className="d-flex flex-column align-items-center justify-content-center" style={{ padding: '2rem', background: '#FFF', borderRadius: '0.625em', margin: '5em auto', maxWidth: '31.25rem', maxHeight: '37.9375rem'}}>
-            <h1 className="text-left" style={{ color: '#486284', fontFamily: 'DM Sans', fontSize: '1.5rem', fontWeight: '700', lineHeight: '2.5rem', letterSpacing: '0.03125rem',marginTop:'0.5rem', marginBottom: '0.5em', marginRight: '5rem' }}>
+        <Container fluid className="d-flex flex-column align-items-center justify-content-center" style={{ fontFamily: 'Pretendard',padding: '2rem', background: '#FFF', borderRadius: '0.625em', margin: '5em auto', maxWidth: '31.25rem', maxHeight: '37.9375rem'}}>
+            <h1 className="text-left" style={{ color: '#486284',  fontSize: '1.5rem', fontWeight: '700', lineHeight: '2.5rem', letterSpacing: '0.03125rem',marginTop:'0.5rem', marginBottom: '0.5em', marginRight: '4.5rem' }}>
                 자신을 소개해주세요!
             </h1>
-            <h2 className="text-left mb-4" style={{ color: '#486284', fontFamily: 'DM Sans', fontSize: '0.9375rem', fontWeight: '400', lineHeight: '1.5rem', letterSpacing: '0.03125rem', textAlign: 'left' }}>
+            <h2 className="text-left mb-4" style={{ color: '#486284',fontSize: '0.9375rem', fontWeight: '400', lineHeight: '1.5rem', letterSpacing: '0.03125rem', textAlign: 'left' }}>
                 나를 잘 표현할 수 있도록, 글을 입력해주세요<br />
                 (0/1,500자)
             </h2>

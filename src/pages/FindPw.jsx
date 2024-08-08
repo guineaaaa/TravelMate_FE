@@ -36,7 +36,7 @@ const FindPw = () => {
     };
 
     return (
-        <Container fluid className="d-flex flex-column align-items-center justify-content-center" style={{ paddingTop: '20rem' }}>
+        <Container fluid className="d-flex flex-column align-items-center justify-content-center" style={{ fontFamily: "Pretendard",paddingTop: '20rem' }}>
             <Banner>
                 가입하셨던 이메일 계정을 입력하시면, <br />
                 비밀번호를 새로 입력할 수 있는 링크를 이메일로 <br />
@@ -190,7 +190,7 @@ const Banner = styled.h5`
     justify-content: center;
     flex-shrink: 0;
     color: #878787;
-    font-family: "Baloo Thambi";
+    font-family: "Pretendard";
     font-size: 0.75rem;
     font-style: normal;
     font-weight: 400;

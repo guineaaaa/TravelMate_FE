@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom';
 import { LineIcon, ChatIcon, AlarmIcon } from '../constants/icons';
 import '../App.css';
 
+// GNB
 const Navbar = ({ onLinkClick }) => {
     return (
         <NavbarContainer>
@@ -48,8 +49,9 @@ const Brand = styled(NavLink)`
 `;
 
 const ButtonContainer = styled.div`
+
   display: flex;
-  gap: 20px;
+  gap: 25px;
   max-width: 50%;
   overflow-x: auto; /* Allow horizontal scrolling */
   padding-right: 40px; /* Add right padding to accommodate scrollbar */
@@ -64,9 +66,8 @@ const NavLinkButton = styled(NavLink)`
   &:hover {
     color: black;
   }
-  &.active {
-    color: black;
-  }
+  font-family: Pretendard;
+  
 `;
 
 export default Navbar;
