@@ -64,29 +64,55 @@ const MainPage = () => {
                                 <Card.Header style={{ fontSize: '1rem', backgroundColor: '#0074FF', color: 'white', fontWeight: 'bold' }}>날짜</Card.Header>
                                 <Card.Body >
                                     {/* 날짜 input 관련 custom */}
-                                    <style>{`
+                                    <style>
+                                    {`
+                                    input[type='date'] {
+                                    position: relative;
+                                    padding-left: 10px; /* 플레이스홀더와 텍스트가 겹치지 않도록 여백 추가 */
+                                    font-size: 0.875rem;
+                                    font-weight: 600;
+                                    }
+
                                     input[type='date']::before {
                                     content: attr(data-placeholder);
                                     position: absolute;
-                                    width: 100%;
+                                    left: 10px;
+                                    top: 50%;
+                                    transform: translateY(-50%);
                                     color: #999A9A;
                                     font-size: 0.875rem;
                                     font-style: normal;
-                                    font-weight: 600; 
-                                    }
-                                    input[type="date"]:not(:focus):invalid {
-                                        &::-webkit-datetime-edit-text,
-                                        &::-webkit-datetime-edit-month-field,
-                                        &::-webkit-datetime-edit-day-field,
-                                        &::-webkit-datetime-edit-year-field {
-                                        -webkit-appearance: none;
-                                        display: none;
-                                        }
+                                    font-weight: 600;
+                                    pointer-events: none; 
                                     }
                                     input[type='date']:focus::before,
                                     input[type='date']:valid::before {
-                                        display: none;
-                                    }`}</style>
+                                    display: none; /* 포커스 또는 날짜 선택 시 가상 요소 숨기기 */
+                                    }
+
+                                    input[type='date']:valid {
+                                    color: #999A9A;
+                                    }
+                                    /* 기본 상태에서 날짜 텍스트를 투명하게 처리 */
+                                    input[type="date"]::-webkit-datetime-edit-text,
+                                    input[type="date"]::-webkit-datetime-edit-month-field,
+                                    input[type="date"]::-webkit-datetime-edit-day-field,
+                                    input[type="date"]::-webkit-datetime-edit-year-field {
+                                    color: transparent; 
+                                    }
+
+                                    input[type="date"]:focus::-webkit-datetime-edit-text,
+                                    input[type="date"]:focus::-webkit-datetime-edit-month-field,
+                                    input[type="date"]:focus::-webkit-datetime-edit-day-field,
+                                    input[type="date"]:focus::-webkit-datetime-edit-year-field,
+                                    input[type="date"]:valid::-webkit-datetime-edit-text,
+                                    input[type="date"]:valid::-webkit-datetime-edit-month-field,
+                                    input[type="date"]:valid::-webkit-datetime-edit-day-field,
+                                    input[type="date"]:valid::-webkit-datetime-edit-year-field {
+                                    color: #999A9A; font-size: 0.875rem;/* 포커스 또는 유효한 날짜 선택 시 텍스트 색상을 검정으로 표시 */
+                                    }
+                                    `}
+                                </style>
                                     <div className="d-flex align-items-center mb-2">
                                         <Form.Control style={{ width:'9.25rem',height:'2.0625rem',fontSize: '1rem' }} type="date" 
                                         required ariaRequired="true" data-placeholder="시작일" />
