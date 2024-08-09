@@ -1,0 +1,83 @@
+.profile-container {
+  position: relative;
+}
+
+.profile-header-wrapper {
+  height: 120px;
+  margin-bottom: 50px;
+}
+
+.cover-image {
+  width: 1400px;
+  height: 80px;
+}
+
+.profile-image {
+  position: absolute;
+  top: 50%;
+  left: 50px;
+  transform: translateY(-10%);
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+}
+
+.profile-title {
+  position: absolute;
+  top: 50%;
+  left: 200px;
+  transform: translateY(-50%);
+  font-size: 1rem;
+  color: #333;
+}
+
+.hr-div {
+  border-top: 1px solid #ccc;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.action-buttons {
+  text-align: center;
+  padding-right: 100px;
+}
+
+.main-content-wrapper {
+  background-color: #d3d3d3;
+}
+
+.warning-message {
+  color: rgb(255, 0, 0);
+  font-size: 10px;
+  left: 50px;
+}
+
+.post-wrapper {
+  padding: 50px;
+  background-color: #ffff;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.post {
+  padding: 30px;
+  max-width: 1200px;
+  border: 2px #333;
+}
+
+.ads {
+  padding: 50px;
+  background-color: #ffff;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.custom-datepicker {
+  padding: 8px 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.custom-datepicker::placeholder {
+  color: #888;
+}
