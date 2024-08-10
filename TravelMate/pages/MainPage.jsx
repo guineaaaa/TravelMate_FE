@@ -12,6 +12,7 @@ import '../src/App.css';
 import { Container, Card, Form, Button, InputGroup, Row, Col, Badge} from 'react-bootstrap';
 
 import MainPageModal from '../components/MainpageModal';
+import '../css/Base.css';
 
 const options = [
     { value: 'Eng', label: '영어' },
@@ -35,7 +36,7 @@ const MainPage = () => {
             <Navibar onLinkClick={handleModalShow} />
 
             <div className="d-flex flex-column align-items-center justify-content-center min-vh-100" style={{fontFamily: 'Pretendard', backgroundImage: `url(${backgroundImage})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
-                <h1 className="text-white text-center" style={{ fontFamily: 'Pretendard', fontSize: '1.5rem', fontWeight: 500, marginTop: '-5%', marginBottom: '0.7em' }}>
+                <h1 className="text-white text-center" style={{ fontSize: '1.5rem', fontWeight: 500, marginTop: '-5%', marginBottom: '0.7em' }}>
                     여행을 함께 할 안전한 사람을 구하고 있나요?<br />
                     동행자를 TravelMate에서 찾아보세요!
                 </h1>
