@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Container, Modal, Button, Form, InputGroup } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import styled from 'styled-components';
@@ -11,11 +11,12 @@ const FindId = () => {
     const handleSocialLogedInModalShow = () => setSocialLogedInModal(true);
 
     return (
-        <Container fluid className="d-flex flex-column align-items-center justify-content-center"
-            style={{ fontFamily: 'Pretendard',paddingTop: '20rem' }}>
+        <Container fluid className=" d-flex flex-column align-items-center justify-content-center"
+            style={{ fontFamily: 'Pretendard',paddingTop: '25%' }}>
             <Banner>이메일을 입력해주세요!<br />
                 가입 여부를 확인해드릴게요.</Banner>
-            <div style={{ marginTop:'-1rem', marginLeft: '3.82rem' }}>
+
+            <div style={{ marginTop:'-1%', marginLeft: '10%' }}>
                 <Form className="w-100 d-flex flex-column align-items-center mt-2">
                     <InputGroup className="mb-3" style={{
                         width: '29.1875rem', height: '2.75rem',
@@ -27,14 +28,13 @@ const FindId = () => {
                 </Form>
                 <Button variant="primary" size="lg"
                     style={{
-                        width: '29.1865rem',
+                        width: '100%',
                         height: '2.75rem',
                         flexShrink: '0',
                         borderRadius: '0.3125rem',
                         background: '#0064DC',
                         display: 'flex',
                         justifyContent: 'center',
-                        color: '#D9D9D9',
                         textAlign: 'center',
                         fontSize: '1rem',
                         fontWeight: '800',
@@ -113,15 +113,13 @@ const StyledModal = styled(Modal)`
 `;
 
 const Banner = styled.h5`
-    margin-top:-0.8rem;
-    margin-bottom:4.06rem;
-    margin-right:15rem;
-    display: flex;
-    width: 9.875rem;
-    height: 2.4375rem;
+    margin-top:-17%;
+    margin-bottom:4%;
+    margin-right:-80%;
+    text-align:left;
+    width: 100%;
+    height: 20%;
     flex-direction: column;
-    justify-content: center;
-    flex-shrink: 0;
     color: #878787;
     font-family: "Pretendard";
     font-size: 0.75rem;

@@ -1,3 +1,4 @@
+{/* MainPageNav 삭제
 import React from 'react';
 import styled from 'styled-components';
 import { Navbar, Nav, Container, NavDropdown } from 'react-bootstrap';
@@ -79,3 +80,4 @@ const StyledContainer = styled(Container)`
     }
 `;
 export default MainPageNav;
+*/}

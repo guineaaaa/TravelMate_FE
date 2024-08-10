@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
-import Navbar from '../components/Navbar';
+import Navibar from '../pages/navbar';
 import FindIdPwNavbar from '../components/FindIdPwNav';
 import MainPage from '../pages/MainPage';
 import Signup from '../pages/Signup';
@@ -16,6 +16,7 @@ import FindIdNot from '../pages/FindIdNot';
 import FindIdExist from '../pages/FindIdExist';
 import FindPw from '../pages/FindPw';
 import FindPwRe from '../pages/FindPwRe';
+
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
@@ -28,7 +29,7 @@ const App = () => {
   const handleSignupModalOpen = () => setShowSignupModal(true);
 
   const navbarConfig = {
-    hiddenNavbarPaths: ["/login", "/profilestep1", "/profilestep2", "/profilestep3", "/profilestep4", "/profilestep5", "/signup"],
+    hiddenNavbarPaths: ["/","/login", "/profilestep1", "/profilestep2", "/profilestep3", "/profilestep4", "/profilestep5", "/signup"],
     findIdPwPaths: ["/findid", "/findidnot", "/findpw", "/findpwre", "/findidexist"]
   };
 
@@ -37,12 +38,14 @@ const App = () => {
 
   return (
     <div>
-      {!isNavbarHidden && !isFindIdPwPage && <Navbar />}
+      {!isNavbarHidden && !isFindIdPwPage && <Navibar />}
       {isFindIdPwPage && <FindIdPwNavbar />}
       <Routes>
+s
         <Route path="/" element={<MainPage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup openModal={handleSignupModalOpen} />} />
+        
         <Route path="/profilestep1" element={<ProfileStep1 />} />
         <Route path="/profilestep2" element={<ProfileStep2 />} />
         <Route path="/profilestep3" element={<ProfileStep3 />} />

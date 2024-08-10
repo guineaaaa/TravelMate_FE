@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Container, Row, Col, Image, Form, Button, InputGroup } from 'react-bootstrap';
+import { useState } from "react";
+import { Container, Row, Image, Form, Button} from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -66,7 +66,8 @@ const Login = () => {
                         fontSize: '1rem',
                         fontWeight: 400,
                         lineHeight: '1.212rem',
-                        textTransform: 'uppercase'
+                        textTransform: 'uppercase',
+                        marginRight:'85%'
                     }}>
                         이메일
                     </Form.Label>
@@ -83,7 +84,9 @@ const Login = () => {
                         fontSize: '1rem',
                         fontWeight: 400,
                         lineHeight: '1.212rem',
-                        textTransform: 'uppercase'
+                        textTransform: 'uppercase',
+                        marginRight:'85%',
+                        width:'20%'
                     }}>
                         비밀번호
                     </Form.Label>

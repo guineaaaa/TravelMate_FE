@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import { Container, Row, Col, Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -30,7 +30,7 @@ const ProfileStep5 = () => {
                     <div 
                         className="d-flex flex-column align-items-center justify-content-center"
                         style={{
-                            width: '40.9375em',
+                            width: '100%',
                             height: '23.4375rem',
                             borderRadius: '0.625em',
                             background: '#FFF',
@@ -55,12 +55,11 @@ const ProfileStep5 = () => {
                             className="text-left mb-5 mt-1"
                             style={{
                                 color: 'var(--Black, #1A202C)',
-                                
                                 fontSize: '0.875rem',
                                 fontStyle: 'normal',
                                 fontWeight: 500,
                                 lineHeight: '121.2%',
-                                marginRight:'7rem',
+                                marginLeft:'-35%',
                                 width: '21.91019rem'
                             }}
                         >
@@ -76,7 +75,7 @@ const ProfileStep5 = () => {
                                 backgroundColor: '#0064DC',
                                 color: 'white',
                                 border: 'none',
-                                width: '29.1875rem',
+                                width: '70%',
                                 height: '4.8125rem',
                                 
                                 fontWeight: 'normal'
