@@ -1,4 +1,4 @@
-import React,{useEffect,useNavigate} from 'react';
+import {useEffect,useNavigate} from 'react';
 import axios from 'axois';
 
 // 백엔드와 연결...

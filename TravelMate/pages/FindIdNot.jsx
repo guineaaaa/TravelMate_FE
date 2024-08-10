@@ -68,31 +68,6 @@ const FindIdNot = () => {
     );
 }
 
-const StyledModal = styled(Modal)`
-    .modal-dialog {
-        width: 40.9375rem;
-        height: 23.4375rem;
-        max-width: 100%;
-        margin: auto;
-    }
-    .modal-content {
-        padding: 3rem 3rem 3rem 3rem;
-        height: 50%;
-        width:100%;
-    }
-    .modal-body {
-        padding: 2rem 3rem 2rem 3rem;
-        font-size: 0.875rem;
-        font-style: normal;
-        font-weight: 500;
-    }
-
-    .modal-footer {
-        padding: 1rem 2rem;
-        display: flex;
-        justify-content: center;
-    }
-`;
 
 const Banner = styled.h5`
     margin-top:-0.8rem;
