@@ -99,7 +99,7 @@ const Login = () => {
             로그인 정보를 잊으셨나요?</Link>
 
             {/* 소셜 로그인 버튼 목록 */}
-            <Button onClick={loginHandler} variant="light" className="p-0 mb-2" style={{ width: '19.5rem', height: '3rem', borderRadius: 'none', padding: 0 }}>
+            <Button onClick={loginHandler} variant="light" className="p-0 mb-2 kakao-login-btn" style={{ width: '19.5rem', height: '3rem',borderRadius: 'none', padding: 0 }}>
                 <Image src={KakaoLogInButton} alt="카카오 로그인" fluid style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
             </Button>
 

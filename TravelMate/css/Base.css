@@ -1,15 +1,10 @@
+
 body {
     background-color: #F9F9F9 !important;
 }
 
-@font-face {
-    font-family: 'Pretendard';
-    src: url('../src/fonts/Pretendard-Regular.ttf') format('truetype');
-}
-
-@font-face {
-    font-family: 'BM HANNA_TTF' ;
-    src: url('../src/fonts/BM-HANNA_TTF.ttf') format('truetype');
+.navbar{
+    background-color:white;
 }
 
 .category-list, .subcategory-list {
@@ -41,4 +36,11 @@ body {
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
+}
+
+
+.kakao-login-btn:focus,
+.kakao-login-btn:active {
+    outline: none !important;
+    box-shadow: none !important;
 }
