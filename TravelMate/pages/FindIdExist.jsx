@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Container, Modal, Button, Form, InputGroup } from 'react-bootstrap';
+
+import { Container,  Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
@@ -18,14 +18,15 @@ const FindIdExist = () => {
 
     return (
         <Container fluid className="d-flex flex-column align-items-center justify-content-center"
-            style={{ paddingTop: '20rem' }}>
+            style={{ paddingTop: '25%'  }}>
             <Banner>회원으로 등록 이메일 아이디 입니다.
                 해당 이메일 로그인하시고 와디즈를 이용하세요!
             </Banner>
-            <div style={{ marginTop:'-1rem',marginLeft: '3.82rem' }}>
+
+            <div style={{ marginTop:'-1rem',marginLeft: '10%',width:'30%' }}>
                 <Button variant="primary" size="lg"
                     style={{
-                        width: '29.1865rem',
+                        width: '100%',
                         height: '2.75rem',
                         flexShrink: '0',
                         borderRadius: '0.3125rem',
@@ -47,7 +48,7 @@ const FindIdExist = () => {
                     size="lg"
                     onClick={handleNextToBefore}
                     style={{
-                        width: '29.1865rem',
+                        width: '100%',
                         height: '2.75rem',
                         flexShrink: '0',
                         borderRadius: '0.3125rem',
@@ -70,17 +71,15 @@ const FindIdExist = () => {
 }
 
 const Banner = styled.h5`
-    margin-top:-0.8rem;
-    margin-bottom:4.06rem;
-    margin-right:8rem;
-    display: flex;
-    width: 16.375rem;
-    height: 2.5rem;
+    margin-top:-20%;
+    margin-bottom:4%;
+    margin-right:-80%;
+    text-align:left;
+    width: 100%;
+    height: 20%;
     flex-direction: column;
-    justify-content: center;
-    flex-shrink: 0;
     color: #878787;
-    font-family: "Baloo Thambi";
+    font-family: "Pretendard";
     font-size: 0.75rem;
     font-style: normal;
     font-weight: 400;
