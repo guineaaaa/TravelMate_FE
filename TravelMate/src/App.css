@@ -3,6 +3,10 @@
   width: 100vw;
   margin: 0 auto;
   text-align: center;
+
+}
+body{
+  overflow-x:hidden;
 }
 
 .fs-7{
