@@ -1,16 +1,18 @@
-import React, { useState } from 'react';
-import Navbar from '../pages/navbar';
+import { useState } from 'react';
 import Footer from '../pages/footer';
 
+import Navibar from '../pages/navbar';
 import backgroundImage from '../src/image/travelmate.png';
 import DetailImage from '../src/image/MainpageDetail.png';
 
 import { AirplaneIcon, SearchIcon, XButton } from '../src/constants/icons';
 import Select from 'react-select';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import '../src/App.css';
 import { Container, Card, Form, Button, InputGroup, Row, Col, Badge} from 'react-bootstrap';
 
 import MainPageModal from '../components/MainpageModal';
+import '../css/Base.css';
 
 const options = [
     { value: 'Eng', label: '영어' },
@@ -30,11 +32,11 @@ const MainPage = () => {
     const handleModalShow = () => setShowModal(true);
 
     return (
-        <>
-            <Navbar onLinkClick={handleModalShow} />
+        <>  
+            <Navibar onLinkClick={handleModalShow} />
 
             <div className="d-flex flex-column align-items-center justify-content-center min-vh-100" style={{fontFamily: 'Pretendard', backgroundImage: `url(${backgroundImage})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
-                <h1 className="text-white text-center" style={{ fontFamily: 'Pretendard', fontSize: '1.5rem', fontWeight: 500, marginTop: '8rem', marginBottom: '0.7em' }}>
+                <h1 className="text-white text-center" style={{ fontSize: '1.5rem', fontWeight: 500, marginTop: '-5%', marginBottom: '0.7em' }}>
                     여행을 함께 할 안전한 사람을 구하고 있나요?<br />
                     동행자를 TravelMate에서 찾아보세요!
                 </h1>
@@ -43,10 +45,10 @@ const MainPage = () => {
                     가입하기
                 </Button>
 
-                <Container className="bg-white rounded p-4 d-flex flex-column align-items-center" style={{ width: '80%', maxWidth: '800px' }}>
+                <Container className="bg-white rounded p-3 d-flex flex-column align-items-center" style={{ maxWidth: '50%' }}>
                     
                     {/* 검색창 */}
-                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop:'-0.8rem', marginBottom: '0.5rem', border: '1px solid #D9D9D9', width: '100%', maxWidth: '23.5625rem', height: '2.83288rem', padding: '0.75rem 1rem', gap: '0.5rem', borderRadius: '0.625rem' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop:'-0.8%', marginBottom: '0.8%', border: '1px solid #D9D9D9', width: '100%', maxWidth: '23.5625rem', height: '2.83288rem', padding: '0.75rem 1rem',  borderRadius: '0.625rem' }}>
                         <SearchIcon style={{ marginRight: '0.5rem' }} />
                         <Form.Control
                             style={{ fontSize: '1rem', border: 'none', boxShadow: 'none' }}
@@ -57,48 +59,106 @@ const MainPage = () => {
                     {/* 날짜 카드 */}
                     <Row className="g-3">
                         <Col sm={12} md={6}>
-                            <Card >
-                                <Card.Header style={{ fontSize: '1rem', backgroundColor: '#0074FF', color: 'white', fontWeight: 'bold' }}>날짜</Card.Header>
-                                <Card.Body >
+                            <Card style={{ padding: '0%' }}>
+                                <Card.Header style={{ textAlign: 'left', fontSize: '1rem', backgroundColor: '#0074FF', color: 'white', fontWeight: 'bold' }}>
+                                    날짜
+                                </Card.Header>
+                                <Card.Body style={{ padding: '1rem' }}>
                                     {/* 날짜 input 관련 custom */}
-                                    <style>{`
+                                    <style>
+                                    {`
+                                    input[type='date'] {
+                                        position: relative;
+                                        padding-left: 10px; /* 플레이스홀더와 텍스트가 겹치지 않도록 여백 추가 */
+                                        font-size: 0.875rem;
+                                        font-weight: 600;
+                                        width: 100%;
+                                        box-sizing: border-box; /* 패딩을 포함한 전체 너비 조정 */
+                                    }
+
                                     input[type='date']::before {
-                                    content: attr(data-placeholder);
-                                    position: absolute;
-                                    width: 100%;
-                                    color: #999A9A;
-                                    font-size: 0.875rem;
-                                    font-style: normal;
-                                    font-weight: 600; 
+                                        content: attr(data-placeholder);
+                                        position: absolute;
+                                        left: 10px;
+                                        top: 50%;
+                                        transform: translateY(-50%);
+                                        color: #999A9A;
+                                        font-size: 0.875rem;
+                                        font-style: normal;
+                                        font-weight: 600;
+                                        pointer-events: none; 
                                     }
-                                    input[type="date"]:not(:focus):invalid {
-                                        &::-webkit-datetime-edit-text,
-                                        &::-webkit-datetime-edit-month-field,
-                                        &::-webkit-datetime-edit-day-field,
-                                        &::-webkit-datetime-edit-year-field {
-                                        -webkit-appearance: none;
-                                        display: none;
-                                        }
-                                    }
+
                                     input[type='date']:focus::before,
                                     input[type='date']:valid::before {
-                                        display: none;
-                                    }`}</style>
-                                    <div className="d-flex align-items-center mb-2">
-                                        <Form.Control style={{ width:'9.25rem',height:'2.0625rem',fontSize: '1rem' }} type="date" 
-                                        required ariaRequired="true" data-placeholder="시작일" />
-                                        <span style={{ color:'#999A9A',fontSize: '1.5625rem', fontWeight: 'bold', margin: '0 0.5rem' }}>~</span>
-                                        <Form.Control style={{ width:'9.25rem',height:'2.0625rem',fontSize: '1rem' }} type="date" 
-                                        required ariaRequired="true" data-placeholder="종료일" />
+                                        display: none; /* 포커스 또는 날짜 선택 시 가상 요소 숨기기 */
+                                    }
+
+                                    input[type='date']:valid {
+                                        color: #999A9A;
+                                    }
+
+                                    /* 기본 상태에서 날짜 텍스트를 투명하게 처리 */
+                                    input[type="date"]::-webkit-datetime-edit-text,
+                                    input[type="date"]::-webkit-datetime-edit-month-field,
+                                    input[type="date"]::-webkit-datetime-edit-day-field,
+                                    input[type="date"]::-webkit-datetime-edit-year-field {
+                                        color: transparent; 
+                                    }
+
+                                    input[type="date"]:focus::-webkit-datetime-edit-text,
+                                    input[type="date"]:focus::-webkit-datetime-edit-month-field,
+                                    input[type="date"]:focus::-webkit-datetime-edit-day-field,
+                                    input[type="date"]:focus::-webkit-datetime-edit-year-field,
+                                    input[type="date"]:valid::-webkit-datetime-edit-text,
+                                    input[type="date"]:valid::-webkit-datetime-edit-month-field,
+                                    input[type="date"]:valid::-webkit-datetime-edit-day-field,
+                                    input[type="date"]:valid::-webkit-datetime-edit-year-field {
+                                        color: #999A9A;
+                                        font-size: 0.875rem;
+                                    }
+
+                                    /* 반응형 디자인 */
+                                    @media (max-width: 1290px) {
+                                        .date-input-container {
+                                            flex-direction: column;
+                                        }
+                                        .date-input-container > * {
+                                            width: 100%;
+                                            margin-bottom: 0.1%;
+                                        }
+                                        
+                                        .date-input-container span {
+                                            margin: 0;
+                                        }
+                                    }
+                                    `}
+                                    </style>
+                                    <div className="d-flex date-input-container align-items-center mb-1">
+                                        <Form.Control 
+                                            style={{ fontSize: '1rem' }} 
+                                            type="date" 
+                                            required 
+                                            aria-required="true" 
+                                            data-placeholder="시작일" 
+                                        />
+                                        <span style={{ color: '#999A9A', fontSize: '1.5625rem', fontWeight: 'bold' }}>~</span>
+                                        <Form.Control 
+                                            style={{ fontSize: '1rem' }} 
+                                            type="date" 
+                                            required 
+                                            aria-required="true" 
+                                            data-placeholder="종료일" 
+                                        />
                                     </div>
                                 </Card.Body>
                             </Card>
                         </Col>
-
+                        
                         {/* 언어 선택 카드 */}
                         <Col sm={12} md={6}>
-                            <Card>
-                                <Card.Header style={{ fontSize: '1rem', backgroundColor: '#0074FF', color: 'white', fontWeight: 'bold' }}>언어</Card.Header>
+                            <Card style={{padding:'0%'}}>
+                                <Card.Header style={{textAlign:'left', fontSize: '1rem', backgroundColor: '#0074FF', color: 'white', fontWeight: 'bold' }}>언어</Card.Header>
                                 <Card.Body>
                                     <Select
                                         defaultValue={selectedOptions}
@@ -110,9 +170,10 @@ const MainPage = () => {
                                             control: (provided) => ({
                                                 ...provided,
                                                 fontSize: '1rem',
-                                                marginBottom: '0.5rem',
+                                                marginBottom: '1%',
+                                                
                                                 border:'1px solid #999A9A',
-                                                width:'99%'
+                                                width:'100%'
                                             }),
                                             multiValue: (provided) => ({
                                                 ...provided,
@@ -140,6 +201,7 @@ const MainPage = () => {
                                             }),placeholder: (provided) => ({
                                                 ...provided,
                                                 fontSize: '0.75rem',
+                                                marginRight:'17%'
                                             }),
                                         }}
                                     />
@@ -148,7 +210,7 @@ const MainPage = () => {
                                         width: '100%',
                                         maxWidth: '20.75rem',
                                         height: '2.39919rem',
-                                        padding: '0.75rem 0.5rem',
+                                        padding: '0.75% 0.5%',
                                         alignItems: 'center',
                                         gap: '-1rem',
                                         flexShrink: 0,
@@ -164,13 +226,13 @@ const MainPage = () => {
                                             {`div::-webkit-scrollbar {display: none;}`}
                                         </style>
                                         <span style={{color: '#707070',fontSize:'0.75rem',width: '5rem',height:'1.2rem', flexShrink: 0 }}>선택된 언어: </span>
-                                        <div style={{ display: 'flex', gap: '0.5rem' }}>
+                                        <div style={{ display: 'flex', gap: '0.5%' }}>
                                             {selectedOptions.map(option => (
-                                                <Badge key={option.value} className="me-1" style={{borderRadius:'0.7125rem', backgroundColor: '#ABD1FF', fontSize: '0.8rem',fontWeight:'500', display: 'flex', alignItems: 'center' }}>
+                                                <Badge key={option.value} className="me-1" style={{borderRadius:'2.7125rem', backgroundColor: '#ABD1FF', fontSize: '0.8rem',fontWeight:'500', display: 'flex', alignItems: 'center',padding:'0.1% 5% 0.1% ' }}>
                                                     {option.label}
                                                     <button
                                                         onClick={() => setSelectedOptions(selectedOptions.filter(o => o.value !== option.value))}
-                                                        style={{ border: 'none', background: 'transparent', cursor: 'pointer', marginLeft: '0.5rem' }}
+                                                        style={{ border: 'none', background: 'transparent', cursor: 'pointer', marginLeft: '0.5%' }}
                                                     >
                                                         <XButton />
                                                     </button>
@@ -185,9 +247,9 @@ const MainPage = () => {
                         
                         {/* 나이/성별 선택 카드 */}
                         <Col sm={12} md={6}>
-                            <Card style={{ marginTop: '-3rem' }}>
-                                <Card.Header style={{ fontSize: '1rem', backgroundColor: '#0074FF', color: 'white', fontWeight: 'bold' }}>나이/성별</Card.Header>
-                                <Card.Body style={{paddingBottom: '0.5rem'}}>
+                            <Card style={{marginTop:'-12%',padding:'0%'}}>
+                                <Card.Header style={{textAlign:'left', fontSize: '1rem', backgroundColor: '#0074FF', color: 'white', fontWeight: 'bold' }}>나이/성별</Card.Header>
+                                <Card.Body style={{paddingBottom: '0.5%'}}>
                                     <InputGroup className="mb-2">
                                         <Form.Control style={{width:'0.5rem',height:'2rem', borderRadius:'0.3125rem',color:'#999A9A',fontSize:'0.875rem',fontWeight:'600' }} placeholder="이상" />
                                         <span style={{ color:'#999A9A',fontSize: '1.5625rem', fontWeight: 'bold', margin: '-0.3rem 0.5rem' }}>~</span>
@@ -228,7 +290,7 @@ const MainPage = () => {
                 </Container>
                 
                 {/* 광고 컨테이너 */}
-                <Container className="bg-white rounded p-4 mt-3 mb-5" style={{ width: '100%', maxWidth: '800px' }}>
+                <Container className="bg-white rounded p-4 mt-3 mb-5" style={{ maxWidth: '50%' }}>
                     <div className="d-flex align-items-center justify-content-between mb-2">
                         <div className="d-flex align-items-center">
                         <AirplaneIcon />

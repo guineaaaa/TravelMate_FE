@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Container, Row, Col, Image, Form, Button, InputGroup } from 'react-bootstrap';
+import { useState } from "react";
+import { Container, Row, Image, Form, Button} from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -66,7 +66,8 @@ const Login = () => {
                         fontSize: '1rem',
                         fontWeight: 400,
                         lineHeight: '1.212rem',
-                        textTransform: 'uppercase'
+                        textTransform: 'uppercase',
+                        marginRight:'85%'
                     }}>
                         이메일
                     </Form.Label>
@@ -83,7 +84,9 @@ const Login = () => {
                         fontSize: '1rem',
                         fontWeight: 400,
                         lineHeight: '1.212rem',
-                        textTransform: 'uppercase'
+                        textTransform: 'uppercase',
+                        marginRight:'85%',
+                        width:'20%'
                     }}>
                         비밀번호
                     </Form.Label>
@@ -96,7 +99,7 @@ const Login = () => {
             로그인 정보를 잊으셨나요?</Link>
 
             {/* 소셜 로그인 버튼 목록 */}
-            <Button onClick={loginHandler} variant="light" className="p-0 mb-2" style={{ width: '19.5rem', height: '3rem', borderRadius: 'none', padding: 0 }}>
+            <Button onClick={loginHandler} variant="light" className="p-0 mb-2 kakao-login-btn" style={{ width: '19.5rem', height: '3rem',borderRadius: 'none', padding: 0 }}>
                 <Image src={KakaoLogInButton} alt="카카오 로그인" fluid style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
             </Button>
 

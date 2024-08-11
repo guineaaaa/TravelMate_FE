@@ -1,8 +1,12 @@
 
 body {
-    background-color: #F9F9F9;
-    
+    background-color: #F9F9F9 !important;
 }
+
+.navbar{
+    background-color:white;
+}
+
 .category-list, .subcategory-list {
     max-height: 300px;
     overflow-y: scroll;
@@ -25,13 +29,18 @@ body {
     padding: 0.375rem !important;
     margin-right: 0.5px !important;
     margin-bottom: 0.5px !important;
-    background-color: rgba(171, 209, 255, 0.30) !important; /* 하늘색 배경 */
-    color: black !important; /* 검은색 글씨 */
+    background-color: rgba(171, 209, 255, 0.30) !important;
+    color: black !important;
     font-weight: 500 !important;
     height: 2rem !important;
     display: flex !important;
     align-items: center !important;
-    display: flex !important;
-    justify-content: center !important; /* 수평 가운데 정렬 */
+    justify-content: center !important;
+}
 
+
+.kakao-login-btn:focus,
+.kakao-login-btn:active {
+    outline: none !important;
+    box-shadow: none !important;
 }
