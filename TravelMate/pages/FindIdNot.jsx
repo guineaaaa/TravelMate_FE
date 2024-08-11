@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Container, Modal, Button, Form, InputGroup } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import styled from 'styled-components';
@@ -19,9 +19,9 @@ const FindIdNot = () => {
 
     return (
         <Container fluid className="d-flex flex-column align-items-center justify-content-center"
-            style={{ paddingTop: '20rem' }}>
+            style={{ fontFamily: 'Pretendard', paddingTop: '21%', overflowX: 'hidden'}}>
             <Banner>는 TravelMate에 등록되어 있지 않은 계정입니다.</Banner>
-            <div style={{marginTop:'-1rem',  marginLeft: '3.82rem' }}>
+            <div className="d-flex flex-column align-items-center mt-3 me-4" style={{marginTop:'-1rem', marginLeft: '10%',width:'30%' }}>
                 <Button variant="primary" size="lg"
                     style={{
                         width: '29.1865rem',
@@ -69,22 +69,15 @@ const FindIdNot = () => {
 }
 
 
+
 const Banner = styled.h5`
-    margin-top:-0.8rem;
-    margin-bottom:4.06rem;
-    margin-right:15rem;
-    display: flex;
-    width: 9.875rem;
-    height: 2.4375rem;
-    flex-direction: column;
-    justify-content: center;
-    flex-shrink: 0;
+    text-align: left;
     color: #878787;
-    font-family: "Baloo Thambi";
+    font-family: "Pretendard";
     font-size: 0.75rem;
-    font-style: normal;
     font-weight: 400;
     line-height: 1.25rem;
+    margin-right:-5%;
 `;
 
 export default FindIdNot;

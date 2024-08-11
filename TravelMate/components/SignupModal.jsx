@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Modal, Button } from 'react-bootstrap';
 
 // 약관 확인 모달
-const SignupModal = ({ show, handleClose }) => {
+const SignupModal = ({ show, onHide }) => {
     const [isAllChecked, setIsAllChecked] = useState(false);
     const [isServiceAgreementChecked, setIsServiceAgreementChecked] = useState(false);
     const [isTermsAgreementChecked, setIsTermsAgreementChecked] = useState(false);
@@ -38,7 +38,7 @@ const SignupModal = ({ show, handleClose }) => {
     return (
         <Modal
             show={show}
-            onHide={handleClose}
+            onHide={onHide}
             centered
             dialogClassName="custom-modal"
         >
@@ -199,7 +199,7 @@ const SignupModal = ({ show, handleClose }) => {
                         fontStyle: 'normal',
                     }}
                     variant="primary"
-                    onClick={handleClose}
+                    onClick={onHide}
                 >
                     회원가입 완료
                 </Button>

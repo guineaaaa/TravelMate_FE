@@ -1,7 +1,12 @@
+
 #root {
   width: 100vw;
   margin: 0 auto;
   text-align: center;
+
+}
+body{
+  overflow-x:hidden;
 }
 
 .fs-7{
@@ -44,3 +49,12 @@
   color: #888;
 }
 
+@font-face {
+  font-family: 'BM HANNA_TTF';
+  src: url('../src/fonts/BMHANNAPro.ttf') format('truetype');
+}
+
+@font-face {
+font-family: 'Pretendard';
+src: url('../src/fonts/Pretendard-Regular.ttf') format('truetype');
+}
