@@ -102,6 +102,7 @@ const Banner = styled.div`
   font-weight: 800;
   margin-top: 1rem;
   margin-bottom: 3rem;
+  margin-right:5%; 
 
   @media (max-width: 768px) {
     font-size: 1.5rem;
@@ -114,7 +115,7 @@ const FindButtonContainer = styled.div`
   display: flex;
   align-items: center;
   gap: 1rem;
-  margin-right:1%; 
+  margin-right:7%; 
 `;
 
 const Button = styled.button`
