@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useNavigate } from 'react-router-dom';
 import { Container, Modal, Image, Form, Button, InputGroup } from 'react-bootstrap';
 
@@ -28,7 +28,19 @@ const Signup = () => {
     const [showVerificationCodeModal, setVerificationCodeModal] = useState(false);
     const [showSignupModal, setSignupShowModal] = useState(false);
 
-    const {signup, isLoading, error, data} = useSignup();
+    const { signup, isLoading, error, data } = useSignup();
+
+    useEffect(() => {
+        if (data) {
+            handleSignupModalShow();
+        }
+    }, [data]);
+
+    useEffect(() => {
+        if (error) {
+            alert(`회원가입 실패: ${error}`);
+        }
+    }, [error]);
 
     const validateEmail = (email) => {
         if (!email) {
@@ -82,7 +94,7 @@ const Signup = () => {
         const newPassword = e.target.value;
         setPassword(newPassword);
         validatePassword(newPassword);
-        validateConfirmPassword(confirmPassword); // Check confirm password validity when password changes
+        validateConfirmPassword(confirmPassword); 
     };
 
     const handleConfirmPasswordChange = (e) => {
@@ -94,15 +106,27 @@ const Signup = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (!validateEmail(email) || !validatePassword(password) || !validateConfirmPassword(confirmPassword)) return;
+
+        // 회원가입 요청
         await signup(email, password);
-        handleSignupModalShow();
+
+        // 로딩 상태 처리
+        if (!isLoading && !error && data) {
+            // 회원가입 성공 시 모달 표시 및 페이지 이동
+            handleSignupModalShow();
+        }
     };
 
     const toggleShowPassword = () => setShowPassword(!showPassword);
     const toggleShowConfirmPassword = () => setShowConfirmPassword(!showConfirmPassword);
 
-    const handleSignupModalClose = () => { setSignupShowModal(false); navigate('/profilestep1'); }
+    const handleSignupModalClose = () => { 
+        setSignupShowModal(false);
+        navigate('/profilestep1'); 
+    };
+    
     const handleSignupModalShow = () => setSignupShowModal(true);
+
     const handleVerificationModalClose = () => setVerificationCodeModal(false);
     const handleVerificationModalShow = () => setVerificationCodeModal(true);
 
@@ -120,7 +144,7 @@ const Signup = () => {
                 회원가입
             </h2>
 
-            <Form className="w-100 d-flex flex-column align-items-center" style={{ marginTop: '1%' }}>
+            <Form className="w-100 d-flex flex-column align-items-center" style={{ marginTop: '1%' }} onSubmit={handleSubmit}>
                 <div className="text-dark custom-banner">이메일</div>
 
                 <Container className="d-flex" style={{ marginLeft: '8rem' }}>
@@ -216,7 +240,7 @@ const Signup = () => {
                 {confirmPasswordMessage && <h6 className="text-danger text-start w-50"
                 style={{marginTop:'-1.5%',fontSize:'0.875rem'}}>{confirmPasswordMessage}</h6>}
 
-                <Button type="submit" disabled={isLoading} className="btn-primary" onClick={handleSubmit}
+                <Button type="submit" disabled={isLoading} className="btn-primary"
                     size="lg" style={{
                         display: 'flex',
                         backgroundColor: '#0074FF',
