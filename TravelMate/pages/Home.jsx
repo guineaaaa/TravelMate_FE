@@ -1,40 +1,53 @@
-import { Container, Row, Col, Button, Nav, Form, ToggleButton, ToggleButtonGroup } from 'react-bootstrap';
+import { useState } from 'react';
+import { Container, Row, Col, Button, Nav, Form, Image } from 'react-bootstrap';
 import './Home.css';
 
 function Home() {
+
+  const [profileImage] = useState('profile-image.png'); // 기본 프로필 이미지
+  const [coverImage] = useState('cover-image.png'); // 기본 커버 이미지
+  
   return (
     <div> {/* 모든 컨테이너와 로우를 포함하는 최상위 <div> */}
       <div>
-        <Container fluid className="px-0">
-          <div className="cover-image">커버</div>
-          <Row className="profile-header-wrapper position-relative">
-            <Col className="text-center position-absolute profile-image-wrapper">
-              <div className="profile-image"></div>
-            </Col>
-            <Col className="d-sm-inline-flex flex-column justify-content-end align-items-left">
-              <h5>닉네임 (27/여)</h5>
-              <span>idhdb1004@naver.com</span>
-              <span className="rating">40.3</span>
-            </Col>
-          </Row>
+      <Container fluid className="px-0 cover-container">
+        <Image src={coverImage} alt="Cover" fluid className="cover-image"/>
+
+        <Row className="justify-content-md-center align-items-center profile-row">
+          <Col md={1} className="text-center">
+            <Image src={profileImage} alt="Profile" roundedCircle className="profile-image" />
+          </Col>
+          <Col md={10}>
+            <Row className="align-items-center">
+              <Col xs="auto" className="nickname-container">
+                <div className="nickname-text"><strong>닉네임 (27/여)</strong></div>
+              </Col>
+              <Col xs="auto">
+                <Image src="/instagram-icon.png" alt="Instagram" style={{ width: '24px', height: '24px' }} />
+              </Col>
+              <Col xs="auto">
+                <div className="rating-container">
+                <span className="rating-score">40.3</span>
+                <Image src="/rating-icon.png" alt="Rating" style={{ width: '24px', height: '24px' }} />
+                </div>
+              </Col>
+            </Row>
+            <Row>
+              <Col>
+                <p>idhdb1004@naver.com</p>
+              </Col>
+            </Row>
+          </Col>
+        </Row>
+
           <Row>
             <Col>
               <Nav className="profile-nav justify-content-left mt-3">
-                <Nav.Item>
-                  <Nav.Link href="#" active>홈</Nav.Link>
-                </Nav.Item>
-                <Nav.Item>
-                  <Nav.Link href="#">소개</Nav.Link>
-                </Nav.Item>
-                <Nav.Item>
-                  <Nav.Link href="#">사진</Nav.Link>
-                </Nav.Item>
-                <Nav.Item>
-                  <Nav.Link href="#">여행 여정</Nav.Link>
-                </Nav.Item>
-                <Nav.Item>
-                  <Nav.Link href="#">리뷰</Nav.Link>
-                </Nav.Item>
+                <Nav.Item><Nav.Link href="#" active>홈</Nav.Link></Nav.Item>
+                <Nav.Item><Nav.Link href="#">소개</Nav.Link></Nav.Item>
+                <Nav.Item><Nav.Link href="#">사진</Nav.Link></Nav.Item>
+                <Nav.Item><Nav.Link href="#">여행 여정</Nav.Link></Nav.Item>
+                <Nav.Item><Nav.Link href="#">리뷰</Nav.Link></Nav.Item>
               </Nav>
             </Col>
             <Col>
@@ -53,69 +66,149 @@ function Home() {
           <Row>
             {/* 메인 구역 */}
             <Col>
-              <div className="main">
+              <div className="main my-2">
                 <Container fluid>
                   <Row className="mb-3">
                     <Col>
-                     <p>본인인증이 필요해요!</p>
+                     <p><strong>본인인증이 필요해요!</strong></p>
                      <Button variant="primary" className="mr-2">본인인증 하기</Button>
                     </Col>
                   </Row>
-                 <Row className="divider">
-              </Row>
-      
-              <Row>
-                <Col md={6}>
-                  <Form>
-                    <Form.Group controlId="formName">
-                      <Form.Label>이름</Form.Label>
-                      <Form.Control type="text" placeholder="이름 입력" />
-                    </Form.Group>
+                  <Row className="divider"/>
+                <Container>
+                  <Row>
+                    <Col md={3} className="px-3" style={{ borderRight: '2px solid #dee2e6' }}>
+                    <Form>
+                      <Form.Group className="formName my-5">
+                        <Row>
+                        <p> </p>
+                        <Form.Label><strong>이름</strong></Form.Label>
+                        <p> </p>
+                        <p> </p>
+                        </Row>
+                      </Form.Group>
 
-                    <Form.Group controlId="formPhone">
-                      <Form.Label>휴대폰 번호</Form.Label>
-                      <Form.Control type="text" placeholder="휴대폰 번호 입력" />
-                    </Form.Group>
+                      <Form.Group className="formPhone my-5">
+                        <Row>
+                        <Form.Label><strong>휴대폰 번호</strong></Form.Label>
+                        <p>  </p>
+                        </Row>
+                      </Form.Group>
 
-                    <Form.Group controlId="formEmail">
-                      <Form.Label>이메일</Form.Label>
-                      <Form.Control type="email" placeholder="이메일 입력" />
-                    </Form.Group>
+                      <Form.Group className="formEmail my-5">
+                        <Row>
+                        <Form.Label><strong>이메일</strong></Form.Label>
+                        </Row>
+                      </Form.Group>
 
-                    <Form.Group controlId="formPassword">
-                      <Form.Label>비밀번호</Form.Label>
-                      <Form.Control type="password" placeholder="비밀번호 입력" />
-                    </Form.Group>
-                  </Form>
-                </Col>
+                      <Form.Group className="formInstagram mt-5 mb-3">
+                        <Row>
+                        <Form.Label><strong>인스타 계정 연동</strong></Form.Label>
+                        <p> </p>
+                        <p> </p>
+                        </Row>
+                      </Form.Group>
 
-                <Col md={6}>
-                  <Form>
-                    <Form.Label>SNS 연동</Form.Label>
-                    <ToggleButtonGroup type="checkbox" className="mb-3">
-                      <ToggleButton id="tbg-btn-1" value={1} variant="outline-success">
-                        네이버 연동
-                      </ToggleButton>
-                      <ToggleButton id="tbg-btn-2" value={2} variant="outline-warning">
-                        카카오 연동
-                      </ToggleButton>
-                      <ToggleButton id="tbg-btn-3" value={3} variant="outline-danger">
-                        인스타그램 연동
-                      </ToggleButton>
-                    </ToggleButtonGroup>
+                      <Form.Group className="formPassword my-4">
+                        <Form.Label><strong>비밀번호</strong></Form.Label>
+                      </Form.Group>
+                    </Form>
+                    </Col>
 
-                    <Form.Group controlId="marketingConsent">
-                      <Form.Check type="switch" label="마케팅 수신 동의" />
-                    </Form.Group>
+                    <Col md={5} className="px-3">
+                      <Form>
+                        <Form.Group className="formName my-5">
+                          <Row className="px-3">
+                          <Form.Control plaintext readOnly defaultValue="안태주"/>
+                          <div className="small text-danger px-0">본인인증 필요</div>
+                          </Row>
+                        </Form.Group>
 
-                    <Form.Group controlId="locationConsent">
-                      <Form.Check type="switch" label="위치 정보 수집 동의" />
-                    </Form.Group>
-                  </Form>
-                </Col>
-              </Row>
-            </Container>
-            </div>
+                        <Form.Group className="formPhone my-5">
+                          <Row className="px-3">
+                          <Form.Control plaintext readOnly defaultValue="+82 01066840840"/>
+                          <div className="small text-danger px-0">본인인증 필요</div>
+                          </Row>
+                        </Form.Group>
+
+                        <Form.Group className="formEmail my-5">
+                          <Form.Control plaintext readOnly defaultValue="sadsaf@naver.com"/>
+                        </Form.Group>
+
+                        <Form.Group className="formInstagram my-5">
+                          <Form.Control type="text" placeholder="@를 제외한 user ID만 입력해주세요"/>
+                        </Form.Group>
+
+                        <Form.Group className="formPassword my-5">
+                          <Form.Control plaintext readOnly defaultValue="********"/>
+                        </Form.Group>
+                      </Form>
+                    </Col>
+                    <Row className="divider"/>
+                    <Col md={3} className="px-3" style={{ borderRight: '2px solid #dee2e6' }}>
+                    <Form>
+                      <Form.Group className="formName my-5">
+                        <Row>
+                        <p> </p>
+                        <Form.Label><strong>마케팅 수신 동의</strong></Form.Label>
+                        <p> </p>
+                        <p> </p>
+                        </Row>
+                      </Form.Group>
+
+                      <Form.Group className="formName my-5">
+                        <Row>
+                        <p> </p>
+                        <Form.Label><strong>위치 정보 수집</strong></Form.Label>
+                        <p> </p>
+                        <p> </p>
+                        </Row>
+                      </Form.Group>
+                    </Form>
+                    </Col>
+
+                    <Col md={5} className="px-3">
+                    <Form>
+                      <Row className="px-3">
+                        <p> </p>
+                      <Form.Check className="mt-5 custom-switch-reverse"
+                      label="이메일 수신"
+                      type="switch"
+                      id="custom-switch"
+                      ></Form.Check>
+                      </Row>
+
+                      <Row className="px-3">
+                      <Form.Check
+                      label="SMS 수신"
+                      type="switch"
+                      id="custom-switch"
+                      className="custom-switch-reverse"
+                      ></Form.Check>
+                      </Row>
+
+                      <Row className="px-3">
+                      <Form.Check
+                      label="앱 푸쉬"
+                      type="switch"
+                      id="custom-switch"
+                      className="custom-switch-reverse"
+                      ></Form.Check>
+                      </Row>
+
+                      <Row className="px-3">
+                      <Form.Check className="mt-5 custom-switch-reverse"
+                      label="위치 정보 수집 동의"
+                      type="switch"
+                      id="custom-switch"
+                      ></Form.Check>
+                      </Row>
+                    </Form>
+                    </Col>
+                  </Row>
+                </Container>
+              </Container>
+              </div>
             </Col>
 
             {/* 찜한 동행 및 광고 구역 */}
