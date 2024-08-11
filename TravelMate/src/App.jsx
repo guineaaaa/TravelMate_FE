@@ -6,6 +6,7 @@ import MainPage from '../pages/MainPage';
 import Signup from '../pages/Signup';
 import SignupModal from '../components/SignupModal';
 import Login from '../pages/Login';
+import ProfileIntro from '../pages/ProfileIntro';
 import ProfileStep1 from '../pages/ProfileStep1';
 import ProfileStep2 from '../pages/ProfileStep2';
 import ProfileStep3 from '../pages/ProfileStep3';
@@ -16,6 +17,9 @@ import FindIdNot from '../pages/FindIdNot';
 import FindIdExist from '../pages/FindIdExist';
 import FindPw from '../pages/FindPw';
 import FindPwRe from '../pages/FindPwRe';
+import Searching from '../pages/Searching';
+import Accompany from '../pages/Accompany';
+
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
@@ -29,7 +33,7 @@ const App = () => {
   const handleSignupModalOpen = () => setShowSignupModal(true);
 
   const navbarConfig = {
-    hiddenNavbarPaths: ["/","/login", "/profilestep1", "/profilestep2", "/profilestep3", "/profilestep4", "/profilestep5", "/signup"],
+    hiddenNavbarPaths: ["/","/login", "profileintro", "/profilestep1", "/profilestep2", "/profilestep3", "/profilestep4", "/profilestep5", "/signup"],
     findIdPwPaths: ["/findid", "/findidnot", "/findpw", "/findpwre", "/findidexist"]
   };
 
@@ -41,21 +45,23 @@ const App = () => {
       {!isNavbarHidden && !isFindIdPwPage && <Navibar />}
       {isFindIdPwPage && <FindIdPwNavbar />}
       <Routes>
-s
         <Route path="/" element={<MainPage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup openModal={handleSignupModalOpen} />} />
         
+        <Route path="/searching" element={<Searching />} />
         <Route path="/profilestep1" element={<ProfileStep1 />} />
         <Route path="/profilestep2" element={<ProfileStep2 />} />
         <Route path="/profilestep3" element={<ProfileStep3 />} />
         <Route path="/profilestep4" element={<ProfileStep4 />} />
         <Route path="/profilestep5" element={<ProfileStep5 />} />
+        <Route path="/profileintro" element={<ProfileIntro />} />
         <Route path="/findid" element={<FindId />} />
         <Route path="/findidnot" element={<FindIdNot />} />
         <Route path="/findidexist" element={<FindIdExist />} />
         <Route path="/findpw" element={<FindPw />} />
         <Route path="/findpwre" element={<FindPwRe />} />
+        <Route path="/accompany" element={<Accompany />} />
       </Routes>
       <SignupModal show={showSignupModal} handleClose={handleSignupModalClose} />
     </div>
