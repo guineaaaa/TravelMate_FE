@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../css/ProfileIntro.css";
-import { Container, Row, Col, Button, Modal, ProgressBar, ListGroup, Toast, Form, Table, InputGroup } from 'react-bootstrap';
+import { Container, Row, Col, Button, Modal, ProgressBar, ListGroup, Toast, Form, Table, InputGroup, FormControl } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLink } from '@fortawesome/free-solid-svg-icons';
@@ -11,6 +11,7 @@ import profileImage from '../src/assets/e79d606d090bbdd8c20ec94f8bd317f1.png';
 import temp from '../src/assets/temperature.png';
 import shareImage from '../src//assets/free-icon-share-3989188.png';
 import copyToClipboard from 'copy-to-clipboard';
+import ReviewCard from "../components/ReviewCard";
 
 
 const categories = [
@@ -26,6 +27,11 @@ const languages = [
     '한국어', '영어', '일본어', '중국어', '불어', '독일어'
 ];
 
+const reviews = [
+    { text: '즐거운 시간을 보냈고, 유쾌한 친구였어요!', name: '말랑콩', date: '5일 전' },
+    { text: '즐거운 시간을 보냈고, 유쾌한 친구였어요!', name: '말랑콩', date: '5일 전' },
+    { text: '즐거운 시간을 보냈고, 유쾌한 친구였어요!', name: '말랑콩', date: '5일 전' },
+];
 
 const ProfileIntro = () => {
     const navigate = useNavigate();
@@ -34,6 +40,7 @@ const ProfileIntro = () => {
     const [activeTab, setActiveTab] = useState('소개');
     const [toastVisible, setToastVisible] = useState(false);
     const [text, setText] = useState('');
+    const [showReviewModal, setShowReviewModal] = useState(false);
     
     const [selectedLanguage, setSelectedLanguage] = useState(null);
     const [selectedLangPreferences, setSelectedLangPreferences] = useState([]);
@@ -81,10 +88,13 @@ const ProfileIntro = () => {
         setTimeout(() => setToastVisible(false), 3000); // 3초 후에 토스트 메시지 숨기기
     };
 
+    const handleShowReviewModal = () => setShowReviewModal(true);
+    const handleCloseReviewModal = () => setShowReviewModal(false);
+
     return  (
         <>
         <div>
-            <Container fluid className="d-flex align-items-center justify-content-center" style={{ height: '100px', backgroundColor: '#cccccc' }}>
+            <Container fluid className="d-flex align-items-center justify-content-center" style={{ height: '200px', backgroundColor: '#cccccc' }}>
                 커버
             </Container>
             <Container fluid className="d-flex align-items-start position-relative bg-white" style={{ height: '220px', borderBottom: '1px solid #ccc'}}>
@@ -200,11 +210,55 @@ const ProfileIntro = () => {
                         </div>
                     </Col>)}
                     {activeTab == '리뷰' && (<Col md={8} className="left-section">
-                        <div className="profile-info-box">
-                            <div>
-                                <h2 className="font-weight-bold">리뷰</h2>
-                            </div> 
+                        <div className="profile-info-box"> 
+                            <Row>
+                                {reviews.map((review, index) => (
+                                    <ReviewCard key={index} review={review}/>
+                                ))}
+                            </Row> 
+                            <div className="d-flex justify-content-center mt-4">
+                                <Button variant="outline-secondary" className="rounded-pill"
+                                onClick={handleShowReviewModal}>후기 더 표시하기</Button>
+                            </div>
                         </div>
+                        <Modal show={showReviewModal} onHide={handleCloseReviewModal} size="lg">
+                            <Modal.Header closeButton>
+                            <Modal.Title>후기 X개</Modal.Title>
+                            </Modal.Header>
+                            <Modal.Body>
+                            <div className="d-flex justify-content-between align-items-center mb-3">
+                                <div className="d-flex align-items-center">
+                                {/* <img src={profileImage} alt="Profile" className="rounded-circle" width="80" height="80" /> */}
+                                <div className="ml-3">
+                                    <h5>동행자 선호 평점, 후기, 신뢰도 기준</h5>
+                                    <span className="badge badge-warning">40.3</span>
+                                </div>
+                                </div>
+                                <InputGroup style={{ width: '300px' }}>
+                                <FormControl placeholder="후기 검색" />
+                                </InputGroup>
+                            </div>
+                            <div className="d-flex justify-content-between align-items-center mb-3">
+                                <h5>후기 X개</h5>
+                                <Form.Control as="select" className="w-auto">
+                                <option>최신순</option>
+                                <option>평점순</option>
+                                </Form.Control>
+                            </div>
+                            <div className="review-list">
+                                {reviews.map((review, index) => (
+                                <div key={index} className="d-flex mb-3 align-items-start">
+                                    {/* <img src={profileImage} alt="Profile" className="rounded-circle" width="50" height="50" /> */}
+                                    <div className="ml-3">
+                                    <h6>{review.name}</h6>
+                                    <p>{review.text}</p>
+                                    <small className="text-muted">{review.date}</small>
+                                    </div>
+                                </div>
+                                ))}
+                            </div>
+                            </Modal.Body>
+                        </Modal>
                     </Col>)}
                     {activeTab == '프로필 수정' && (<Col md={8} className="left-section">
                         <div className="profile-info-box">

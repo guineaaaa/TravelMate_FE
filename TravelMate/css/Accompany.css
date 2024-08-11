@@ -1,0 +1,29 @@
+body, html {
+    margin: 0;
+    padding: 0;
+}  
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.card {
+  margin-bottom: 20px;
+}
+
+h3 {
+  margin-top: 20px;
+  font-weight: bold;
+}
+
+.profile-square {
+    width: 200px;
+    height: 200px;
+    background-color: #dddddd;
+    border-radius: 10px;
+    position: relative;
+    top: -50px;
+    left: 50px;
+    margin-right: 100px;
+}
+  
