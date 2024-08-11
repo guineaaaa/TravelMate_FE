@@ -8,42 +8,101 @@ import AppleLogInImage from '../src/image/image 6.png';
 import '../css/Base.css';
 import '../src/App.css';
 
+import useSignup from '../hooks/useSignup';
 import SignupModal from '../components/SignupModal';
 
 const Signup = () => {
-    const [id, setId] = useState("");
+    const navigate = useNavigate();
+    const [email, setEmail] = useState("");
+    const [veriCode, setVeriCode] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
-    const [idMessage, setIDMessage] = useState("");
+    
+    const [emailMessage, setEmailMessage] = useState("");
     const [passwordMessage, setPasswordMessage] = useState("");
+    const [confirmPasswordMessage, setConfirmPasswordMessage] = useState("");
+    
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
     const [showVerificationCodeModal, setVerificationCodeModal] = useState(false);
     const [showSignupModal, setSignupShowModal] = useState(false);
-    const [email, setEmail] = useState("");
 
-    const navigate = useNavigate();
+    const {signup, isLoading, error, data} = useSignup();
 
-    const handleIDChange = (e) => {
-        const currentID = e.target.value;
-        setId(currentID);
-        setEmail(currentID); 
-        if (!currentID.trim()) {
-            setIDMessage("아이디를 입력하세요");
+    const validateEmail = (email) => {
+        if (!email) {
+            setEmailMessage("이메일을 입력하세요");
+            return false;
+        } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+            setEmailMessage('유효한 이메일 주소를 입력하세요');
+            return false;
         } else {
-            setIDMessage("");
+            setEmailMessage('');
+            return true;
         }
+    };
+
+    const validatePassword = (password) => {
+        if (!password) {
+            setPasswordMessage('비밀번호를 입력하세요');
+            return false;
+        } else if (password.length < 4) {
+            setPasswordMessage('비밀번호는 최소 4자리 이상이어야 합니다');
+            return false;
+        } else if (password.length > 12) {
+            setPasswordMessage('비밀번호는 최대 12자리까지 가능합니다');
+            return false;
+        } else if (!/(?=.*[a-zA-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{4,12}$/.test(password)) {
+            setPasswordMessage('영어, 숫자, 특수문자를 조합해서 작성해주세요');
+            return false;
+        } else {
+            setPasswordMessage('');
+            return true;
+        }
+    };
+
+    const validateConfirmPassword = (confirmPassword) => {
+        if (confirmPassword !== password) {
+            setConfirmPasswordMessage('비밀번호가 일치하지 않습니다');
+            return false;
+        } else {
+            setConfirmPasswordMessage('');
+            return true;
+        }
+    };
+
+    const handleEmailChange = (e) => {
+        const newEmail = e.target.value;
+        setEmail(newEmail);
+        validateEmail(newEmail);
+    };
+
+    const handlePasswordChange = (e) => {
+        const newPassword = e.target.value;
+        setPassword(newPassword);
+        validatePassword(newPassword);
+        validateConfirmPassword(confirmPassword); // Check confirm password validity when password changes
+    };
+
+    const handleConfirmPasswordChange = (e) => {
+        const newConfirmPassword = e.target.value;
+        setConfirmPassword(newConfirmPassword);
+        validateConfirmPassword(newConfirmPassword);
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        if (!validateEmail(email) || !validatePassword(password) || !validateConfirmPassword(confirmPassword)) return;
+        await signup(email, password);
+        handleSignupModalShow();
     };
 
     const toggleShowPassword = () => setShowPassword(!showPassword);
     const toggleShowConfirmPassword = () => setShowConfirmPassword(!showConfirmPassword);
 
-    // SignUp 모달
     const handleSignupModalClose = () => { setSignupShowModal(false); navigate('/profilestep1'); }
     const handleSignupModalShow = () => setSignupShowModal(true);
-
-    // 인증번호 모달
     const handleVerificationModalClose = () => setVerificationCodeModal(false);
     const handleVerificationModalShow = () => setVerificationCodeModal(true);
 
@@ -66,12 +125,14 @@ const Signup = () => {
 
                 <Container className="d-flex" style={{ marginLeft: '8rem' }}>
                     <InputGroup className="mb-3" style={{ width: '15.45rem', height: '2.25rem', flexShrink: '0' }}>
-                        <Form.Control type="text" value={id} onChange={handleIDChange} placeholder="이메일 입력"
+                        <Form.Control 
+                            type="email" 
+                            value={email} 
+                            onChange={handleEmailChange} 
+                            placeholder="이메일 입력"
                             style={{ border: '1px solid #A6A6A6', borderRadius: '0.3125rem' }}
                         />
                     </InputGroup>
-                    {idMessage && <p className="text-danger text-end w-50">{idMessage}</p>}
-
                     <Button variant="primary" size="lg" style={{
                         display: 'flex',
                         backgroundColor: '#0074FF',
@@ -91,16 +152,20 @@ const Signup = () => {
                         인증하기
                     </Button>
                 </Container>
+                {emailMessage && <h6 className="text-danger text-start w-50"
+                style={{marginTop:'-1.5%',fontSize:'0.875rem'}}>{emailMessage}</h6>}
 
                 <div className="text-dark custom-banner" style={{marginLeft:'7%'}}>인증번호 입력</div>
                 <Container className="d-flex" style={{ marginLeft: '8rem' }}>
                     <InputGroup className="mb-3" style={{ width: '15.45rem', height: '2.25rem', flexShrink: '0' }}>
-                        <Form.Control type="text" value={id}
-                            style={{ background: '#F1F1F1', border: '1px solid #A6A6A6', borderRadius: '0.3125rem' }} placeholder="인증번호 입력"
+                        <Form.Control 
+                            type="text" 
+                            value={veriCode} 
+                            onChange={(e) => setVeriCode(e.target.value)}
+                            style={{ background: '#F1F1F1', border: '1px solid #A6A6A6', borderRadius: '0.3125rem' }} 
+                            placeholder="인증번호 입력"
                         />
                     </InputGroup>
-
-                    {passwordMessage && <p className="text-danger text-end w-50">{passwordMessage}</p>}
                     <Button variant="primary" size="lg" style={{
                         display: 'flex',
                         backgroundColor: '#0074FF',
@@ -128,16 +193,30 @@ const Signup = () => {
 
                 <div className="text-dark custom-banner"  style={{marginLeft:'1%'}}>비밀번호</div>
                 <InputGroup className="mb-3" style={{ width: '53%' }}>
-                    <Form.Control type={showPassword ? "text" : "password"} value={password} onChange={(e) => setPassword(e.target.value)} placeholder="비밀번호 입력"
-                        style={{ background: '#F1F1F1' }} />
+                    <Form.Control 
+                        type={showPassword ? "text" : "password"} 
+                        value={password} 
+                        onChange={handlePasswordChange} 
+                        placeholder="비밀번호 입력"
+                        style={{ background: '#F1F1F1' }} 
+                    />
                 </InputGroup>
+                {passwordMessage && <h6 className="text-danger text-start w-50"
+                style={{marginTop:'-1.5%',fontSize:'0.875rem'}}>{passwordMessage}</h6>}
 
                 <InputGroup className="mb-3" style={{ width: '53%' }}>
-                    <Form.Control type={showConfirmPassword ? "text" : "password"} value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} placeholder="비밀번호 확인"
-                        style={{ background: '#F1F1F1' }} />
+                    <Form.Control 
+                        type={showConfirmPassword ? "text" : "password"} 
+                        value={confirmPassword} 
+                        onChange={handleConfirmPasswordChange} 
+                        placeholder="비밀번호 확인"
+                        style={{ background: '#F1F1F1' }} 
+                    />
                 </InputGroup>
+                {confirmPasswordMessage && <h6 className="text-danger text-start w-50"
+                style={{marginTop:'-1.5%',fontSize:'0.875rem'}}>{confirmPasswordMessage}</h6>}
 
-                <Button type="button" className="btn-primary" onClick={handleSignupModalShow}
+                <Button type="submit" disabled={isLoading} className="btn-primary" onClick={handleSubmit}
                     size="lg" style={{
                         display: 'flex',
                         backgroundColor: '#0074FF',
@@ -156,11 +235,11 @@ const Signup = () => {
                 >
                     약관 동의 후 가입 완료하기
                 </Button>
+                
             </Form>
 
             <hr style={{ marginTop: '1.56rem', marginBottom: '1rem', backgroundColor: '#DDD', width: '40.9375rem', height: '0.0625rem' }} />
 
-            {/* 간편 가입 버튼 폼 */}
             <Form className="w-100 d-flex flex-column align-items-center mt-4" style={{ marginBottom: '10rem' }}>
                 <h2 className="text-dark" style={{ fontFamily: 'Pretendard', fontSize: '1.5rem', fontWeight: 800, textTransform: 'uppercase', textAlign: 'left', marginRight: '9.2em', marginTop: '0.5rem', marginBottom: '1rem' }}>간편가입</h2>
 
@@ -195,10 +274,8 @@ const Signup = () => {
                 </div>
             </Form>
 
-            {/* 약관 확인 모달 */}
-            <SignupModal show={showSignupModal} handleClose={handleSignupModalClose} />
+            <SignupModal show={showSignupModal} onHide={handleSignupModalClose} />
 
-            {/* 인증번호 전송 모달 */}
             <Modal show={showVerificationCodeModal} onHide={handleVerificationModalClose} centered>
                 <Modal.Body>
                     <p style={{ width: '18.75rem', fontFamily: 'Pretendard', fontSize: '1.5rem', fontWeight: '800', fontStyle: 'normal', lineHeight: '121.2%' }}>
@@ -254,7 +331,6 @@ const Signup = () => {
                 }
                 `}
             </style>
-
         </Container>
     );
 };

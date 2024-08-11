@@ -18,12 +18,12 @@ const FindIdExist = () => {
 
     return (
         <Container fluid className="d-flex flex-column align-items-center justify-content-center"
-            style={{ paddingTop: '25%'  }}>
+            style={{ fontFamily: 'Pretendard', paddingTop: '21%', overflowX: 'hidden'  }}>
             <Banner>회원으로 등록 이메일 아이디 입니다.
                 해당 이메일 로그인하시고 와디즈를 이용하세요!
             </Banner>
 
-            <div style={{ marginTop:'-1rem',marginLeft: '10%',width:'30%' }}>
+            <div className="d-flex flex-column align-items-center mt-3 me-4" style={{ marginTop:'-1rem',marginLeft: '10%',width:'30%' }}>
                 <Button variant="primary" size="lg"
                     style={{
                         width: '100%',
@@ -71,19 +71,14 @@ const FindIdExist = () => {
 }
 
 const Banner = styled.h5`
-    margin-top:-20%;
-    margin-bottom:4%;
-    margin-right:-80%;
-    text-align:left;
-    width: 100%;
-    height: 20%;
-    flex-direction: column;
+    text-align: left;
     color: #878787;
     font-family: "Pretendard";
     font-size: 0.75rem;
-    font-style: normal;
     font-weight: 400;
     line-height: 1.25rem;
+    margin-right:-5%;
 `;
+
 
 export default FindIdExist;

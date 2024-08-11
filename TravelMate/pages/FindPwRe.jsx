@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import  { useState } from "react";
 import { Container, Modal, Button, Form, InputGroup } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import styled from 'styled-components';
@@ -22,13 +22,13 @@ const FindPwRe = () => {
     }
 
     return (
-        <Container fluid className="d-flex flex-column align-items-center justify-content-center" style={{ paddingTop: '20rem' }}>
+        <Container fluid className="d-flex flex-column align-items-center justify-content-center" style={{  fontFamily: 'Pretendard', paddingTop: '21%', overflowX: 'hidden' }}>
             <Banner>
                 가입하셨던 이메일 계정을 입력하시면, <br />
                 비밀번호를 새로 입력할 수 있는 링크를 이메일로 <br />
                 발송해드립니다.
             </Banner>
-            <div style={{ marginTop:'-1rem', marginLeft: '3.82rem' }}>
+            <div className="d-flex flex-column align-items-center mt-3 me-4" style={{ marginTop:'-1rem',marginLeft: '10%',width:'30%' }}>
                 <Form className="w-100 d-flex flex-column align-items-center mt-2">
                     <InputGroup className="mb-3" style={{
                         width: '29.1875rem', height: '2.75rem',
@@ -65,24 +65,14 @@ const FindPwRe = () => {
     );
 }
 
-
-
 const Banner = styled.h5`
-    margin-top:-0.8rem;
-    margin-bottom: 2.81rem;
-    margin-right: 6rem;
-    display: flex;
-    width: 19.0625rem;
-    height: 3.6875rem;
-    flex-direction: column;
-    justify-content: center;
-    flex-shrink: 0;
+    text-align: left;
     color: #878787;
-    font-family: "Baloo Thambi";
+    font-family: "Pretendard";
     font-size: 0.75rem;
-    font-style: normal;
     font-weight: 400;
     line-height: 1.25rem;
+    margin-right:8%;
 `;
 
 export default FindPwRe;
