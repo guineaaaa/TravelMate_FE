@@ -5,6 +5,6 @@ import react from '@vitejs/plugin-react-swc'
 export default defineConfig({
   plugins: [react()],
   optimizeDeps: {
-    exclude: ['@fortawesome/free-solid-svg-icons', '@fortawesome/free-brands-svg-icons'],
+   
   },
 })
