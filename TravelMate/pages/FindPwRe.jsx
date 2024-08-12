@@ -22,7 +22,7 @@ const FindPwRe = () => {
     }
 
     return (
-        <Container fluid className="d-flex flex-column align-items-center justify-content-center" style={{  fontFamily: 'Pretendard', paddingTop: '21%', overflowX: 'hidden' }}>
+        <Container fluid className="d-flex flex-column align-items-center justify-content-center" style={{  fontFamily: 'Pretendard', paddingTop: '7%', overflowX: 'hidden' }}>
             <Banner>
                 가입하셨던 이메일 계정을 입력하시면, <br />
                 비밀번호를 새로 입력할 수 있는 링크를 이메일로 <br />
