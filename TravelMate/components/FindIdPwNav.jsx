@@ -115,7 +115,7 @@ const FindButtonContainer = styled.div`
   display: flex;
   align-items: center;
   gap: 1rem;
-  margin-right:7%; 
+  margin-right:6%; 
 `;
 
 const Button = styled.button`

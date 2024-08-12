@@ -1,5 +1,4 @@
-import { useState } from "react";
-import { Container, Modal, Button, Form, InputGroup } from 'react-bootstrap';
+import { Container, Button} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
@@ -19,7 +18,7 @@ const FindIdNot = () => {
 
     return (
         <Container fluid className="d-flex flex-column align-items-center justify-content-center"
-            style={{ fontFamily: 'Pretendard', paddingTop: '21%', overflowX: 'hidden'}}>
+            style={{ fontFamily: 'Pretendard', paddingTop: '5%', overflowX: 'hidden'}}>
             <Banner>는 TravelMate에 등록되어 있지 않은 계정입니다.</Banner>
             <div className="d-flex flex-column align-items-center mt-3 me-4" style={{marginTop:'-1rem', marginLeft: '10%',width:'30%' }}>
                 <Button variant="primary" size="lg"

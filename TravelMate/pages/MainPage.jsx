@@ -36,7 +36,7 @@ const MainPage = () => {
             <Navibar onLinkClick={handleModalShow} />
 
             <div className="d-flex flex-column align-items-center justify-content-center min-vh-100" style={{fontFamily: 'Pretendard', backgroundImage: `url(${backgroundImage})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
-                <h1 className="text-white text-center" style={{ fontSize: '1.5rem', fontWeight: 500, marginTop: '-5%', marginBottom: '0.7em' }}>
+                <h1 className="text-white text-center" style={{ fontSize: '1.5rem', fontWeight: 500, marginTop: '-1%', marginBottom: '0.7em' }}>
                     여행을 함께 할 안전한 사람을 구하고 있나요?<br />
                     동행자를 TravelMate에서 찾아보세요!
                 </h1>
@@ -201,7 +201,7 @@ const MainPage = () => {
                                             }),placeholder: (provided) => ({
                                                 ...provided,
                                                 fontSize: '0.75rem',
-                                                marginRight:'17%'
+                                                marginRight:'15%'
                                             }),
                                         }}
                                     />
@@ -247,7 +247,7 @@ const MainPage = () => {
                         
                         {/* 나이/성별 선택 카드 */}
                         <Col sm={12} md={6}>
-                            <Card style={{marginTop:'-12%',padding:'0%'}}>
+                            <Card style={{marginTop:'-20%',padding:'0%'}}>
                                 <Card.Header style={{textAlign:'left', fontSize: '1rem', backgroundColor: '#0074FF', color: 'white', fontWeight: 'bold' }}>나이/성별</Card.Header>
                                 <Card.Body style={{paddingBottom: '0.5%'}}>
                                     <InputGroup className="mb-2">

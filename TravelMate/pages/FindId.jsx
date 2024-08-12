@@ -12,12 +12,12 @@ const FindId = () => {
 
     return (
         <Container fluid className="d-flex flex-column align-items-center justify-content-center"
-            style={{ fontFamily: 'Pretendard', paddingTop: '21%', overflowX: 'hidden' }}>
+            style={{ fontFamily: 'Pretendard', paddingTop: '5%', overflowX: 'hidden' }}>
             <Banner>이메일을 입력해주세요!<br />
                 가입 여부를 확인해드릴게요.</Banner>
 
             <Form className="d-flex flex-column align-items-center mt-2 "
-            style={{width:'30%',marginLeft:'8%'}}>
+            style={{width:'30%',marginLeft:'7%'}}>
                 <InputGroup className="mb-3" >
                     <Form.Control type="text" placeholder="이메일 계정" />
                 </InputGroup>
@@ -83,7 +83,7 @@ const Banner = styled.h5`
     font-size: 0.75rem;
     font-weight: 400;
     line-height: 1.25rem;
-    margin-right:13%;
+    margin-right:14%;
 `;
 
 export default FindId;
