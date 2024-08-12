@@ -36,7 +36,7 @@ const FindPw = () => {
     };
 
     return (
-        <Container fluid className="d-flex flex-column align-items-center justify-content-center" style={{  fontFamily: 'Pretendard', paddingTop: '21%', overflowX: 'hidden' }}>
+        <Container fluid className="d-flex flex-column align-items-center justify-content-center" style={{  fontFamily: 'Pretendard', paddingTop: '7%', overflowX: 'hidden' }}>
             <Banner>
                 가입하셨던 이메일 계정을 입력하시면, <br />
                 비밀번호를 새로 입력할 수 있는 링크를 이메일로 <br />
@@ -45,8 +45,8 @@ const FindPw = () => {
             <div className="d-flex flex-column align-items-center mt-3 me-4" style={{ marginTop:'-1rem',marginLeft: '10%',width:'30%' }}>
                 <Form className="w-100 d-flex flex-column align-items-center mt-2">
                     <InputGroup className="mb-3" style={{
-                        width: '29.1875rem', height: '2.75rem',
-                        borderRadius: '0.3125rem', border: '1px solid #A6A6A6',
+                        width: '100%', height: '2.75rem',
+                        borderRadius: '0.3125rem', 
                         background: 'var(--white,#FFF)'
                     }}>
                         <Form.Control type="text" placeholder="이메일 계정" value={email} onChange={handleEmailChange} isInvalid={invalidEmail} />
@@ -57,18 +57,7 @@ const FindPw = () => {
                     variant="primary"
                     size="lg"
                     onClick={handleConfirmClick}
-                    style={{
-                        width: '29.1865rem',
-                        height: '2.75rem',
-                        flexShrink: '0',
-                        borderRadius: '0.3125rem',
-                        background: '#0064DC',
-                        display: 'flex',
-                        justifyContent: 'center',
-                        textAlign: 'center',
-                        fontSize: '1rem',
-                        fontWeight: '800'
-                    }}
+                    style={{width:'100%'}}
                 >
                     확인
                 </Button>
@@ -184,6 +173,6 @@ const Banner = styled.h5`
     font-size: 0.75rem;
     font-weight: 400;
     line-height: 1.25rem;
-    margin-right:8%;
+    margin-right:7%;
 `;
 export default FindPw;

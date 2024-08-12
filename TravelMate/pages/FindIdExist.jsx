@@ -18,7 +18,7 @@ const FindIdExist = () => {
 
     return (
         <Container fluid className="d-flex flex-column align-items-center justify-content-center"
-            style={{ fontFamily: 'Pretendard', paddingTop: '21%', overflowX: 'hidden'  }}>
+            style={{ fontFamily: 'Pretendard', paddingTop: '5%', overflowX: 'hidden'  }}>
             <Banner>회원으로 등록 이메일 아이디 입니다.
                 해당 이메일 로그인하시고 와디즈를 이용하세요!
             </Banner>

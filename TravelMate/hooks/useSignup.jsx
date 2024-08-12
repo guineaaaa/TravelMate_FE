@@ -14,14 +14,14 @@ const useSignup = () => {
         setError(null);
 
         try {
-            const requestBody = {
-                email,
-                password,
-            };
-
             const response = await axios.post(
                 'http://3.39.102.140:8080/members/signup',
-                requestBody
+                { email, password },
+                {
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                }
             );
 
             if (response.status === 200) {
@@ -29,7 +29,6 @@ const useSignup = () => {
 
                 if (isSuccess) {
                     setData(result);
-                    console.log("회원가입 성공");
                     alert('회원가입이 정상적으로 처리되었습니다.');
                     navigate('/login');
                 } else {
@@ -40,13 +39,10 @@ const useSignup = () => {
             }
         } catch (err) {
             if (err.response) {
-                console.log('서버 오류', err.response.data);
                 setError(err.response.data.message || '서버 오류');
             } else if (err.request) {
-                console.error('네트워크 오류', err.request);
                 setError('서버와 연결 실패');
             } else {
-                console.error('오류 발생', err.message);
                 setError('알 수 없는 오류 발생');
             }
         } finally {
