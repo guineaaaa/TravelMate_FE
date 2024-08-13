@@ -39,14 +39,16 @@ const Navibar = ({ onLinkClick }) => {
           </ul>
         </div>
 
-        <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#basic-navbar-nav" aria-controls="basic-navbar-nav" aria-expanded="false" aria-label="Toggle navigation">
+        <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#basic-navbar-nav" aria-controls="basic-navbar-nav" aria-expanded="false" aria-label="Toggle navigation"
+        >
           <span className="navbar-toggler-icon"></span>
         </button>
 
-        <div className="collapse navbar-collapse w-100 bg-primary text-light py-1 " id="basic-navbar-nav">
-          <ul className="d-flex justify-content-between mb-0  navbar-nav w-100 px-5">
-            <li className="nav-item ">
-              <a className="nav-link text-light fw-bold" href="#" onClick={onLinkClick}>호스트 찾기</a>
+        <div className="collapse navbar-collapse w-100 bg-primary text-light py-1" id="basic-navbar-nav"
+        >
+          <ul className="d-flex justify-content-between  mb-0  navbar-nav w-100 mx-5">
+            <li className="nav-item">
+              <a className="nav-link text-light fw-bold " href="#" onClick={onLinkClick}>호스트 찾기</a>
             </li>
             <li className="nav-item">
               <a className="nav-link text-light fw-bold" href="#" onClick={onLinkClick}>계획 / 이벤트</a>
