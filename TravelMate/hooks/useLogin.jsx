@@ -13,7 +13,7 @@ const useLogin=()=>{
         setError(null);
 
         try{
-            const response=await axios.post('http://15.165.194.140:8080/members/login',{
+            const response=await axios.post(`${import.meta.env.VITE_API_BASE_URL}/members/login`,{
                 email,
                 password
             })
