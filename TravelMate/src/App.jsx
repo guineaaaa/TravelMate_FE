@@ -20,9 +20,11 @@ import FindPwRe from '../pages/FindPwRe';
 import Searching from '../pages/Searching';
 import Accompany from '../pages/Accompany';
 
-
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
+
+import {GoogleOAuthProvider} from '@react-oauth/google';
+const clientId=import.meta.env.VITE_APP_GOOGLE_CLIENT_ID;
 
 const App = () => {
   const location = useLocation();
@@ -41,6 +43,7 @@ const App = () => {
   const isFindIdPwPage = navbarConfig.findIdPwPaths.includes(path);
 
   return (
+    <GoogleOAuthProvider clientId={clientId}>
     <div>
       {!isNavbarHidden && !isFindIdPwPage && <Navibar />}
       {isFindIdPwPage && <FindIdPwNavbar />}
@@ -65,6 +68,7 @@ const App = () => {
       </Routes>
       <SignupModal show={showSignupModal} handleClose={handleSignupModalClose} />
     </div>
+    </GoogleOAuthProvider>
   );
 };
 

@@ -10,6 +10,8 @@ import AppleLogInImage from '../src/image/image 6.png';
 import '../css/Base.css';
 import '../src/App.css';
 
+import useGoogleAuth from '../hooks/usegoogleAuth';
+
 const Login = () => {
     const [id, setId] = useState("");
     const [password, setPassword] = useState("");
@@ -18,6 +20,8 @@ const Login = () => {
     const [isId, setIsID] = useState(false);
     const [isPassword, setIsPassword] = useState(false);
 
+    const {googleSocialLogin}=useGoogleAuth();
+
     const REST_API_KEY='백엔드에게 달라 하자1';
     const REDIRECT_URI='벡엔드에게 달라 하자2';
     const link=`https://kauth.kakao.com/oauth/authorize?client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}&response_type=code`;
@@ -25,6 +29,10 @@ const Login = () => {
     const loginHandler=()=>{
         window.location.href=link;
     };
+
+    const googleLoginHandler=()=>{
+        googleSocialLogin();
+    }
 
     const handleIDChange = (e) => {
         const currentID = e.target.value;
@@ -108,7 +116,7 @@ const Login = () => {
             </Button>
 
             <Row className="w-100 mt-1 text-center justify-content-center">
-                <Button variant="light" className="p-0 mb-2 me-2" style={{ width: '2.5rem', height: '2.35294rem', borderRadius: '100rem', padding: 0, border: 'none' }}>
+                <Button onClick={googleSocialLogin} variant="light" className="p-0 mb-2 me-2" style={{ width: '2.5rem', height: '2.35294rem', borderRadius: '100rem', padding: 0, border: 'none' }}>
                     <Image src={GoogleLogInImage} alt="Google 로그인" fluid style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                 </Button>
 
