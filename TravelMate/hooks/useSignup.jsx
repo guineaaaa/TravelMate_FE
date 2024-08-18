@@ -15,7 +15,7 @@ const useSignup = () => {
 
         try {
             const response = await axios.post(
-               `${import.meta.env.VITE_API_BASE_URL}/members/signup`,
+               'http://3.39.102.140:8080/members/signup',
                 { email, password },
                 {
                     headers: {
