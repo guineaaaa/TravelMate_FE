@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Container, Row, Col, Button, Nav, Form, Image } from 'react-bootstrap';
-import './Home.css';
+import '../css/Home.css';
 
 function Home() {
 
@@ -13,32 +13,23 @@ function Home() {
       <Container fluid className="px-0 cover-container">
         <Image src={coverImage} alt="Cover" fluid className="cover-image"/>
 
-        <Row className="justify-content-md-center align-items-center profile-row">
-          <Col md={1} className="text-center">
-            <Image src={profileImage} alt="Profile" roundedCircle className="profile-image" />
-          </Col>
-          <Col md={10}>
-            <Row className="align-items-center">
-              <Col xs="auto" className="nickname-container">
-                <div className="nickname-text"><strong>닉네임 (27/여)</strong></div>
-              </Col>
-              <Col xs="auto">
-                <Image src="/instagram-icon.png" alt="Instagram" style={{ width: '24px', height: '24px' }} />
-              </Col>
-              <Col xs="auto">
-                <div className="rating-container">
-                <span className="rating-score">40.3</span>
-                <Image src="/rating-icon.png" alt="Rating" style={{ width: '24px', height: '24px' }} />
-                </div>
-              </Col>
-            </Row>
-            <Row>
-              <Col>
-                <p>idhdb1004@naver.com</p>
-              </Col>
-            </Row>
-          </Col>
-        </Row>
+        <div className="profile-header d-flex align-items-center">
+         <div className="profile-image-container">
+         <Image src={profileImage} alt="Profile" roundedCircle className="profile-image" />
+        </div>
+    
+        <div className="user-info">
+         <div className="nickname-container d-flex align-items-center">
+           <p className="nickname-text">닉네임 (27/여)</p>
+           <Image src="/instagram-icon.png" alt="Instagram" className="instagram-icon" />
+           <div className="rating-container">
+             <span className="rating-score">40.3</span>
+             <Image src="/rating-icon.png" alt="Rating" className="rating-icon" />
+           </div>
+         </div>
+         <p className="my-0">idhdb1004@naver.com</p>
+        </div>
+     </div>
 
           <Row>
             <Col>
