@@ -61,12 +61,12 @@ const PostCard = ({ post }) => {
           {/* <Card.Img src={placeholderImage} /> */}
         </Col>
         <Col md={8}>
-          <Card.Body>
+          <Card.Body className="text-start">
             <Card.Title>{post.title}</Card.Title>
             <Card.Text>
-              {post.date} <br />
-              {post.location} <br />
-              {post.participants} <br />
+              <i className="bi bi-calendar3 me-2"></i>{post.date} <br />
+              <i className="bi bi-geo-alt me-2"></i>{post.location} <br />
+              <i className="bi bi-people me-2"></i>{post.participants} <br />
               {post.name}
             </Card.Text>
             <Button variant="primary" className="me-2">전체 동행</Button>
@@ -94,6 +94,9 @@ const PostList = () => {
       {posts.map((post, index) => (
         <PostCard key={index} post={post} />
       ))}
+      <div className='text-end'>
+      <Button className="btn primary rounded-pill btn-sm">글쓰기</Button>
+      </div>
       <Pagination className="justify-content-center mt-4">
         {Array.from({ length: Math.ceil(posts.length / postsPerPage) }, (_, index) => (
           <Pagination.Item key={index + 1} active={index + 1 === currentPage} onClick={() => paginate(index + 1)}>

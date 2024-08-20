@@ -62,67 +62,50 @@ const Accompany = () => {
                 <Row>
                     {activeTab == '동행 일정' && (<Col md={8} className="left-section">
                         <Container className="mt-4">
-                            <h3>여행 정보</h3>
-                            <Card className="mb-3">
-                                <Card.Body>
-                                <Row>
-                                    <Col md={2}>
-                                    <i className="bi bi-calendar3"></i>
-                                    <p>일시</p>
-                                    </Col>
-                                    <Col md={10}>
-                                    <p>2024년 07월 01일 15:00 ~ 21:00</p>
-                                    </Col>
-                                </Row>
-                                <Row>
-                                    <Col md={2}>
-                                    <i className="bi bi-geo-alt"></i>
-                                    <p>위치</p>
-                                    </Col>
-                                    <Col md={10}>
-                                    <p>LA / 할리우드</p>
-                                    </Col>
-                                </Row>
-                                <Row>
-                                    <Col md={2}>
-                                    <i className="bi bi-people"></i>
-                                    <p>인원</p>
-                                    </Col>
-                                    <Col md={10}>
-                                    <p>1/4 (여성만 가능)</p>
-                                    </Col>
-                                </Row>
-                                <Row>
-                                    <Col md={2}>
-                                    <i className="bi bi-chat"></i>
-                                    <p>언어</p>
-                                    </Col>
-                                    <Col md={10}>
-                                    <p>한국어 사용자</p>
-                                    </Col>
-                                </Row>
-                                </Card.Body>
-                            </Card>
-
-                            <h3>여행 소개</h3>
-                            <Card className="mb-3">
-                                <Card.Body>
-                                이번 일정은 LA 할리우드를 보고, 사진 찍고 식당에 가서 밥 먹고 헤어질 예정입니다!
-                                </Card.Body>
-                            </Card>
-
-                            <h3>동행 유형 및 주요활동</h3>
-                            <Card className="mb-3">
-                                <Card.Body>
+                            <div className="border-bottom">
+                                <h3 className="text-start">여행 정보</h3>
+                                <Card className="mb-3 bg-light p-0">
+                                    <Card.Body>
+                                    <Row>
+                                        <Col md={12} className="d-flex text-start">
+                                        <i className="bi bi-calendar3 me-2"></i>
+                                        <p>일시 : 2024년 07월 01일 15:00 ~ 21:00</p>
+                                        </Col>
+                                    </Row>
+                                    <Row>
+                                        <Col md={12} className="d-flex text-start">
+                                        <i className="bi bi-geo-alt me-2"></i>
+                                        <p>위치 : LA / 할리우드</p>
+                                        </Col>
+                                    </Row>
+                                    <Row>
+                                        <Col md={12} className="d-flex text-start">
+                                        <i className="bi bi-people me-2"></i>
+                                        <p>인원 : 1/4 (여성만 가능)</p>
+                                        </Col>
+                                    </Row>
+                                    <Row>
+                                        <Col md={12} className="d-flex text-start">
+                                        <i className="bi bi-chat me-2"></i>
+                                        <p>언어 : 한국어 사용자</p>
+                                        </Col>
+                                    </Row>
+                                    </Card.Body>
+                                </Card>
+                            </div>
+                            <h3 className="text-start">여행 소개</h3>
+                            <p className="text-start mt-3 mb-5">이번 일정은 LA 할리우드를 보고, 사진 찍고 식당에 가서 밥 먹고 헤어질 예정입니다!</p>
+                            <h3 className="text-start">동행 유형 및 주요활동</h3>
+                            <div className="text-start p-2 mb-5">
                                 <Button variant="secondary" className="me-2">전체동행</Button>
                                 <span>/</span>
                                 <Button variant="primary" className="ms-2 me-2">레스토랑</Button>
                                 <Button variant="primary">제조</Button>
-                                </Card.Body>
-                            </Card>
+                            </div>
 
-                            <h3>여행장</h3>
-                            <Card className="mb-3">
+                            <div className="border-bottom">
+                            <h3 className="text-start">여행장</h3>
+                            <Card className="mb-3 p-0 bg-light">
                                 <Card.Body>
                                 <Row className="border-bottom">
                                     <Col md={4}>
@@ -138,7 +121,7 @@ const Accompany = () => {
                             </Card>
 
                             <h3>참여중인 동행</h3>
-                            <Card className="mb-3">
+                            <Card className="mb-3 bg-light">
                                 <Card.Body>
                                 <Row>
                                     <Col md={4}>
@@ -155,13 +138,13 @@ const Accompany = () => {
                             </Card>
 
                             <h3>댓글</h3>
-                            <Card className="mb-3">
+                            <Card className="mb-3 bg-light">
                                 <Card.Body>
                                 <Form.Control as="textarea" rows={3} placeholder="첫 댓글을 작성해보세요!" />
                                 </Card.Body>
                             </Card>
-
-                            <h3>(나라 or 도시) 동행 둘러보기</h3>
+                            </div>
+                            <h3 className="text-start mb-4">(나라 or 도시) 동행 둘러보기</h3>
                             <Row>
                                 {posts.map((post, index) => (
                                 <Col md={6} key={index}>

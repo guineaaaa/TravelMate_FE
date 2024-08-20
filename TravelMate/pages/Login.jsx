@@ -10,7 +10,7 @@ import AppleLogInImage from '../src/image/image 6.png';
 import '../css/Base.css';
 import '../src/App.css';
 
-import useGoogleAuth from '../hooks/usegoogleAuth';
+import useGoogleAuth from '../hooks/useGoogleAuth';
 
 const Login = () => {
     const [id, setId] = useState("");
