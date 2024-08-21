@@ -23,6 +23,7 @@ import Accompany from '../pages/Accompany';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
+import KakaoCallback from '../pages/KakaoCallback';
 import {GoogleOAuthProvider} from '@react-oauth/google';
 const clientId=import.meta.env.VITE_APP_GOOGLE_CLIENT_ID;
 
@@ -51,6 +52,7 @@ const App = () => {
         <Route path="/" element={<MainPage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup openModal={handleSignupModalOpen} />} />
+        <Route path="/kakao/callback" element={<KakaoCallback/>}/>
         
         <Route path="/searching" element={<Searching />} />
         <Route path="/profilestep1" element={<ProfileStep1 />} />

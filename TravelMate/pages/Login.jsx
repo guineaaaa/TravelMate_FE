@@ -11,6 +11,7 @@ import '../css/Base.css';
 import '../src/App.css';
 
 import useGoogleAuth from '../hooks/usegoogleAuth';
+import useKakaoAuth from '../hooks/useKakaoAuth';
 
 const Login = () => {
     const [id, setId] = useState("");
@@ -21,14 +22,7 @@ const Login = () => {
     const [isPassword, setIsPassword] = useState(false);
 
     const {googleSocialLogin}=useGoogleAuth();
-
-    const REST_API_KEY='백엔드에게 달라 하자1';
-    const REDIRECT_URI='벡엔드에게 달라 하자2';
-    const link=`https://kauth.kakao.com/oauth/authorize?client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}&response_type=code`;
-
-    const loginHandler=()=>{
-        window.location.href=link;
-    };
+    const {loginHandler:kakaoLoginHandler}=useKakaoAuth();
 
     const googleLoginHandler=()=>{
         googleSocialLogin();
@@ -107,7 +101,7 @@ const Login = () => {
             로그인 정보를 잊으셨나요?</Link>
 
             {/* 소셜 로그인 버튼 목록 */}
-            <Button onClick={loginHandler} variant="light" className="p-0 mb-2 kakao-login-btn" style={{ width: '19.5rem', height: '3rem',borderRadius: 'none', padding: 0 }}>
+            <Button onClick={kakaoLoginHandler} variant="light" className="p-0 mb-2 kakao-login-btn" style={{ width: '19.5rem', height: '3rem',borderRadius: 'none', padding: 0 }}>
                 <Image src={KakaoLogInButton} alt="카카오 로그인" fluid style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
             </Button>
 
