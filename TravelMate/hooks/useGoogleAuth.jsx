@@ -22,7 +22,7 @@ const useGoogleAuth=()=>{
                 code: code,
                 client_id:import.meta.env.VITE_APP_GOOGLE_CLIENT_ID,
                 client_secret:import.meta.env.VITE_APP_GOOGLE_CLIENT_SECRET,
-                redirect_uri:'http://localhost:5173',
+                redirect_uri:'http://localhost:5173/login',
                 grant_type:'authorization_code',
             }
             axios.post('https://oauth2.googleapis.com/token',data,{
@@ -40,7 +40,7 @@ const useGoogleAuth=()=>{
     // 위에서 받은 access token을 서버로 전송하기
     useEffect(()=>{
         if(accessToken){
-            axios.post(`${import.meta.env.VITE_API_BASE_URL}/members/google`,{
+            axios.post('http://3.39.102.140:8080/members/google',{
                 token:accessToken,
             })
             .then((response)=>{
