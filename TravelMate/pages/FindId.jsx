@@ -39,15 +39,27 @@ const FindId = () => {
                 size="lg"
             >
                 <Modal.Body>
-                    <p>
+                    <p style={{ marginBottom:"1.75rem",width: '18.75rem', fontFamily: "Plus Jakarta Sans", fontSize: '1.5rem', fontWeight: '800', fontStyle: 'normal', lineHeight: '121.2%' }}>
                         소셜 계정 로그인 안내
                     </p>
-                    <p>
+                    <p style={{ width: '28.5625rem', fontSize: '0.875rem', fontStyle: 'normal', fontWeight: '500', lineHeight: '121.2%' }}>
                         입력하신 계정은 소셜 계정으로 가입한 계정입니다. 가입때 사용한 소셜 계정으로 로그인해주세요.
                     </p>
                 </Modal.Body>
-                <Modal.Footer>
+                <Modal.Footer style={{borderTop:'none'}}>
                     <Button
+                    style={{
+                        width: '29.1875rem',
+                        height: '2.75rem',
+                        flexShrink: '0',
+                        borderRadius: '0.3125rem',
+                        background: '#0064DC',
+                        textAlign: 'center',
+                        fontFamily: 'Plus Jakarta Sans',
+                        fontSize: '1rem',
+                        fontWeight: '800',
+                        fontStyle: 'normal',
+                    }}
                         variant="primary"
                         onClick={handleSocialLogedInModalClose}
                     >
@@ -61,21 +73,29 @@ const FindId = () => {
 
 const StyledModal = styled(Modal)`
     .modal-dialog {
-        max-width: 90vw;
+        width: 40.9375rem;
+        height: 23.4375rem;
+        max-width: 100%;
         margin: auto;
     }
     .modal-content {
-        padding: 3rem;
+        padding: 3rem 3rem 3rem 3rem;
+        height: 50%;
+        width:100%;
     }
     .modal-body {
-        padding: 2rem;
+        padding: 2rem 3rem 2rem 3rem;
+        font-size: 0.875rem;
+        font-style: normal;
+        font-weight: 500;
     }
+
     .modal-footer {
-        padding: 1rem;
+        padding: 1rem 2rem;
+        display: flex;
         justify-content: center;
     }
 `;
-
 const Banner = styled.h5`
     text-align: left;
     color: #878787;
