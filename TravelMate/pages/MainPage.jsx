@@ -36,12 +36,12 @@ const MainPage = () => {
             <Navibar onLinkClick={handleModalShow} />
 
             <div className="d-flex flex-column align-items-center justify-content-center min-vh-100" style={{fontFamily: 'Pretendard', backgroundImage: `url(${backgroundImage})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
-                <h1 className="text-white text-center" style={{ fontSize: '1.5rem', fontWeight: 500, marginTop: '-1%', marginBottom: '0.7em' }}>
+                <h1 className="text-white text-center" style={{ fontSize: '1.5rem', fontWeight: 500, marginTop: '-2%', marginBottom: '0.7em' }}>
                     여행을 함께 할 안전한 사람을 구하고 있나요?<br />
                     동행자를 TravelMate에서 찾아보세요!
                 </h1>
 
-                <Button style={{ borderRadius: '2em', backgroundColor: '#95C2EC', color: 'black', width: '9.375rem', height: '2.3rem', fontSize: '1.125rem', fontWeight: 400, margin: '10px', marginTop: '-0.1rem', border: 'none' }} onClick={handleModalShow}>
+                <Button style={{ borderRadius: '2em', backgroundColor: '#95C2EC', color: 'black', width: '9.375rem', height: '2.3rem', fontSize: '1.125rem', fontWeight: 400, margin: '10px', marginTop: '-0.5%', border: 'none' }} onClick={handleModalShow}>
                     가입하기
                 </Button>
 
