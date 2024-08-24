@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Container, Row, Image, Form, Button} from 'react-bootstrap';
+import { Container, Row, Image, Form, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -12,6 +12,7 @@ import '../src/App.css';
 
 import useGoogleAuth from '../hooks/useGoogleAuth';
 import useKakaoAuth from '../hooks/useKakaoAuth';
+import useLogin from '../hooks/useLogin'; // useLogin 훅 import
 
 const Login = () => {
     const [id, setId] = useState("");
@@ -21,10 +22,11 @@ const Login = () => {
     const [isId, setIsID] = useState(false);
     const [isPassword, setIsPassword] = useState(false);
 
-    const {googleSocialLogin}=useGoogleAuth();
-    const {loginHandler:kakaoLoginHandler}=useKakaoAuth();
+    const { googleSocialLogin } = useGoogleAuth();
+    const { loginHandler: kakaoLoginHandler } = useKakaoAuth();
+    const { login } = useLogin(); // useLogin 훅 사용
 
-    const googleLoginHandler=()=>{
+    const googleLoginHandler = () => {
         googleSocialLogin();
     }
 
@@ -52,16 +54,50 @@ const Login = () => {
         }
     };
 
+    // 비밀번호 입력 필드에서 엔터키를 눌렀을 때 로그인 처리하기
+    const handleKeyDown = (e) => {
+        if (e.key === 'Enter') {
+            e.preventDefault(); // 기본 폼 제출 방지
+            if (isId && isPassword) {
+                login(id, password); // useLogin 훅의 login 함수 호출
+            } else {
+                if (!isId) {
+                    setIDMessage("아이디를 입력하세요");
+                }
+                if (!isPassword) {
+                    setPasswordMessage("비밀번호를 입력하세요");
+                }
+            }
+        }
+    };
+
+    // Form 제출 처리 함수
+    const handleSubmit = (e) => {
+        e.preventDefault(); // 기본 폼 제출 방지
+        if (isId && isPassword) {
+            login(id, password); // useLogin 훅의 login 함수 호출
+        } else {
+            if (!isId) {
+                setIDMessage("아이디를 입력하세요");
+            }
+            if (!isPassword) {
+                setPasswordMessage("비밀번호를 입력하세요");
+            }
+        }
+    };
+
     return (
-        <Container className="d-flex flex-column align-items-center justify-content-center" style={{ fontFamily: 'Pretendard',width: '40.9375rem', height: '39.4375rem', borderRadius: '0.625rem', backgroundColor: '#FFF', padding: '2rem', margin: '3rem auto' }}>
+        <Container className="d-flex flex-column align-items-center justify-content-center"
+            style={{ fontFamily: 'Pretendard', width: '40.9375rem', height: '39.4375rem', borderRadius: '0.625rem', backgroundColor: '#FFF', padding: '2rem', margin: '3rem auto' }}>
             <h1 className="text-primary" style={{ marginTop: '-1rem', fontFamily: 'BM HANNA_TTF', fontSize: '1.5rem', lineHeight: '3.125rem' }}>TravelMate</h1>
             <hr style={{ marginTop: '-0.19rem', backgroundColor: '#F0F0F0', width: '40.9375rem', height: '0.0625rem' }} />
-            
+
             <h2 className="text-dark" style={{ fontSize: '1.5rem', fontWeight: 800, textTransform: 'uppercase', textAlign: 'left', marginRight: '15rem', marginTop: '1em' }}>로그인</h2>
-            
-            <Form className="w-100 d-flex flex-column align-items-center mt-2">
+
+            {/* Form에 onSubmit 추가 */}
+            <Form className="w-100 d-flex flex-column align-items-center mt-2" onSubmit={handleSubmit}>
                 <div className="mb-3" style={{ width: '50%', position: 'relative' }}>
-                    <Form.Label style={{ 
+                    <Form.Label style={{
                         top: '0.5rem',
                         color: '#1A202C',
                         fontFamily: 'Pretendard',
@@ -69,7 +105,7 @@ const Login = () => {
                         fontWeight: 400,
                         lineHeight: '1.212rem',
                         textTransform: 'uppercase',
-                        marginRight:'85%'
+                        marginRight: '85%'
                     }}>
                         이메일
                     </Form.Label>
@@ -78,7 +114,7 @@ const Login = () => {
                 {idMessage && <p className="text-danger text-end w-50">{idMessage}</p>}
 
                 <div className="mb-3" style={{ width: '50%', position: 'relative' }}>
-                    <Form.Label style={{ 
+                    <Form.Label style={{
                         top: '0.5rem',
                         left: '0',
                         color: '#1A202C',
@@ -87,30 +123,36 @@ const Login = () => {
                         fontWeight: 400,
                         lineHeight: '1.212rem',
                         textTransform: 'uppercase',
-                        marginRight:'85%',
-                        width:'20%'
+                        marginRight: '85%',
+                        width: '20%'
                     }}>
                         비밀번호
                     </Form.Label>
-                    <Form.Control type="password" value={password} onChange={handlePasswordChange} placeholder="비밀번호 입력" />
+                    <Form.Control
+                        type="password"
+                        value={password}
+                        onChange={handlePasswordChange}
+                        onKeyDown={handleKeyDown} // 엔터키 이벤트 핸들링
+                        placeholder="비밀번호 입력"
+                    />
                 </div>
                 {passwordMessage && <p className="text-danger text-end w-50">{passwordMessage}</p>}
             </Form>
 
-            <Link to="/findid" className="text-muted mt-n4 mb-4" style={{ textDecoration:'none',marginLeft: '15em', fontSize: '0.75rem',fontFamily: 'Pretendard', }}>
-            로그인 정보를 잊으셨나요?</Link>
+            <Link to="/findid" className="text-muted mt-n4 mb-4" style={{ textDecoration: 'none', marginLeft: '15em', fontSize: '0.75rem', fontFamily: 'Pretendard' }}>
+                로그인 정보를 잊으셨나요?</Link>
 
             {/* 소셜 로그인 버튼 목록 */}
-            <Button onClick={kakaoLoginHandler} variant="light" className="p-0 mb-2 kakao-login-btn" style={{ width: '19.5rem', height: '3rem',borderRadius: 'none', padding: 0 }}>
+            <Button onClick={kakaoLoginHandler} variant="light" className="p-0 mb-2 kakao-login-btn" style={{ width: '19.5rem', height: '3rem', borderRadius: 'none', padding: 0 }}>
                 <Image src={KakaoLogInButton} alt="카카오 로그인" fluid style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
             </Button>
 
-            <Button variant="success" className="p-3 mb-2" style={{ width: '19.5rem', height: '3rem', borderRadius: '1.875rem',border:'none', backgroundColor: '#60D051', padding: 0, color: 'white', fontSize: '0.9375rem' }}>
+            <Button variant="success" className="p-3 mb-2" style={{ width: '19.5rem', height: '3rem', borderRadius: '1.875rem', border: 'none', backgroundColor: '#60D051', padding: 0, color: 'white', fontSize: '0.9375rem' }}>
                 네이버로 로그인
             </Button>
 
             <Row className="w-100 mt-1 text-center justify-content-center">
-                <Button onClick={googleSocialLogin} variant="light" className="p-0 mb-2 me-2" style={{ width: '2.5rem', height: '2.35294rem', borderRadius: '100rem', padding: 0, border: 'none' }}>
+                <Button onClick={googleLoginHandler} variant="light" className="p-0 mb-2 me-2" style={{ width: '2.5rem', height: '2.35294rem', borderRadius: '100rem', padding: 0, border: 'none' }}>
                     <Image src={GoogleLogInImage} alt="Google 로그인" fluid style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                 </Button>
 
@@ -126,11 +168,11 @@ const Login = () => {
             <div className="d-flex align-items-center mt-4">
                 <p className="text-center" style={{ fontSize: '0.75rem', fontWeight: 800, marginRight: '-0.5rem', lineHeight: '1.125rem' }}>
                     아직 TravelMate 계정이 없나요?</p>
-            <Link to="/signup" style={{ textDecoration: 'none' }}>
-                <Button variant="link" className="text-center" style={{ color: '#58C1C2', fontSize: '0.75rem', paddingBottom: '1.3rem', fontWeight: 800}}>
-                회원가입
-                </Button>
-            </Link>
+                <Link to="/signup" style={{ textDecoration: 'none' }}>
+                    <Button variant="link" className="text-center" style={{ color: '#58C1C2', fontSize: '0.75rem', paddingBottom: '1.3rem', fontWeight: 800 }}>
+                        회원가입
+                    </Button>
+                </Link>
             </div>
         </Container>
     );

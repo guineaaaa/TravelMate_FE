@@ -6,7 +6,7 @@ const Footer = () => {
       <div className="container">
         <div className="row mb-5 mt-4">
           <div className="align-items-center border-bottom col d-flex justify-content-between pb-5 px-0 text-start">
-            <span className='h3 fw-bold me-3'>Travle Mate</span>
+            <span className='h3 fw-bold me-3'>Travel Mate</span>
             <form className="d-flex">
               <input className="form-control me-2" type="search" placeholder="Search.." aria-label="Search" />
               <button className="btn btn-primary" type="submit">Subcribe</button>
